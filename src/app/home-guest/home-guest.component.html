@@ -9,26 +9,45 @@
 </head>
 <body>
   <div class="topLayout">
-    <div class="topLayout-list-container-left">
-      <ul id="topLayout-list-left">
-        <li class="list-parameter" id="list-parameter-1">Грађани</li>
-        <li class="list-parameter" id="list-parameter-2">Привреда</li>
-        <li class="list-parameter">Држава</li>
-      </ul>
-    </div>
-    <div class="topLayout-list-container-right">
-      <ul id="topLayout-list-right">
-        <li class="list-parameter" id="settings-parameter">Подешавања</li>
-        <li class="list-parameter" id="letters-parameter">Ћирилица <span id="falling-menu-arrow">▼</span></li>
-      </ul>
+    <div class="topLayoutWrapper">
+      <div class="topLayout-list-container-left">
+        <ul id="topLayout-list-left">
+          <li class="list-parameter" id="list-parameter-1">Грађани</li>
+          <li class="list-parameter" id="list-parameter-2">Привреда</li>
+          <li class="list-parameter">Држава</li>
+        </ul>
+      </div>
+      <div class="topLayout-list-container-right">
+        <ul id="topLayout-list-right">
+          <li class="list-parameter" id="settings-parameter">Подешавања</li>
+          <li class="list-parameter" id="letters-parameter">Ћирилица <span id="falling-menu-arrow">▼</span></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="headerLayout">
-    <a href="home-guest.component.html" id="logo-government-href"><img src="../../assets/governmentLogo.png" alt="logo-government" id="logo-government"></a>
-    <div class="logo-text-container">
-      <a href="home-guest.component.html" id="logo-text">euprava.gov.rs</a>
+    <div class="headerLayoutWrapper">
+      <a href="home-guest.component.html" id="logo-government-href"><img src="../../assets/governmentLogo.png" alt="logo-government" id="logo-government"></a>
+      <div class="logo-text-container">
+        <a href="home-guest.component.html" id="logo-text">euprava.gov.rs</a>
+      </div>
     </div>
-
+  </div>
+  <div class="menuLayout">
+    <div class="menuLayoutWrapper">
+      <div class="menuLeftLayout">
+        <div class="dropdownServices">
+          <button class="dropServicesButton">Услуге ▼</button>
+          <div class="dropdown-content">
+            <a href="#">Издавање идентификационих докумената</a>
+            <a href="#">Дозвола за оружје</a>
+            <a href="#">Паркинг за инвалиде</a>
+            <a href="#">Добровољно служење војног рока</a>
+            <a href="#">Потернице и возила</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>

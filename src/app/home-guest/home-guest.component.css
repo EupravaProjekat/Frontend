@@ -20,17 +20,25 @@ html{
 .topLayout{
   height: 50px;
   margin:0;
-  display: flex;
-  justify-content: space-between;
   background-color: #00205b;
 }
 
-.headerLayout{
+.topLayoutWrapper {
+  margin: 0 300px;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+}
+
+.headerLayout{
+  border-bottom: lightgray solid 1px;
+}
+
+.headerLayoutWrapper{
+  margin: 0 300px;
   height: 90px;
   width: 100%;
-  border-bottom: lightgray solid 1px;
+  display: flex;
+  flex-direction: row;
 }
 
 #logo-government{
@@ -91,6 +99,48 @@ html{
 
 #falling-menu-arrow{
   font-size: 13px;
-
 }
+
+.dropServicesButton {
+  background-color: #ffffff;
+  color: #00205b;
+  font-family: "Montserrat-Regular";
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdownServices {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #00205b;
+  padding: 14px 50px 14px 28px;
+  font-family: "Montserrat-Regular";
+  font-size: 15px;
+  position: relative;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdownServices:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdownServices:hover .dropServicesButton {background-color: rgba(161, 161, 161, 0.72);}
+
 
