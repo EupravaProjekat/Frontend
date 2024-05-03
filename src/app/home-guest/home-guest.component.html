@@ -46,8 +46,136 @@
             <a href="#">Потернице и возила</a>
           </div>
         </div>
+        <div class="news">
+          <button class="newsButton">Вести</button>
+        </div>
+        <div class="help">
+          <button class="helpButton">Помоћ</button>
+        </div>
+        <div class="contact">
+          <button class="contactButton">Контакт</button>
+        </div>
+      </div>
+      <div class="menuRightLayout">
+        <div class="profileLayout">
+          <button class="dropProfileButton">
+            <span class="icon-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
+              </svg></span><span class="profileText">Моја еУправа ▼</span>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Пријава</a>
+            <a href="#">Регистрација</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <div class="sliderLayout">
+    <div class = "img-slider">
+      <div class="slide active">
+        <img src="../../assets/passport-ico.jpg" alt="idCard" class="img-format">
+        <div class="slideInfo">
+          <h2>еЗаказивање за личну карту и/или пасош</h2>
+          <p>Закажите термин за личну карту и/или пасош у складу са својим обавезама</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../../assets/gun.jpg" alt="gun" class="img-format">
+        <div class="slideInfo">
+          <h2>Подношење захтева за издавање/продужење дозволе за оружје</h2>
+          <p> еУправа Вам сада омогућава и подношење захтева за издавање/продужење дозволе за оружје</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../../assets/parking.jpg" alt="parking" class="img-format">
+        <div class="slideInfo">
+          <h2>Паркинг за инвалиде</h2>
+          <p>У пар кликова поднесите захтев за стицање права паркирања на инвалидском паркинг месту</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../../assets/military.jpg" alt="military" class="img-format">
+        <div class="slideInfo">
+          <h2>Добровољно служење војног рока</h2>
+          <p>Закажите термин за личну карту и/или пасош у складу са својим обавезама</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="../../assets/police.jpg" alt="vehicle" class="img-format">
+        <div class="slideInfo">
+          <h2>Подношење захтева за издавање потернице за возило</h2>
+          <p>еУправа Вам сада омогућава и подношење захтева за издавање потернице за возило</p>
+        </div>
+      </div>
+      <div class="navigation">
+        <div class="btn-navigate active"></div>
+        <div class="btn-navigate"></div>
+        <div class="btn-navigate"></div>
+        <div class="btn-navigate"></div>
+        <div class="btn-navigate"></div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var slides = document.querySelectorAll('.slide');
+      var btns = document.querySelectorAll('.btn-navigate');
+      var currentSlide = 0; // Početni slajd
+      let autoChangeTimeout; // Dodajemo promenljivu za timeout automatskog menjanja
+
+      var manualNav = function(manual) {
+        clearInterval(autoChangeTimeout); // Resetujemo automatsko menjanje
+
+        slides.forEach((slide) => {
+          slide.classList.remove('active');
+
+          btns.forEach((btn) => {
+            btn.classList.remove('active')
+          })
+        })
+
+        slides[manual].classList.add('active');
+        btns[manual].classList.add('active');
+
+        // Ažuriramo trenutni slajd
+        currentSlide = manual;
+
+        // Postavljamo timeout za ponovno pokretanje automatskog menjanja
+        autoChangeTimeout = setTimeout(autoChange, 5000);
+      }
+
+      btns.forEach((btn, i) => {
+        btn.addEventListener("click", () => {
+          manualNav(i);
+        });
+      });
+
+      var autoChange = () => {
+        slides[currentSlide].classList.remove('active');
+        btns[currentSlide].classList.remove('active');
+
+        if (currentSlide === slides.length - 1) {
+          currentSlide = 0;
+        } else {
+          currentSlide++;
+        }
+
+        slides[currentSlide].classList.add('active');
+        btns[currentSlide].classList.add('active');
+
+        // Postavljamo timeout za sledeću promenu slajda
+        autoChangeTimeout = setTimeout(autoChange, 5000);
+      }
+
+      var repeat = function () {
+        autoChange();
+      }
+      repeat();
+    </script>
+    
+  </div>
+
+
 </body>
 </html>
