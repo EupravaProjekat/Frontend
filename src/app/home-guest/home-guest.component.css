@@ -10,15 +10,18 @@
   /* Add additional font weights and styles if needed */
 }
 
-html{
+html, body{
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
 }
+
 
 .topLayout{
   height: 50px;
+  top: 0;
   margin:0;
   background-color: #00205b;
 }
@@ -367,6 +370,139 @@ html{
     bottom: 10px;
   }
 }
+
+.homepage-info-container-wrapper{
+  margin: 0 350px;
+}
+
+.homepage-info-container {
+  background-color: #f8f8f8;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.homepage-info-heading-main {
+  font-family: "Montserrat-Bold";
+  font-size: 36px;
+  color: #00205b;
+  margin-bottom: 10px;
+}
+
+.homepage-info-heading {
+  font-family: "Montserrat-Bold";
+  font-size: 24px;
+  color: #00205b;
+  margin-bottom: 30px;
+}
+
+.homepage-info {
+  font-family: "Montserrat-Regular";
+  font-size: 18px;
+  color: #333;
+  line-height: 1.6;
+}
+
+footer {
+  background: #00205b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+  padding-top: 40px;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 15px;
+  flex-direction: row;
+  text-align: center;
+}
+.footer-content-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-content h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: "MontSerrat-Bold";
+}
+
+.footer-content p {
+  font-size: 16px;
+  font-family: "MontSerrat-Regular";
+  margin-bottom: 30px;
+}
+
+.socials {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.socials li {
+  margin: 0 10px;
+}
+
+.socials a {
+  text-decoration: none;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.footer-crest{
+  width:45px;
+}
+.crest{
+  width:100%;
+}
+
+.footer-bottom {
+  background: #111;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  text-align: center;
+}
+
+.footer-bottom p {
+  float: left;
+  font-size: 18px;
+  width: 100%;
+  word-spacing: 2px;
+}
+
+.socials a.instagram {
+  background-image: url('../../assets/instagram.png');
+}
+
+.socials a.ftn {
+  background-image: url('../../assets/ftn.png');
+}
+
+.socials a.linkedin {
+  background-image: url('../../assets/317750_linkedin_icon (1).png');
+}
+
+.socials a.tiktok {
+  background-image: url('../../assets/pngwing.com.png');
+}
+
+.socials a.instagram:hover, .socials a.tiktok:hover, .socials a.ftn:hover, .socials a.linkedin:hover {
+  background-color: rgba(255, 255, 255, 0.48);
+}
+
 
 
 

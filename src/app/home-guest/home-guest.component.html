@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel = "stylesheet" type="text/css" href="home-guest.component.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
   <link rel="icon" href="../../assets/governmentLogo.png">
   <title>eUprava</title>
 </head>
@@ -117,65 +118,95 @@
         <div class="btn-navigate"></div>
       </div>
     </div>
-
-    <script type="text/javascript">
-      var slides = document.querySelectorAll('.slide');
-      var btns = document.querySelectorAll('.btn-navigate');
-      var currentSlide = 0; // Početni slajd
-      let autoChangeTimeout; // Dodajemo promenljivu za timeout automatskog menjanja
-
-      var manualNav = function(manual) {
-        clearInterval(autoChangeTimeout); // Resetujemo automatsko menjanje
-
-        slides.forEach((slide) => {
-          slide.classList.remove('active');
-
-          btns.forEach((btn) => {
-            btn.classList.remove('active')
-          })
-        })
-
-        slides[manual].classList.add('active');
-        btns[manual].classList.add('active');
-
-        // Ažuriramo trenutni slajd
-        currentSlide = manual;
-
-        // Postavljamo timeout za ponovno pokretanje automatskog menjanja
-        autoChangeTimeout = setTimeout(autoChange, 5000);
-      }
-
-      btns.forEach((btn, i) => {
-        btn.addEventListener("click", () => {
-          manualNav(i);
-        });
-      });
-
-      var autoChange = () => {
-        slides[currentSlide].classList.remove('active');
-        btns[currentSlide].classList.remove('active');
-
-        if (currentSlide === slides.length - 1) {
-          currentSlide = 0;
-        } else {
-          currentSlide++;
-        }
-
-        slides[currentSlide].classList.add('active');
-        btns[currentSlide].classList.add('active');
-
-        // Postavljamo timeout za sledeću promenu slajda
-        autoChangeTimeout = setTimeout(autoChange, 5000);
-      }
-
-      var repeat = function () {
-        autoChange();
-      }
-      repeat();
-    </script>
-    
   </div>
+  <div class="homepage-info-container">
+    <div class="homepage-info-container-wrapper">
+      <div class="homepage-info-heading-layout">
+        <h1 class="homepage-info-heading-main">Добродошли на е-управу!</h1>
+        <h2 class="homepage-info-heading">Управа у вашем џепу!</h2>
+      </div>
+      <div class="homepage-info-layout">
+        <p class="homepage-info">Доступно 24/7, е-управа вам омогућава брз,
+          једноставан и ефикасан приступ различитим услугама јавне управе
+          из удобности вашег дома. Без чекања у редовима и губљења драгоценог времена,
+          сада можете обавити све административне послове онлајн.</p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-crest">
+        <img src="../../assets/serbia-srbija-logo-E2B57872B8-seeklogo.com.png" alt="serbian-crest" class="crest">
+      </div>
+      <div class = footer-content-info>
+        <h3>Факултет техничких наука у Новом Саду</h3>
+        <p>Пројекат из предмета - Технологије и системи еУправе</p>
+        <ul class="socials">
+          <li><a href="#" class="instagram"></a></li>
+          <li><a href="#" class="ftn"></a></li>
+          <li><a href="#" class="linkedin"></a></li>
+          <li><a href="#" class="tiktok"></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 еУправа. Сва права задржана.</p>
+    </div>
+  </footer>
+  <script type="text/javascript">
+    var slides = document.querySelectorAll('.slide');
+    var btns = document.querySelectorAll('.btn-navigate');
+    var currentSlide = 0; // Početni slajd
+    let autoChangeTimeout; // Dodajemo promenljivu za timeout automatskog menjanja
 
+    var manualNav = function(manual) {
+      clearInterval(autoChangeTimeout); // Resetujemo automatsko menjanje
 
+      slides.forEach((slide) => {
+        slide.classList.remove('active');
+
+        btns.forEach((btn) => {
+          btn.classList.remove('active')
+        })
+      })
+
+      slides[manual].classList.add('active');
+      btns[manual].classList.add('active');
+
+      // Ažuriramo trenutni slajd
+      currentSlide = manual;
+
+      // Postavljamo timeout za ponovno pokretanje automatskog menjanja
+      autoChangeTimeout = setTimeout(autoChange, 5000);
+    }
+
+    btns.forEach((btn, i) => {
+      btn.addEventListener("click", () => {
+        manualNav(i);
+      });
+    });
+
+    var autoChange = () => {
+      slides[currentSlide].classList.remove('active');
+      btns[currentSlide].classList.remove('active');
+
+      if (currentSlide === slides.length - 1) {
+        currentSlide = 0;
+      } else {
+        currentSlide++;
+      }
+
+      slides[currentSlide].classList.add('active');
+      btns[currentSlide].classList.add('active');
+
+      // Postavljamo timeout za sledeću promenu slajda
+      autoChangeTimeout = setTimeout(autoChange, 5000);
+    }
+
+    var repeat = function () {
+      autoChange();
+    }
+    repeat();
+  </script>
 </body>
 </html>
