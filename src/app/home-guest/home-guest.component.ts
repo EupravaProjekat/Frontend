@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-guest',
@@ -8,5 +9,16 @@ import { Component } from '@angular/core';
   styleUrl: './home-guest.component.css'
 })
 export class HomeGuestComponent {
+  
+  constructor(private router: Router, private auth: AuthService) {
 
+  }
+  isAuthenticated(): boolean {
+    return this.auth.isAuthenticated();
+  }
+
+  logout(): void {
+    localStorage.removeItem('jwt');
+    this.router.navigate(['/login']);
+  }
 }
