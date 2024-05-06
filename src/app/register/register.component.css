@@ -290,7 +290,7 @@ html, body{
 
 
 .homepage-info-container-wrapper{
-  margin: 0 350px;
+  margin: 0 330px;
 }
 
 .homepage-info-container {
@@ -339,6 +339,7 @@ form {
 
 .input-label {
   display: flex;
+  font-size: 14px;
   width: fit-content; /* Promijenite veličinu prema potrebi */
   align-items: center;
   margin-right: 10px; /* Prilagodite razmak između labele i inputa */
@@ -350,6 +351,10 @@ form {
   margin-left: 3px;
 }
 
+#recaptcha {
+  align-self: center;
+}
+
 form label{
   font-family: "Montserrat-Regular";
   color: #00205b;
@@ -357,7 +362,7 @@ form label{
 
 #email, #password, #passwordConfirm {
   font-family: "Montserrat-Regular";
-  width: 250px;
+  width: 270px;
   height: 30px;
 }
 
@@ -387,10 +392,29 @@ form label{
   cursor: pointer;
 }
 
+#submitButton {
+  padding: 10px 25px;
+  background-color: #263864;
+  border: none;
+  font-family: 'MontSerrat-Bold';
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+}
 
+#submitButton:hover {
+  background-color: #00205b;
+}
+
+#arrowRight{
+  margin-left: 10px;
+  width: 10px;
+}
 
 #msg{
   display: none;
+  font-family: 'MontSerrat-Regular';
   width: 100%;
   position: absolute;
   top: 100%;
@@ -520,7 +544,7 @@ footer {
 }
 
 .footer-bottom {
-  background: #111;
+  background: #003496;
   color: #fff;
   padding: 20px;
   display: flex;

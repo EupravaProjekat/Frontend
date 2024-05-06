@@ -101,7 +101,10 @@
               </svg></i>
             </button>
           </div>
-          <button type="submit">Региструј се</button>
+          <div class="form-group" id="captchaLayout">
+            <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha" id="recaptcha"></ngx-recaptcha2>
+          </div>
+          <button type="submit" id="submitButton">Региструј ме<span id="arrowRight">→</span></button>
         </form>
 
       </div>

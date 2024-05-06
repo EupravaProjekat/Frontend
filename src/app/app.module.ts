@@ -13,7 +13,7 @@ import {ConfigService} from "./services/config.service";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { HomeGuestComponent } from './home-guest/home-guest.component';
-import {RecaptchaModule} from "ng-recaptcha";
+import { NgxCaptchaModule } from 'ngx-captcha';
 import { LoginComponent } from './login/login.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { UserService } from './services/user.service';
@@ -46,10 +46,11 @@ const routes: Routes = [
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    NgxCaptchaModule,
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    RecaptchaModule,
+
   ],
   exports: [RouterModule],
 

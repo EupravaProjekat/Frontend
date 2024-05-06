@@ -7,32 +7,28 @@ import { AuthService } from '../services/auth.service';
 import { ConfigService } from '../services/config.service';
 import { UserService } from '../services/user.service';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent{
+export class RegisterComponent implements OnInit{
   registerForm: FormGroup;
   passwordFieldType: string = 'password';
 
-  strengthLevels = [
-    { color: "#ff3e36", message: "Ваша лозинка је веома слаба" },
-    { color: "#ff691f", message: "Ваша лозинка је слаба" },
-    { color: "#ffda36", message: "Ваша лозинка је добра" },
-    { color: "#0be881", message: "Ваша лозинка је јака" }
-  ];
-  strengthLevel: number = 0;
-
-  constructor(private fb: FormBuilder, private router: Router, private dialog: MatDialog,private auth: AuthService,private service : UserService, private config: ConfigService) {
+  constructor(private fb: FormBuilder, private router: Router, private dialog: MatDialog,private auth: AuthService, private service : UserService, private config: ConfigService) {
 
 
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      passwordConfirm: ['', [Validators.required, Validators.minLength(6)]]
+      passwordConfirm: ['', [Validators.required, Validators.minLength(6)]],
+      recaptcha: ['', Validators.required]
     });
   }
+
+  siteKey: string = "6LfPddMpAAAAAOhwDmkeCFnKAGAtvdIqDkYOeVVF";
 
 
 
@@ -48,6 +44,10 @@ export class RegisterComponent{
     });
   }
 
+  ngOnInit(): void {
+
+  }
+  
   checkForm(registerForm: FormGroup): boolean {
 
     if (this.areFieldsEmpty()) {
@@ -67,7 +67,7 @@ export class RegisterComponent{
     }
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/;
-    if (registerForm.value.password !== registerForm.value.confirmPassword || !passwordRegex.test(registerForm.value.password)) {
+    if (registerForm.value.password !== registerForm.value.passwordConfirm || !passwordRegex.test(registerForm.value.password)) {
       this.setRedBorderForField('password')
       this.setRedBorderForField('confirmPassword')
       this.openDialog('Passwords must match and contain at least one lowercase letter, one uppercase letter, one number, and one special character. Password must be at least 7 characters long.');
@@ -177,29 +177,6 @@ export class RegisterComponent{
     this.router.navigate(['/login']);
   }
 
-  strengthChecker() {
-    let password = this.registerForm.get('passwordConfirm')?.value;
-
-    let parameters = {
-      count: password.length > 7,
-      letters: /[A-Za-z]+/.test(password),
-      numbers: /[0-9]+/.test(password),
-      special: /[!\"$%&/()=?@~`\\.\';:+=^*_-]+/.test(password)
-    };
-
-    let barLength = Object.values(parameters).filter(value => value);
-
-    this.strengthLevel = barLength.length;
-
-    if (this.strengthLevel > 0) {
-      this.strengthLevel--;
-    }
-
-    let msg = document.getElementById("msg");
-    if (msg) {
-      msg.textContent = this.strengthLevels[this.strengthLevel].message;
-    }
-  }
 
 }
 
