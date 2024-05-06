@@ -327,10 +327,15 @@ form {
 
 .form-group {
   display: flex;
+  width:100%;
   position: relative;
   flex-direction: column;
   justify-content: space-between;
 }
+
+/*#confirmPasswordLayout{*/
+/*  margin-top: 15px;*/
+/*}*/
 
 .input-label {
   display: flex;
@@ -356,6 +361,11 @@ form label{
   height: 30px;
 }
 
+#password {
+  border-radius-bottomleft: 0;
+  border-radius-bottomright: 0;
+}
+
 .form-group input {
   padding-right: 40px; /* dodajte odgovarajući razmak za ikonu */
 }
@@ -365,7 +375,7 @@ form label{
 }
 
 .password-input-container input {
-  padding-right: 40px; /* Dodajte odgovarajući razmak za ikonu */
+  padding-right: 30px; /* Dodajte odgovarajući razmak za ikonu */
 }
 
 .password-input-container button {
@@ -378,25 +388,32 @@ form label{
 }
 
 
+
 #msg{
+  display: none;
   width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 5px;
   font-size: 11px;
   text-align: center;
 }
 
-.strength-bar{
-  background-color: gray;
+.strength-bar {
+  background-color: rgb(128, 128, 128);
   height: 5px;
+  width: 100%;
+  z-index: 1;
   position: relative;
-  border-radius: 0 0 3px 3px;
 }
 
-.strength{
-  width:25%;
-  display: inline-block;
+.strength {
+  width: 0%;
+  display: flex;
+  height: 5px;
+  z-index: 2;
   position: relative;
-  height: 100%;
-  background-color: transparent;
 }
 
 .form-group button {
@@ -408,6 +425,33 @@ form label{
   border: none;
   cursor: pointer;
 }
+
+#eye-confirm {
+  top: 72%;
+}
+
+.strength-bar span {
+  height: 5px;
+  margin-right: 2px;
+  display: inline-block;
+}
+
+.very-weak span {
+  background-color: #FF0000; /* Crvena */
+}
+
+.weak span {
+  background-color: #FFA500; /* Narandžasta */
+}
+
+.good span {
+  background-color: #FFFF00; /* Žuta */
+}
+
+.strong span {
+  background-color: #008000; /* Zelena */
+}
+
 
 footer {
   background: #00205b;

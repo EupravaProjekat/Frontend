@@ -1,5 +1,3 @@
-// password-strength.js
-
 document.addEventListener("DOMContentLoaded", function() {
   function strengthChecker() {
     let parameters = {
@@ -8,90 +6,77 @@ document.addEventListener("DOMContentLoaded", function() {
       numbers: false,
       special: false
     }
-    let strengthBars = document.getElementsByClassName("strength-bar");
+    let strengthBar = document.querySelector(".strength-bar");
     let msg = document.getElementById("msg");
-
     let password = document.getElementById("password").value;
+    let confirmPasswordLayout = document.getElementById("confirmPasswordLayout");
+
+      confirmPasswordLayout.style.marginTop = "15px";
 
     if (password.length === 0) {
-      // Ako je polje za lozinku prazno, sakrijemo poruku
-      msg.textContent = "";
-      for (let strengthBar of strengthBars) {
-        strengthBar.innerHTML = "";
-      }
-      return; // Prekidamo izvršavanje funkcije
+      msg.style.display = "none";
+    } else {
+      msg.style.display = "block";
     }
 
     parameters.letters = /[A-Za-z]+/.test(password);
     parameters.numbers = /[0-9]+/.test(password);
     parameters.special = /[!\"$%&/()=?@~`\\.\';:+=^*_-]+/.test(password);
-    parameters.count = password.length >= 7;
+    parameters.count = password.length >= 9;
 
-    for (let strengthBar of strengthBars) {
-
-      for (let key in parameters) {
-        if (parameters[key]) {
-          let span = document.createElement("span");
-          span.classList.add("strength");
-          strengthBar.appendChild(span);
-        }
-      }
-    }
-
+    let strength = document.getElementsByClassName("strength")[0]; // Pristup prvoj stavci u kolekciji
     let strengthLevel = 0;
-    for (let key in parameters) {
+    let key = "count";
+    while (key !== "") {
       if (parameters[key]) strengthLevel++;
+      switch (key) {
+        case "count":
+          key = "letters";
+          break;
+        case "letters":
+          key = "numbers";
+          break;
+        case "numbers":
+          key = "special";
+          break;
+        case "special":
+          key = "";
+          break;
+      }
     }
 
     switch (strengthLevel) {
       case 0:
         msg.textContent = "";
-        for (let strengthBar of strengthBars) {
-          strengthBar.style.background = "transparent";
-          strengthBar.style.width = "0";
-        }
+        strength.style.width = "0%";
+        confirmPasswordLayout.style.marginTop = "0";
         break;
       case 1:
-        msg.textContent = "Your password is very weak";
-        for (let strengthBar of strengthBars) {
-          if (strengthBar.children.length === 1) {
-            strengthBar.children[0].style.background = "#ff3e36";
-            strength.style.width = "25%";
-            strength.style.height="100%";
-          }
-        }
+        msg.innerText = "Ваша лозинка је веома слаба";
+        strength.style.backgroundColor = "#ff0000";
+        strength.style.width = "25%";
+        confirmPasswordLayout.style.marginTop = "15px";
         break;
       case 2:
-        msg.textContent = "Your password is weak";
-        for (let strengthBar of strengthBars) {
-          if (strengthBar.children.length === 1) {
-            strengthBar.children[0].style.background = "#ff691f";
-            strengthBar.children[0].style.width = "50%";
-          }
-        }
+        msg.textContent = "Ваша лозинка је слаба";
+        strength.style.backgroundColor = "#ffb500";
+        strength.style.width = "50%";
+        confirmPasswordLayout.style.marginTop = "15px";
         break;
       case 3:
-        msg.textContent = "Your password is good";
-        for (let strengthBar of strengthBars) {
-          if (strengthBar.children.length === 1) {
-            strengthBar.children[0].style.background = "#ffda36";
-            strengthBar.style.width = "75%";
-          }
-        }
+        msg.textContent = "Ваша лозинка је јака";
+        strength.style.backgroundColor = "#e9ff00";
+        strength.style.width = "75%";
+        confirmPasswordLayout.style.marginTop = "15px";
         break;
       case 4:
-        msg.textContent = "Your password is strong";
-        for (let strengthBar of strengthBars) {
-          if (strengthBar.children.length === 1) {
-            strengthBar.children[0].style.background = "#0be881";
-            strengthBar.style.width = "100%";
-          }
-        }
+        msg.textContent = "Ваша лозинка je веома jaka";
+        strength.style.backgroundColor = "#07d000";
+        strength.style.width = "100%";
+        confirmPasswordLayout.style.marginTop = "15px";
         break;
     }
   }
-
-
 
   let passwordField = document.getElementById("password");
   let passwordConfirmField = document.getElementById("passwordConfirm");
