@@ -16,6 +16,7 @@ import { HomeGuestComponent } from './home-guest/home-guest.component';
 import {RecaptchaModule} from "ng-recaptcha";
 import { LoginComponent } from './login/login.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { UserService } from './services/user.service';
 
 
 
@@ -57,7 +58,7 @@ const routes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, ConfigService,],
-  bootstrap: [HomeGuestComponent]
+    }, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, ConfigService, UserService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

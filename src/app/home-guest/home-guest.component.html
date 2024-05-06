@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel = "stylesheet" type="text/css" href="home-guest.component.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
   <link rel="icon" href="../../assets/governmentLogo.png">
   <title>eUprava</title>
 </head>
@@ -28,9 +27,9 @@
   </div>
   <div class="headerLayout">
     <div class="headerLayoutWrapper">
-      <a href="home-guest.component.html" id="logo-government-href"><img src="../../assets/governmentLogo.png" alt="logo-government" id="logo-government"></a>
+      <a href="/" id="logo-government-href"><img src="../../assets/governmentLogo.png" alt="logo-government" id="logo-government"></a>
       <div class="logo-text-container">
-        <a href="home-guest.component.html" id="logo-text">euprava.gov.rs</a>
+        <a href="/" id="logo-text">euprava.gov.rs</a>
       </div>
     </div>
   </div>
@@ -66,8 +65,12 @@
               </svg></span><span class="profileText">Моја еУправа ▼</span>
           </button>
           <div class="dropdown-content">
-            <a href="#">Пријава</a>
-            <a href="#">Регистрација</a>
+              <a routerLink ="login">Пријава</a>
+              <a routerLink ="register">Регистрација</a>
+            <ng-container *ngIf="isAuthenticated()">
+              <a  style="margin-left: 10px;margin-right: 10px"href="http://localhost:4200/profile"><button id="profilebutn">Profile</button></a>
+              <button id="logoutbttn" (click)="logout()">Logout</button>
+            </ng-container>
           </div>
         </div>
       </div>

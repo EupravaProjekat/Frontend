@@ -18,6 +18,9 @@ html, body{
   overflow-x: hidden;
 }
 
+a {
+  clickable: true;
+}
 
 .topLayout{
   height: 50px;

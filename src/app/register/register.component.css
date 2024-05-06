@@ -114,6 +114,19 @@ html, body{
   border: none;
 }
 
+.dropServicesButton a, .newsButton a, .helpButton a, .contactButton a {
+  text-decoration: none;
+  color: #00205b;
+}
+
+.dropServicesButton a:hover, .newsButton a:hover, .helpButton a:hover, .contactButton a:hover {
+  color: #00205b;
+}
+
+.dropServicesButton a:visited , .newsButton a:visited , .helpButton a:visited , .contactButton a:visited  {
+  color: #00205b;
+}
+
 .dropProfileButton{
   background-color: #ffffff;
   font-family: "Montserrat-Regular";
@@ -314,9 +327,22 @@ form {
 
 .form-group {
   display: flex;
-  flex-direction: row;
-  gap: 5px;
+  position: relative;
+  flex-direction: column;
   justify-content: space-between;
+}
+
+.input-label {
+  display: flex;
+  width: fit-content; /* Promijenite veličinu prema potrebi */
+  align-items: center;
+  margin-right: 10px; /* Prilagodite razmak između labele i inputa */
+}
+
+.red-dot{
+  color: red;
+  font-size: 12px;
+  margin-left: 3px;
 }
 
 form label{
@@ -328,6 +354,59 @@ form label{
   font-family: "Montserrat-Regular";
   width: 250px;
   height: 30px;
+}
+
+.form-group input {
+  padding-right: 40px; /* dodajte odgovarajući razmak za ikonu */
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.password-input-container input {
+  padding-right: 40px; /* Dodajte odgovarajući razmak za ikonu */
+}
+
+.password-input-container button {
+  position: absolute;
+  height: 100%;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+#msg{
+  width: 100%;
+  font-size: 11px;
+  text-align: center;
+}
+
+.strength-bar{
+  background-color: gray;
+  height: 5px;
+  position: relative;
+  border-radius: 0 0 3px 3px;
+}
+
+.strength{
+  width:25%;
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  bottom: 5px;
+}
+
+.form-group button {
+  position: absolute;
+  top: 41%;
+  right: 10px; /* prilagodite prema vašim potrebama */
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 footer {
