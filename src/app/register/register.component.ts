@@ -45,9 +45,12 @@ export class RegisterComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = '../js/checker.js';
+    document.body.appendChild(script);
   }
-  
+
   checkForm(registerForm: FormGroup): boolean {
 
     if (this.areFieldsEmpty()) {

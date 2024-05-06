@@ -296,6 +296,9 @@ html, body{
 .homepage-info-container {
   background-color: #f8f8f8;
   padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
@@ -315,6 +318,8 @@ html, body{
 
 .homepage-info-layout{
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
 }
 
@@ -323,6 +328,10 @@ form {
   flex-direction: column;
   gap: 15px;
   margin-top: 20px;
+}
+
+#euprava{
+
 }
 
 .form-group {
