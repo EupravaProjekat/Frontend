@@ -29,7 +29,8 @@
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
-            "scripts": ["src/app/js/slider.js"]
+            "scripts": ["src/app/js/slider.js",
+              "src/app/js/checker.js"]
           },
           "configurations": {
             "production": {

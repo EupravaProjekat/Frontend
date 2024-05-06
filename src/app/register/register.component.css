@@ -396,12 +396,12 @@ form label{
   display: inline-block;
   position: relative;
   height: 100%;
-  bottom: 5px;
+  background-color: transparent;
 }
 
 .form-group button {
   position: absolute;
-  top: 41%;
+  top: 65%;
   right: 10px; /* prilagodite prema vašim potrebama */
   transform: translateY(-50%);
   background: none;
