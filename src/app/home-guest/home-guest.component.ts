@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Router } from '@angular/router';
+import { AppModule } from '../app.module';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home-guest',
-  standalone: true,
-  imports: [],
   templateUrl: './home-guest.component.html',
-  styleUrl: './home-guest.component.css'
+  styleUrls: ['./home-guest.component.css']
 })
+
+
 export class HomeGuestComponent {
-  
+
   constructor(private router: Router, private auth: AuthService) {
 
   }

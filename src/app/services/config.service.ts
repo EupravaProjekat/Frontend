@@ -16,6 +16,6 @@ export class ConfigService {
     this._profile_url = this._api_url + '/profile';
     this._login_url = this._api_url + '/login';
     this._register_url = this._api_url + '/register';
-    
+
   }
 }

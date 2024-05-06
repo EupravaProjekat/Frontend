@@ -153,60 +153,7 @@
       <p>&copy; 2024 еУправа. Сва права задржана.</p>
     </div>
   </footer>
-  <script type="text/javascript">
-    var slides = document.querySelectorAll('.slide');
-    var btns = document.querySelectorAll('.btn-navigate');
-    var currentSlide = 0; // Početni slajd
-    let autoChangeTimeout; // Dodajemo promenljivu za timeout automatskog menjanja
+  <script type="text/javascript" src="../js/slider.js"></script>
 
-    var manualNav = function(manual) {
-      clearInterval(autoChangeTimeout); // Resetujemo automatsko menjanje
-
-      slides.forEach((slide) => {
-        slide.classList.remove('active');
-
-        btns.forEach((btn) => {
-          btn.classList.remove('active')
-        })
-      })
-
-      slides[manual].classList.add('active');
-      btns[manual].classList.add('active');
-
-      // Ažuriramo trenutni slajd
-      currentSlide = manual;
-
-      // Postavljamo timeout za ponovno pokretanje automatskog menjanja
-      autoChangeTimeout = setTimeout(autoChange, 5000);
-    }
-
-    btns.forEach((btn, i) => {
-      btn.addEventListener("click", () => {
-        manualNav(i);
-      });
-    });
-
-    var autoChange = () => {
-      slides[currentSlide].classList.remove('active');
-      btns[currentSlide].classList.remove('active');
-
-      if (currentSlide === slides.length - 1) {
-        currentSlide = 0;
-      } else {
-        currentSlide++;
-      }
-
-      slides[currentSlide].classList.add('active');
-      btns[currentSlide].classList.add('active');
-
-      // Postavljamo timeout za sledeću promenu slajda
-      autoChangeTimeout = setTimeout(autoChange, 5000);
-    }
-
-    var repeat = function () {
-      autoChange();
-    }
-    repeat();
-  </script>
 </body>
 </html>

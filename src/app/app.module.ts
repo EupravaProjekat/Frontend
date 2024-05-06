@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import {NoopAnimationsModule, BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CommonModule} from "@angular/common";
@@ -58,6 +58,6 @@ const routes: Routes = [
       useClass: TokenInterceptor,
       multi: true
     }, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, ConfigService,],
-  bootstrap: [AppComponent]
+  bootstrap: [HomeGuestComponent]
 })
 export class AppModule { }
