@@ -315,6 +315,13 @@ html, body{
   font-family: 'Montserrat-Bold';
 }
 
+.up-style-desc1 {
+  font-size: 12px;
+  color: #253965;
+  font-family: 'Montserrat-Bold';
+  display: flex;
+}
+
 .homepage-info-heading {
   font-family: "Montserrat-Bold";
   font-size: 24px;

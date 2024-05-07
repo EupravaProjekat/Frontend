@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
   <link rel="icon" href="../../assets/governmentLogo.png">
   <title>Регистрација - eUprava</title>
+  <script defer src="../js/borderValidator.js" type="text/javascript"></script>
 </head>
 <body>
   <div class="topLayout">
@@ -78,10 +79,11 @@
         <h1 class="homepage-info-heading-main">Региструјте налог корисничким именом и лозинком</h1>
       </div>
       <div class="homepage-info-layout">
-        <form (submit)="submitForm()" [formGroup]="registerForm" method="post">
+        <form (submit)="submitForm()" [formGroup]="registerForm" method="post" id="registerForm">
           <div class="form-group">
             <label for="email" class="input-label">Адреса електронске поште<span class="red-dot">●</span></label>
-            <input type="email" id="email" formControlName="email" required>
+            <input type="email" id="email" formControlName="email" type="text" required>
+            <div class="error"></div>
           </div>
           <div class="form-group">
             <label for="{{ passwordFieldType }}" class="input-label">Лозинка <span class="red-dot">●</span></label>
@@ -100,6 +102,7 @@
               </svg></i>
             </button>
             <div class="strength-bar" id="strength-bar-password"><div class="strength" id="strength-password"></div></div>
+            <div class="error"></div>
             <p id="msg"></p>
           </div>
           <div class="form-group" id="confirmPasswordLayout">
