@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
         confirmPasswordLayout.style.marginTop = "0";
         break;
       case 1:
-        msg.innerText = "Ваша лозинка је веома слаба";
+        msg.textContent = "Ваша лозинка је веома слаба";
         strength.style.backgroundColor = "#ff0000";
         strength.style.width = "25%";
         confirmPasswordLayout.style.marginTop = "15px";

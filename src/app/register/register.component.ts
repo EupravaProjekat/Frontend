@@ -53,36 +53,31 @@ export class RegisterComponent implements OnInit{
   checkForm(registerForm: FormGroup): boolean {
 
     if (this.areFieldsEmpty()) {
-      this.openDialog('All fields are required.');
-      this.setBorderForField();
+      this.openDialog('Молимо вас да попуните сва поља!');
       return false;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(registerForm.value.email)) {
-      this.setRedBorderForField('email')
-      this.openDialog('Invalid email address.');
+      this.openDialog('Неисправна имејл адреса!');
       return false;
     }
     else{
-      this.setGreenBorderForField('email')
     }
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/;
-    if (registerForm.value.password !== registerForm.value.passwordConfirm || !passwordRegex.test(registerForm.value.password)) {
-      this.setRedBorderForField('password')
-      this.setRedBorderForField('confirmPassword')
-      this.openDialog('Passwords must match and contain at least one lowercase letter, one uppercase letter, one number, and one special character. Password must be at least 7 characters long.');
+    if (registerForm.value.password !== registerForm.value.passwordConfirm) {
+      this.openDialog('Лозинке се морају подударати!');
       return false;
     }
-    else{
-      this.setGreenBorderForField('password')
-      this.setGreenBorderForField('confirmPassword')
+
+    let msgElement = document.getElementById("msg");
+    let msgText = msgElement?.textContent;
+
+    if (msgText === 'Ваша лозинка је веома слаба' || msgText === 'Ваша лозинка je слаба' || msgText === 'Ваша лозинка је јака') {
+      this.openDialog('Лозинка мора садржавати барем 7 карактера, укључујући велика и мала слова, барем један број и барем један специјални карактер!');
+      return false;
     }
 
-    this.setInvalidClass('email', !emailRegex.test(registerForm.value.email));
-    this.setInvalidClass('password', registerForm.value.password !== registerForm.value.confirmPassword || !passwordRegex.test(registerForm.value.password));
-    this.setInvalidClass('confirmPassword', registerForm.value.password !== registerForm.value.confirmPassword || !passwordRegex.test(registerForm.value.password));
 
     return true;
   }
@@ -115,48 +110,6 @@ export class RegisterComponent implements OnInit{
     }
 
     return false;
-  }
-
-  setGreenBorderForField(inputId: string) {
-    const control = this.registerForm.get(inputId);
-    if (control) {
-      const inputElement = document.getElementById(inputId);
-      if (inputElement) {
-        inputElement.style.border = '2.5px solid green';
-      }
-    }
-  }
-
-  setRedBorderForField(inputId: string) {
-    const control = this.registerForm.get(inputId);
-    if (control) {
-      const inputElement = document.getElementById(inputId);
-      if (inputElement) {
-        inputElement.style.border = '2.5px solid red';
-      }
-    }
-  }
-
-  setBorderForField(inputId?: string, color: 'red' | 'green' = 'red') {
-    if (inputId) {
-      const control = this.registerForm.get(inputId);
-      if (control && control.value === '') {
-        const inputElement = document.getElementById(inputId);
-        if (inputElement) {
-          inputElement.style.border = `2.5px solid ${color}`;
-        }
-      }
-    } else {
-      Object.keys(this.registerForm.controls).forEach((field) => {
-        const control = this.registerForm.get(field);
-        if (control && control.value === '') {
-          const inputElement = document.getElementById(field);
-          if (inputElement) {
-            inputElement.style.border = `2.5px solid ${color}`;
-          }
-        }
-      });
-    }
   }
 
   togglePassword() {
