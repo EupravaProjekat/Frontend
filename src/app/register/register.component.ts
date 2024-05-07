@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit{
 
   openDialog(message: string) {
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: { message: message },
+      data: { title: 'Обавештење', message: message },
     });
 
     dialogRef.afterClosed().subscribe(() => {
