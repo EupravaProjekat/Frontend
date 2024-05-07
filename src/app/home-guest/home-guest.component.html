@@ -68,8 +68,8 @@
               <a routerLink ="login">Пријава</a>
               <a routerLink ="register">Регистрација</a>
             <ng-container *ngIf="isAuthenticated()">
-              <a  style="margin-left: 10px;margin-right: 10px"href="http://localhost:4200/profile"><button id="profilebutn">Profile</button></a>
-              <button id="logoutbttn" (click)="logout()">Logout</button>
+              <a  style="margin-left: 10px;margin-right: 10px"href="http://localhost:4200/profile"><button id="profilebutn">Мој профил</button></a>
+              <button id="logoutbttn" (click)="logout()">Одјава</button>
             </ng-container>
           </div>
         </div>

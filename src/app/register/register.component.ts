@@ -16,6 +16,7 @@ import { UserService } from '../services/user.service';
 export class RegisterComponent implements OnInit{
   registerForm: FormGroup;
   passwordFieldType: string = 'password';
+  siteKey: string = "6LfPddMpAAAAAOhwDmkeCFnKAGAtvdIqDkYOeVVF";
 
   constructor(private fb: FormBuilder, private router: Router, private dialog: MatDialog,private auth: AuthService, private service : UserService, private config: ConfigService) {
 
@@ -27,8 +28,6 @@ export class RegisterComponent implements OnInit{
       recaptcha: ['', Validators.required]
     });
   }
-
-  siteKey: string = "6LfPddMpAAAAAOhwDmkeCFnKAGAtvdIqDkYOeVVF";
 
 
 

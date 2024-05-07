@@ -7,15 +7,21 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0);
 }
 
-.dialog-content {
+.dialog-box{
   max-width: 400px;
   background: #fff;
-  padding: 20px;
+  padding: 10px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .dialog-title {
@@ -25,6 +31,7 @@
 
 .dialog-message {
   font-size: 18px;
+  font-family: 'MontSerrat-Regular';
 }
 
 .dialog-buttons {
@@ -32,11 +39,12 @@
 }
 
 .dialog-button {
-  background: #007BFF;
+  background-color: #253965;
   color: #fff;
   padding: 10px 20px;
   border-radius: 4px;
   text-decoration: none;
+  font-family: 'MontSerrat-Regular';
   font-size: 18px;
   transition: background 0.3s;
   cursor: pointer;
@@ -51,4 +59,24 @@
   display: block;
   margin: 0 auto;
   border: none;
+}
+
+.dialog-footer {
+  display: flex;
+  flex-direction: row;
+}
+
+.close-button{
+  background-color: #fd6161;
+  color: white;
+  border: none;
+  text-align: center;
+  width: 25px;
+  transition: background 0.3s;
+  border-radius: 5px;
+}
+
+.close-button:hover {
+  background: #ff2c2c;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }

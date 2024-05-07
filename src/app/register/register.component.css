@@ -111,19 +111,15 @@ html, body{
   cursor: pointer;
   padding: 16px;
   font-size: 16px;
+  text-decoration: none;
   border: none;
 }
 
-.dropServicesButton a, .newsButton a, .helpButton a, .contactButton a {
-  text-decoration: none;
+.dropServicesButton:hover, .newsButton:hover, .helpButton:hover, .contactButton:hover {
   color: #00205b;
 }
 
-.dropServicesButton a:hover, .newsButton a:hover, .helpButton a:hover, .contactButton a:hover {
-  color: #00205b;
-}
-
-.dropServicesButton a:visited , .newsButton a:visited , .helpButton a:visited , .contactButton a:visited  {
+.dropServicesButton:visited , .newsButton:visited , .helpButton:visited , .contactButton:visited  {
   color: #00205b;
 }
 
@@ -155,6 +151,10 @@ html, body{
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 2;
+}
+
+.nav-container{
+  display: flex;
 }
 
 .dropdown-content a {
@@ -318,6 +318,7 @@ html, body{
 
 .homepage-info-layout{
   display: flex;
+  gap: 50px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
