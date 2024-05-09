@@ -17,7 +17,7 @@ export class UserService {
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog
-    
+
   ) { }
   getOne(email : string) {
     return this.apiService.get(this.config._profile_url+"/"+email);
@@ -34,16 +34,16 @@ export class UserService {
       'password' : userToSave.password
     };
 
-    console.log(userToSave.role)
+    console.log(userToSave.email)
 
 
     return this.apiService.post(this.config._register_url, JSON.stringify(body), loginHeaders)
       .subscribe((res) => {
         if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
         {
-          alert("Error")
+          alert("Грешка!")
         }else {
-          this.openDialog('Activation link has been sent to ' + body.email);
+          this.openDialog('Линк за верификацију је послат на ' + body.email);
           console.log(res)
           let returnUrl : String;
         }
@@ -54,9 +54,9 @@ export class UserService {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
-    
+
     const body = {
-      
+
       'email': userToSave.email
     };
 
@@ -64,9 +64,9 @@ export class UserService {
       .subscribe((res) => {
         if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
         {
-          this.openDialog("Error")
+          this.openDialog("Грешка у чувању измена на профилу!")
         }else {
-          this.openDialog("Save success");
+          this.openDialog("Кориснички профил успешно ажуриран!");
           console.log(res)
           let returnUrl : String;
         }

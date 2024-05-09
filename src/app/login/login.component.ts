@@ -21,7 +21,7 @@ export class LoginComponent {
     private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
       recaptcha: ['', Validators.required]
     });
@@ -29,7 +29,7 @@ export class LoginComponent {
 
   openDialog(message: string) {
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: { message: message },
+      data: { title: 'Обавештење', message: message },
     });
 
     dialogRef.afterClosed().subscribe(() => {
@@ -44,59 +44,23 @@ export class LoginComponent {
   }
   submitForm() {
 
-    const username = this.loginForm.get('username')?.value;
+    const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
-    if (!username || !password) {
-      this.openDialog('Both username and password are required.');
-      this.setRedBorderForField('username')
-      this.setRedBorderForField('password')
+    if (!email || !password) {
+      this.openDialog('Молимо Вас да унесете све креденцијале за пријаву!');
       return;
     }
     if (this.loginForm.invalid) {
       this.openDialog("Captcha is required!")
-      this.setYellowBorderForField('username')
-      this.setYellowBorderForField('password')
       return;
     }
     const credentials = {
-      email: username,
+      email: email,
       password: password
     };
-    this.setGreenBorderForField('username')
-    this.setGreenBorderForField('password')
     this.authService.login(credentials)
 
-  }
-
-  setGreenBorderForField(inputId: string) {
-    const control = this.loginForm.get(inputId);
-    if (control) {
-      const inputElement = document.getElementById(inputId);
-      if (inputElement) {
-        inputElement.style.border = '2.5px solid green';
-      }
-    }
-  }
-
-  setYellowBorderForField(inputId: string) {
-    const control = this.loginForm.get(inputId);
-    if (control) {
-      const inputElement = document.getElementById(inputId);
-      if (inputElement) {
-        inputElement.style.border = '2.5px solid yellow';
-      }
-    }
-  }
-
-  setRedBorderForField(inputId: string) {
-    const control = this.loginForm.get(inputId);
-    if (control) {
-      const inputElement = document.getElementById(inputId);
-      if (inputElement) {
-        inputElement.style.border = '2.5px solid red';
-      }
-    }
   }
 
   isAuthenticated(): boolean {

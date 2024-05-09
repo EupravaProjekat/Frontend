@@ -73,9 +73,16 @@ export class RegisterComponent implements OnInit{
     let msgElement = document.getElementById("msg");
     let msgText = msgElement?.textContent;
 
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}|:"<>?~`[\]\\;'.,/]).{9,}$/;
+
     if (msgText === 'Ваша лозинка је веома слаба' || msgText === 'Ваша лозинка je слаба' || msgText === 'Ваша лозинка је јака') {
-      this.openDialog('Лозинка мора садржавати барем 7 карактера, укључујући велика и мала слова, барем један број и барем један специјални карактер!');
+      this.openDialog('Лозинка мора садржавати барем 9 карактера, укључујући велика и мала слова, барем један број и барем један специјални карактер!');
       return false;
+
+    if (passwordRegex.test(registerForm.value.password)){
+      this.openDialog('Лозинка мора садржавати барем 9 карактера, укључујући велика и мала слова, барем један број и барем један специјални карактер!');
+      return false;
+    }
     }
 
 

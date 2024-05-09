@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     parameters.letters = /[A-Za-z]+/.test(password);
     parameters.numbers = /[0-9]+/.test(password);
-    parameters.special = /[!\"$%&/()=?@~`\\.\';:+=^*_-]+/.test(password);
+    parameters.special = /[!\"$#%&/()=?@~`\\.\';:+=^*_-]+/.test(password);
     parameters.count = password.length >= 9;
 
     let strength = document.getElementsByClassName("strength")[0]; // Pristup prvoj stavci u kolekciji

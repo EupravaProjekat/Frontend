@@ -64,7 +64,7 @@ export class AuthService {
     }
     return true;
   }
-  
+
   private _access_token : any;
 
   login(user: any): Subscription {
@@ -87,7 +87,7 @@ export class AuthService {
           this.router.navigate(['/profile']);
         },
         (error) => {
-          this.openDialog('Wrong credentials');
+          this.openDialog('Погрешни креденцијали за пријаву!');
 
         }
       );
@@ -117,6 +117,58 @@ export class AuthService {
 
     console.log('No token found.');
     return null;
+  }
+
+  sendResetRequest(user: any): Subscription{
+    const resetHeaders = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+
+    const body = {
+      'email': user.email
+    };
+
+    return this.apiService.post(this.config._reset_request_url, JSON.stringify(body), resetHeaders)
+      .subscribe((res) => {
+          console.log('Reset request success');
+          this.openDialog('Reset request success');
+          console.log(res.body)
+          console.log(res)
+        },(errot) => {
+          this.openDialog('Грешка!');
+        }
+      )
+  }
+
+  resetPassword(email: string, ticketReset: string, newPassword: string): Subscription {
+    const resetHeaders = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+
+    const body = {
+      'email': email,
+      'ticketReset': ticketReset,
+      'newPassword': newPassword
+    };
+
+    return this.apiService.post(this.config._reset_password_url, JSON.stringify(body), resetHeaders)
+      .subscribe(
+        (res) => {
+          console.log('Reset password success');
+          this.openDialog('Reset password success');
+          console.log(res.body);
+          console.log(res);
+          // Optionally, you can navigate to a different route after a successful password reset
+          this.router.navigate(['/login']);
+        },
+        (error) => {
+          console.error('Reset password failed', error);
+          this.openDialog('Reset password failed');
+          // Handle error, show appropriate message to the user
+        }
+      );
   }
 
 }
