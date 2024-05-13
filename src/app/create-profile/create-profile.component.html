@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel = "stylesheet" type="text/css" href="login.component.css">
+  <link rel="icon" href="../../assets/governmentLogo.png">
+  <title>Иницијализација профила - eUprava</title>
+</head>
+<body>
+<div class="topLayout">
+  <div class="topLayoutWrapper">
+    <div class="topLayout-list-container-right">
+      <ul id="topLayout-list-right">
+        <li class="list-parameter" id="letters-parameter">Ћирилица <span id="falling-menu-arrow">▼</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="headerLayout">
+  <div class="headerLayoutWrapper">
+    <a href="/" id="logo-government-href"><img src="../../assets/governmentLogo.png" alt="logo-government" id="logo-government"></a>
+    <div class="logo-text-container">
+      <a href="/" id="logo-text">euprava.gov.rs</a>
+    </div>
+  </div>
+</div>
+<div class="menuLayout">
+  <div class="menuLayoutWrapper">
+    <div class="menuLeftLayout">
+      <div class="dropdownServices">
+        <button class="dropServicesButton">Услуге ▼</button>
+        <div class="dropdown-content">
+          <a href="#">Издавање идентификационих докумената</a>
+          <a href="#">Дозвола за оружје</a>
+          <a href="#">Паркинг за инвалиде</a>
+          <a href="#">Добровољно служење војног рока</a>
+          <a href="#">Потернице и возила</a>
+        </div>
+      </div>
+      <div class="nav-container">
+        <a class="newsButton" href="/news">Вести</a>
+      </div>
+      <div class="nav-container">
+        <a class="helpButton" href="/help">Помоћ</a>
+      </div>
+      <div class="nav-container">
+        <a class="contactButton" href="/contact">Контакт</a>
+      </div>
+      <div class="nav-container">
+        <a class="contactButton" href="/">Назад</a>
+      </div>
+    </div>
+    <div class="menuRightLayout">
+      <div class="profileLayout">
+        <button class="dropProfileButton">
+            <span class="icon-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
+              </svg></span><span class="profileText">Моја еУправа ▼</span>
+        </button>
+        <div class="dropdown-content">
+          <a href = "http://localhost:4200/login">Пријава</a>
+          <a href ="http://localhost:4200/register">Регистрација</a>
+          <ng-container *ngIf="isAuthenticated()">
+            <a  style="margin-left: 10px;margin-right: 10px"href="http://localhost:4200/profile"><button id="profilebutn">Profile</button></a>
+            <button id="logoutbttn" (click)="logout()">Logout</button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="homepage-info-container">
+  <div class="homepage-info-container-wrapper">
+
+  </div>
+</div>
+<footer>
+  <div class="footer-content">
+    <div class="footer-crest">
+      <img src="../../assets/serbia-srbija-logo-E2B57872B8-seeklogo.com.png" alt="serbian-crest" class="crest">
+    </div>
+    <div class = "footer-content-info">
+      <h3>Факултет техничких наука у Новом Саду</h3>
+      <p>Пројекат из предмета - Технологије и системи еУправе</p>
+      <ul class="socials">
+        <li><a href="#" class="instagram"></a></li>
+        <li><a href="#" class="ftn"></a></li>
+        <li><a href="#" class="linkedin"></a></li>
+        <li><a href="#" class="tiktok"></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 еУправа. Сва права задржана.</p>
+  </div>
+</footer>
+</body>
+</html>
