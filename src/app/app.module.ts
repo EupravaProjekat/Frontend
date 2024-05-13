@@ -17,6 +17,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { LoginComponent } from './login/login.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { UserService } from './services/user.service';
+import { CreateProfileComponent } from './create-profile/create-profile.component';
 
 
 
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: '', component: HomeGuestComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
+  { path: 'profileSetup', component: CreateProfileComponent},
 
 ];
 
@@ -37,6 +39,7 @@ const routes: Routes = [
     LoginComponent,
     HomeGuestComponent,
     DialogComponent,
+    CreateProfileComponent,
   ],
 
   imports: [
