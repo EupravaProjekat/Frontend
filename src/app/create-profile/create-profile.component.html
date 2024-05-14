@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel = "stylesheet" type="text/css" href="create-profile.component.css">
   <link rel="icon" href="../../assets/governmentLogo.png">
+  <script type="text/javascript" src="../js/stepper.js" defer></script>
   <title>Иницијализација профила - eUprava</title>
 </head>
 <body>
@@ -27,30 +28,6 @@
 </div>
 <div class="menuLayout">
   <div class="menuLayoutWrapper">
-    <div class="menuLeftLayout">
-      <div class="dropdownServices">
-        <button class="dropServicesButton">Услуге ▼</button>
-        <div class="dropdown-content">
-          <a href="#">Издавање идентификационих докумената</a>
-          <a href="#">Дозвола за оружје</a>
-          <a href="#">Паркинг за инвалиде</a>
-          <a href="#">Добровољно служење војног рока</a>
-          <a href="#">Потернице и возила</a>
-        </div>
-      </div>
-      <div class="nav-container">
-        <a class="newsButton" href="/news">Вести</a>
-      </div>
-      <div class="nav-container">
-        <a class="helpButton" href="/help">Помоћ</a>
-      </div>
-      <div class="nav-container">
-        <a class="contactButton" href="/contact">Контакт</a>
-      </div>
-      <div class="nav-container">
-        <a class="contactButton" href="/">Назад</a>
-      </div>
-    </div>
     <div class="menuRightLayout">
       <div class="profileLayout">
         <button class="dropProfileButton">
@@ -73,7 +50,85 @@
 </div>
 <div class="homepage-info-container">
   <div class="homepage-info-container-wrapper">
+    <form action="#" class="form">
+      <h1 class="text-center">Иницијализација корисника</h1>
+      <!-- Progress bar -->
+      <div class="progressbar">
+        <div class="progress" id="progress"></div>
 
+        <div class="progress-step progress-step-active" data-title="Основни подаци"></div>
+        <div class="progress-step" data-title="Контакт"></div>
+        <div class="progress-step" data-title="Идентификација"></div>
+        <div class="progress-step" data-title="Готово"></div>
+      </div>
+      <!-- Steps -->
+      <div class="form-step form-step-active">
+        <h2 class="form-explain">Унесите основне податке о вама<br></h2>
+        <div class="input-group">
+          <label for="firstname">Име</label>
+          <input type="text" name="firstname" id="firstname" />
+        </div>
+        <div class="input-group">
+          <label for="lastname">Презиме</label>
+          <input type="text" name="lastname" id="lastname" />
+        </div>
+        <div class="input-group">
+          <label for="birthday">Датум рођења</label>
+          <div class="custom-datepicker-input-container inputContainer">
+            <input readonly matInput [matDatepicker]="picker" formControlName="birthday" id="birthday" class="custom-datepicker-input" (focus)="picker.open()">
+            <mat-datepicker #picker class="custom-datepicker"></mat-datepicker>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="gender">Пол</label>
+          <select id="gender" formControlName="gender" required>
+            <option value="male">МУШКО</option>
+            <option value="female">ЖЕНСКО</option>
+          </select>
+        </div>
+        <div class="">
+          <a class="btn btn-next width-50 ml-auto">Даље</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <h2 class="form-explain">Унесите ваш број телефона<br></h2>
+        <div class="input-group">
+          <label for="phone">Број телефона</label>
+          <input type="text" name="phone" id="phone" />
+        </div>
+        <div class="btns-group">
+          <a class="btn btn-prev">Previous</a>
+          <a class="btn btn-next">Next</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <h2 class="form-explain">Унесите ваш број из <br>матичне књиге рођених<br></h2>
+        <div class="input-group">
+          <label for="jmbg">Матични број (ЈМБГ)</label>
+          <input type="text" name="jmbg" id="jmbg" />
+        </div>
+        <div class="input-group" id="role">
+          <select id="roleSelection" formControlName="role" required>
+            <option value="Guest" selected>NEWBIE</option>
+          </select>
+        </div>
+        <div class="btns-group">
+          <a class="btn btn-prev">Назад</a>
+          <a class="btn btn-next">Даље</a>
+        </div>
+      </div>
+      <div class="form-step">
+        <h2 class="form-explain">Изаберите корисничко име<br> које ћете користити<br> на овом налогу</h2>
+        <div class="input-group">
+          <label for="username">Корисничко име</label>
+          <input type="text" name="username" id="username" />
+        </div>
+        <div class="btns-group">
+          <a class="btn btn-prev">Назад</a>
+          <input type="submit" value="Submit" class="btn" />
+        </div>
+      </div>
+    </form>
   </div>
 </div>
 <footer>

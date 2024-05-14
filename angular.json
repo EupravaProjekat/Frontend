@@ -30,7 +30,7 @@
               "src/styles.css"
             ],
             "scripts": ["src/app/js/slider.js",
-              "src/app/js/checker.js"]
+              "src/app/js/checker.js", "src/app/js/stepper.js"]
           },
           "configurations": {
             "production": {

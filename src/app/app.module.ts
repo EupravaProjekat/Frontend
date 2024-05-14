@@ -18,6 +18,11 @@ import { LoginComponent } from './login/login.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { UserService } from './services/user.service';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatInputModule} from "@angular/material/input";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -50,6 +55,11 @@ const routes: Routes = [
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
     NgxCaptchaModule,
     ReactiveFormsModule,
     MatDialogModule,

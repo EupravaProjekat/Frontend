@@ -9,6 +9,7 @@ export class ConfigService {
   _login_url: string;
   _register_url: string;
   _profile_url: string;
+  _profile_setup_url: string;
   _profile_edit_url: string;
   _getTicket_url: string;
   _activate_url: string;
@@ -21,6 +22,7 @@ export class ConfigService {
     this._login_url = this._api_url + '/login';
     this._register_url = this._api_url + '/register';
     this._profile_url = this._api_url + '/profile';
+    this._profile_setup_url = this._api_url + '/profileSetup';
     this._profile_edit_url = this._api_url + '/update-profile';
     this._getTicket_url = this._api_url + '/getTicket';
     this._activate_url = this._api_url + '/activate';
