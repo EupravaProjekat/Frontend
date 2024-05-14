@@ -1,10 +1,10 @@
-window.onload = function() {
+window.addEventListener('load', function () {
   var slides = document.querySelectorAll('.slide');
   var btns = document.querySelectorAll('.btn-navigate');
   var currentSlide = 0;
   let autoChangeTimeout;
 
-  var manualNav = function(manual) {
+  var manualNav = function (manual) {
     clearInterval(autoChangeTimeout);
 
     slides.forEach((slide) => {
@@ -49,5 +49,4 @@ window.onload = function() {
     autoChange();
   }
   repeat();
-  
-}
+});

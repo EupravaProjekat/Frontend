@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let password = document.getElementById("password").value;
     let confirmPasswordLayout = document.getElementById("confirmPasswordLayout");
 
-      confirmPasswordLayout.style.marginTop = "15px";
+    confirmPasswordLayout.style.marginTop = "15px";
 
     if (password.length === 0) {
       msg.style.display = "none";
