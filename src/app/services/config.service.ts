@@ -15,6 +15,7 @@ export class ConfigService {
   _activate_url: string;
   _reset_request_url: string;
   _reset_password_url: string;
+  _weapon_request_url: string;
 
 
   constructor() {
@@ -28,5 +29,6 @@ export class ConfigService {
     this._activate_url = this._api_url + '/activate';
     this._reset_request_url = this._api_url + '/request-reset';
     this._reset_password_url = this._api_url + '/reset';
+    this._weapon_request_url = this._api_url + '/weapon-request';
   }
 }

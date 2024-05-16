@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,7 +17,8 @@ export class UserService {
     private config: ConfigService,
     private router: Router,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private datePipe: DatePipe
 
   ) { }
   getOne(email : string) {
@@ -55,9 +57,19 @@ export class UserService {
       'Content-Type': 'application/json'
     });
 
+    userToSave.birthday = this.datePipe.transform(userToSave.birthday, 'yyyy-MM-dd')
     const body = {
-
-      'email': userToSave.email
+      'firstname': userToSave.firstname,
+      'lastname': userToSave.lastname,
+      'birthday': userToSave.birthday,
+      'gender': userToSave.gender,
+      'phone' : userToSave.phone,
+      'street' : userToSave.street,
+      'streetNumber' : userToSave.streetNumber,
+      'city' : userToSave.city,
+      'country' : userToSave.country,
+      'jmbg' : userToSave.jmbg,
+      'username' : userToSave.username
     };
 
     return this.apiService.post(this.config._profile_edit_url, JSON.stringify(body), loginHeaders)

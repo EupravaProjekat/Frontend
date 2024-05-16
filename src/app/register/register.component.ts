@@ -13,7 +13,7 @@ import { UserService } from '../services/user.service';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent{
   registerForm: FormGroup;
   passwordFieldType: string = 'password';
   siteKey: string = "6LfPddMpAAAAAOhwDmkeCFnKAGAtvdIqDkYOeVVF";
@@ -44,10 +44,10 @@ export class RegisterComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = '../js/checker.js';
-    document.body.appendChild(script);
+    // const script = document.createElement('script');
+    // script.type = 'text/javascript';
+    // script.src = '../js/checker.js';
+    // document.body.appendChild(script);
   }
 
   checkForm(registerForm: FormGroup): boolean {

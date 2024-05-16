@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import {NoopAnimationsModule, BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {CommonModule} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import {RouterModule, Routes} from "@angular/router";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptor} from "./interceptor/TokenInterceptor";
@@ -23,6 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
+import { WeaponDocumentComponent } from './weapon-document/weapon-document.component';
 
 
 
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'profileSetup', component: CreateProfileComponent},
+  { path: 'weaponDocument', component: WeaponDocumentComponent},
 
 ];
 
@@ -45,6 +47,7 @@ const routes: Routes = [
     HomeGuestComponent,
     DialogComponent,
     CreateProfileComponent,
+    WeaponDocumentComponent,
   ],
 
   imports: [
@@ -73,7 +76,7 @@ const routes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, ConfigService, UserService],
+    }, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, ConfigService, UserService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

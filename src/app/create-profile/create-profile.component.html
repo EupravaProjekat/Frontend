@@ -40,7 +40,6 @@
           <a href = "http://localhost:4200/login">Пријава</a>
           <a href ="http://localhost:4200/register">Регистрација</a>
           <ng-container *ngIf="isAuthenticated()">
-            <a  style="margin-left: 10px;margin-right: 10px"href="http://localhost:4200/profile"><button id="profilebutn">Profile</button></a>
             <button id="logoutbttn" (click)="logout()">Logout</button>
           </ng-container>
         </div>
@@ -50,7 +49,7 @@
 </div>
 <div class="homepage-info-container">
   <div class="homepage-info-container-wrapper">
-    <form action="#" class="form">
+    <form (submit)="submitForm()" class="form" [formGroup]="profileSetupForm" method="post">
       <h1 class="text-center">Иницијализација корисника</h1>
       <!-- Progress bar -->
       <div class="progressbar">
@@ -66,11 +65,11 @@
         <h2 class="form-explain">Унесите основне податке о вама<br></h2>
         <div class="input-group">
           <label for="firstname">Име</label>
-          <input type="text" name="firstname" id="firstname" />
+          <input type="text" formControlName="firstname" id="firstname" />
         </div>
         <div class="input-group">
           <label for="lastname">Презиме</label>
-          <input type="text" name="lastname" id="lastname" />
+          <input type="text" formControlName="lastname" id="lastname" />
         </div>
         <div class="input-group">
           <label for="birthday">Датум рођења</label>
@@ -94,23 +93,23 @@
         <h2 class="form-explain">Унесите ваше контакт<br>информације</h2>
         <div class="input-group">
           <label for="phone">Број телефона</label>
-          <input type="text" name="phone" id="phone" />
+          <input type="text" formControlName="phone" id="phone" />
         </div>
         <div class="input-group">
           <label for="street">Улица</label>
-          <input type="text" name="street" id="street" />
+          <input type="text" formControlName="street" id="street" />
         </div>
         <div class="input-group">
           <label for="streetNumber">Број</label>
-          <input type="text" name="streetNumber" id="streetNumber" />
+          <input type="text" formControlName="streetNumber" id="streetNumber" />
         </div>
         <div class="input-group">
           <label for="city">Град</label>
-          <input type="text" name="city" id="city" />
+          <input type="text" formControlName="city" id="city" />
         </div>
         <div class="input-group">
           <label for="country">Држава</label>
-          <select id="country" name="country" formControlName="country" class="form-control">
+          <select id="country" formControlName="country" class="form-control">
             <option value="Авганистан">Авганистан</option>
             <option value="Оландска острва">Оландска острва</option>
             <option value="Албанија">Албанија</option>
@@ -364,7 +363,7 @@
         <h2 class="form-explain">Унесите ваш број из <br>матичне књиге рођених<br></h2>
         <div class="input-group">
           <label for="jmbg">Матични број (ЈМБГ)</label>
-          <input type="text" name="jmbg" id="jmbg" />
+          <input type="text" formControlName="jmbg" id="jmbg" />
         </div>
         <div class="btns-group">
           <a class="btn btn-prev">Назад</a>
@@ -375,7 +374,7 @@
         <h2 class="form-explain">Изаберите корисничко име<br> које ћете користити<br> на овом налогу</h2>
         <div class="input-group">
           <label for="username">Корисничко име</label>
-          <input type="text" name="username" id="username" />
+          <input type="text" formControlName="username" id="username" />
         </div>
         <div class="btns-group">
           <a class="btn btn-prev">Назад</a>

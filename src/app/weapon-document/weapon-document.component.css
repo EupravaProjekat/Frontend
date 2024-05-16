@@ -157,7 +157,7 @@ html, body{
   z-index: 2;
 }
 
-.dropdown-content a, #logoutbttn{
+.dropdown-content a {
   color: #00205b;
   padding: 14px 50px 14px 28px;
   font-family: "Montserrat-Regular";
@@ -167,8 +167,27 @@ html, body{
   display: block;
 }
 
+.mup-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 180px;
+  left: 170px;
+  top: 0;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdownServices:hover .first-column:hover .mup-content {
+  display: block;
+}
+
+#arrow {
+  margin-left: 10px;
+}
+
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover, #logoutbttn:hover {background-color: #ddd;}
+.dropdown-content a:hover {background-color: #ddd;}
 
 /* Show the dropdown menu on hover */
 .dropdownServices:hover .dropdown-content, .profileLayout:hover .dropdown-content {display: block;}
@@ -297,7 +316,6 @@ html, body{
   background-color: #f8f8f8;
   padding: 50px 0;
   display: flex;
-  z-index: 50;
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -334,185 +352,168 @@ html, body{
   display: flex;
   flex-direction: row;
   gap: 50px;
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
   margin-top: 40px;
   align-items: center;
   justify-content: center;
 }
 
-input {
-  display: block;
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
-}
-
-
-.width-50 {
-  width: 50%;
-}
-
-.ml-auto {
-  margin-left: auto;
-}
-
-.text-center {
-  text-align: center;
-}
-
-/* Progressbar */
-.progressbar {
-  position: relative;
-  display: flex;
-  justify-content: space-around;
-  counter-reset: step;
-  margin: 2rem 0 4rem;
-}
-
-.progressbar::before,
-.progress {
-  content: "";
-  position: absolute;
-  top: calc(50% - 2px); /* Pomera liniju na sredinu visine koraka */
-  left: 2.1875rem; /* Pomeraj ulevo za širinu prvog koraka */
-  width: calc(100% - 2.1875rem * 2); /* Računanje širine linije, uzimajući u obzir širinu prvog i poslednjeg koraka */
-  height: 4px;
-  background-color: #dcdcdc;
-  z-index: 0;
-
-}
-
-.progress {
-  background-color: #4a3cff;
-  width: 0%;
-  transition: 0.3s;
-}
-
-.progress-step {
-  width: 2.1875rem;
-  height: 2.1875rem;
-  background-color: #dcdcdc;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-}
-
-.progress-step::before {
-  counter-increment: step;
-  content: counter(step);
-}
-
-.progress-step::after {
-  content: attr(data-title);
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  font-size: 0.85rem;
-  color: #666;
-}
-
-.progress-step-active {
-  background-color: #4a3cff;
-  color: #f3f3f3;
-}
-
-/* Form */
-.form {
-  width: fit-content;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  border-radius: 0.35rem;
-  padding: 1.5rem;
-}
-
-.form-step {
-  display: none;
-  padding-left: 15px;
-  padding-right: 15px;
-  transform-origin: top;
-  animation: animate 0.5s;
-}
-
-.form-step-active {
-  display: block;
-}
-
-.input-group {
+form {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  gap: 15px;
+  margin-top: 20px;
 }
-.inputContainer {
+
+
+
+.form-group {
   display: flex;
+  width:100%;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/*#confirmPasswordLayout{*/
+/*  margin-top: 15px;*/
+/*}*/
+
+.input-label {
+  display: flex;
+  font-size: 14px;
+  width: fit-content; /* Promijenite veličinu prema potrebi */
   align-items: center;
+  margin-right: 10px; /* Prilagodite razmak između labele i inputa */
 }
 
-
-.custom-datepicker-input {
-  flex: 1; /* Daje maksimalnu širinu inputu */
+.red-dot{
+  color: red;
+  font-size: 12px;
+  margin-left: 3px;
 }
 
-.input-group label {
-  text-align: left;
+#recaptcha {
+  align-self: center;
 }
 
-select{
-  display: block;
-  width: 100%;
-  padding: 0.75rem;
-  font-family: 'Montserrat-Regular';
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
+form label{
+  font-family: "Montserrat-Regular";
+  color: #00205b;
 }
 
-input, select {
+#weaponType, #serialNumber, #caliber {
+  font-family: "Montserrat-Regular";
+  width: 270px;
+  height: 30px;
   box-sizing: border-box;
 }
 
-.form-explain{
-  color: #415a9f;
-  width:100%;
-}
-#role{
-  display: none;
+
+.form-group input {
+  padding-right: 40px; /* dodajte odgovarajući razmak za ikonu */
 }
 
-@keyframes animate {
-  from {
-    transform: scale(1, 0);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1, 1);
-    opacity: 1;
-  }
+.password-input-container {
+  position: relative;
 }
 
-/* Button */
-.btns-group {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+.password-input-container input {
+  padding-right: 30px; /* Dodajte odgovarajući razmak za ikonu */
 }
 
-.btn {
-  padding: 0.75rem;
-  display: block;
-  text-decoration: none;
-  background-color: #00205b;
-  color: #f3f3f3;
-  text-align: center;
-  border-radius: 0.25rem;
+.password-input-container button {
+  position: absolute;
+  height: 100%;
+  padding: 10px;
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: 0.3s;
 }
-.btn:hover {
-  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #374867;
+
+#submitButton {
+  padding: 10px 25px;
+  background-color: #263864;
+  border: none;
+  font-family: 'MontSerrat-Bold';
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
 }
+
+#submitButton:hover {
+  background-color: #00205b;
+}
+
+#arrowRight{
+  margin-left: 10px;
+  width: 10px;
+}
+
+#msg{
+  display: none;
+  font-family: 'MontSerrat-Regular';
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 5px;
+  font-size: 11px;
+  text-align: center;
+}
+
+.strength-bar {
+  background-color: rgb(128, 128, 128);
+  height: 5px;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+}
+
+.strength {
+  width: 0%;
+  display: flex;
+  height: 5px;
+  z-index: 2;
+  position: relative;
+}
+
+.form-group button {
+  position: absolute;
+  top: 70%;
+  right: 10px; /* prilagodite prema vašim potrebama */
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#eye-confirm {
+  top: 72%;
+}
+
+.strength-bar span {
+  height: 5px;
+  margin-right: 2px;
+  display: inline-block;
+}
+
+.very-weak span {
+  background-color: #FF0000; /* Crvena */
+}
+
+.weak span {
+  background-color: #FFA500; /* Narandžasta */
+}
+
+.good span {
+  background-color: #FFFF00; /* Žuta */
+}
+
+.strong span {
+  background-color: #008000; /* Zelena */
+}
+
 
 footer {
   background: #00205b;

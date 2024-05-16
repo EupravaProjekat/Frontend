@@ -8,6 +8,7 @@ import {catchError, map, tap} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiService} from "../services/api.service";
 import {Observable, Subscription, throwError} from "rxjs";
+import { UserService } from './user.service';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -36,7 +37,8 @@ export class AuthService {
     private config: ConfigService,
     private router: Router,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UserService
 
   ) {
 
@@ -81,14 +83,20 @@ export class AuthService {
     return this.apiService.post(this.config._login_url, JSON.stringify(body), loginHeaders)
       .subscribe((res) => {
           console.log('Login success');
-          localStorage.setItem("jwt", res.body)
-          console.log(res.body)
-          console.log(res)
-          this.router.navigate(['/profile']);
+          localStorage.setItem("jwt", res.body);
+          console.log(res.body);
+          console.log(res);
+
+          this.userService.getOne(user.email).subscribe((username) => {
+            if (!username) {
+              this.router.navigate(['/profileSetup']);
+            } else {
+              this.router.navigate(['/']);
+            }
+          });
         },
         (error) => {
           this.openDialog('Погрешни креденцијали за пријаву!');
-
         }
       );
   }
