@@ -19,12 +19,15 @@ import { DialogComponent } from './dialog/dialog.component';
 import { UserService } from './services/user.service';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import {DateAdapter, MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import { WeaponDocumentComponent } from './weapon-document/weapon-document.component';
 import { PersonalDocumentComponent } from './personal-document/personal-document.component';
+import { PersonalDocumentRequestComponent } from './personal-document-request/personal-document-request.component';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarModule } from 'angular-calendar';
 
 
 
@@ -36,8 +39,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'profileSetup', component: CreateProfileComponent},
   { path: 'weaponDocument', component: WeaponDocumentComponent},
-  { path: 'personalDocument', component: PersonalDocumentComponent}
-
+  { path: 'personalDocument', component: PersonalDocumentComponent},
+  { path: 'personalDocument/request', component: PersonalDocumentRequestComponent},
 ];
 
 
@@ -50,7 +53,8 @@ const routes: Routes = [
     DialogComponent,
     CreateProfileComponent,
     WeaponDocumentComponent,
-    PersonalDocumentComponent
+    PersonalDocumentComponent,
+    PersonalDocumentRequestComponent
   ],
 
   imports: [
@@ -70,7 +74,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
-
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   exports: [RouterModule],
 

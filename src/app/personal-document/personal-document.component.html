@@ -70,11 +70,13 @@
               </svg></span><span class="profileText">Моја еУправа ▼</span>
         </button>
         <div class="dropdown-content">
-          <a href = "http://localhost:4200/login">Пријава</a>
-          <a href ="http://localhost:4200/register">Регистрација</a>
+          <ng-container *ngIf="isAuthenticated() == false">
+            <a href = "http://localhost:4200/login">Пријава</a>
+            <a href ="http://localhost:4200/register">Регистрација</a>
+          </ng-container>
           <ng-container *ngIf="isAuthenticated()">
-            <a  style="margin-left: 10px;margin-right: 10px"href="http://localhost:4200/profile"><button id="profilebutn">Profile</button></a>
-            <button id="logoutbttn" (click)="logout()">Logout</button>
+            <a href="http://localhost:4200/profile"><button id="profilebutn">Мој профил</button></a>
+            <a href="http://localhost:4200/logout"><button id="logoutbttn" (click)="logout()">Одјава</button></a>
           </ng-container>
         </div>
       </div>
@@ -86,7 +88,7 @@
     <div class="container">
       <div class="sidebar">
         <div class="service-box">
-            <a href="/personalDocument" class="service-header"><h3>Покрени услугу</h3>
+            <a href="http://localhost:4200/personalDocument/request" class="service-header"><h3>Покрени услугу</h3>
             <span>&rarr;</span>
             </a>
           <p>Извршавање ове услуге је доступно само корисницима који имају креиран кориснички налог. Кликните на дугме да бисте извршили услугу.</p>

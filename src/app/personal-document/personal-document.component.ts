@@ -13,20 +13,13 @@ import { PersonalDocumentService } from '../services/personal-document.service';
 })
 export class PersonalDocumentComponent {
 
-  documentForm: FormGroup;
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
     private authService: AuthService,
     private documentService: PersonalDocumentService
-  ) {
-    this.documentForm = this.fb.group({
-      weaponType: ['', Validators.required],
-      serialNumber: ['', Validators.required],
-      caliber: ['', Validators.required]
-    });
-  }
+  ) {}
 
   openDialog(message: string) {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -39,28 +32,6 @@ export class PersonalDocumentComponent {
       }
     });
   }
-  submitForm() {
-
-    const currentUser = this.authService.getCurrentUser();
-    if (!currentUser) {
-      this.openDialog('Грешка приликом добављања података о кориснику!');
-      return;
-    }
-
-    const requestData = this.documentForm.value;
-    requestData.email = currentUser.email;
-    this.documentService.submitAppointmentRequest(requestData).subscribe(
-      (response) => {
-        console.log('Zahtev za oružje uspešno poslat', response);
-        // Ovde možete obavestiti korisnika da je zahtev uspešno poslat
-      },
-      (error) => {
-        console.error('Greška prilikom slanja zahteva za oružje', error);
-        // Ovde možete obavestiti korisnika o grešci
-      }
-    );
-  }
-
   isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }
