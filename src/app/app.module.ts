@@ -24,6 +24,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import { WeaponDocumentComponent } from './weapon-document/weapon-document.component';
+import { PersonalDocumentComponent } from './personal-document/personal-document.component';
 
 
 
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'profileSetup', component: CreateProfileComponent},
   { path: 'weaponDocument', component: WeaponDocumentComponent},
+  { path: 'personalDocument', component: PersonalDocumentComponent}
 
 ];
 
@@ -48,6 +50,7 @@ const routes: Routes = [
     DialogComponent,
     CreateProfileComponent,
     WeaponDocumentComponent,
+    PersonalDocumentComponent
   ],
 
   imports: [
