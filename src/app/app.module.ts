@@ -26,8 +26,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { WeaponDocumentComponent } from './weapon-document/weapon-document.component';
 import { PersonalDocumentComponent } from './personal-document/personal-document.component';
 import { PersonalDocumentRequestComponent } from './personal-document-request/personal-document-request.component';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { CalendarModule } from 'angular-calendar';
+
 
 
 
@@ -74,7 +73,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   exports: [RouterModule],
 

@@ -74,12 +74,13 @@
         <div class="input-group">
           <label for="birthday">Датум рођења</label>
           <div class="custom-datepicker-input-container inputContainer">
-            <input readonly matInput [matDatepicker]="picker" formControlName="birthday" id="birthday" placeholder="Choose a date" class="custom-datepicker-input" (focus)="picker.open()">
+            <input readonly matInput [matDatepicker]="picker" formControlName="birthday" id="birthday"
+                   placeholder="Изабери датум" class="custom-datepicker-input" (focus)="picker.open()">
             <mat-datepicker #picker class="custom-datepicker"></mat-datepicker>
             <i class="material-icons"></i>
           </div>
-         
         </div>
+
 
 
         <div class="input-group">

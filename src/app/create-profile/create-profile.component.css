@@ -453,11 +453,66 @@ input {
 
 
 .custom-datepicker-input {
-  flex: 1; /* Daje maksimalnu širinu inputu */
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-family: 'Montserrat-Regular';
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-.input-group label {
+.custom-datepicker-input:focus {
+  border: 1px solid black;
+  outline: none;
+  box-shadow: 0 0 0 1px #000000;
+}
+
+.mat-form-field {
+  width: 100%;
+  background-color: white;
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.mat-form-field-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333; /* Boja labele */
+}
+
+.mat-input-element {
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc; /* Ivice inputa */
+  border-radius: 4px;
+}
+
+.mat-form-field-underline {
+  display: none; /* Uklanja underline ispod inputa */
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #1a73e8; /* Boja labele kada je fokusirano */
+}
+
+.mat-form-field.mat-focused .mat-input-element {
+  border-color: #1a73e8; /* Boja ivica inputa kada je fokusirano */
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  border: none;
+}
+
+.input-group label, .input-group mat-label {
   text-align: left;
+  font-family: 'Montserrat-Regular';
+  font-size: 16px;
+  color: #00205b;
+  margin-bottom: 8px;
 }
 
 select{

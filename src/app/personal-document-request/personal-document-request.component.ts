@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { CalendarEvent } from 'angular-calendar';
 import { DialogComponent } from '../dialog/dialog.component';
 import { AuthService } from '../services/auth.service';
 import { ConfigService } from '../services/config.service';
