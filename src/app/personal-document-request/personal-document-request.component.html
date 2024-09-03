@@ -196,7 +196,7 @@
                   id="familyJmbg{{i + 1}}"
                   name="familyJmbg{{i + 1}}"
                   [(ngModel)]="member.jmbg"
-                disabled/>
+                />
                 <hr class="line">
               </div>
 
@@ -214,10 +214,27 @@
       </div>
 
       <div *ngIf="currentTab === 'tab-3'">
-        <div class="calendar">
-          <button (click)="addEvent()">Add Event</button>
-          <mwl-calendar-week-view [viewDate]="viewDate" [events]="events"></mwl-calendar-week-view>
+        <div class="timetable">
+          <table>
+            <thead>
+            <tr>
+              <th>Vreme</th>
+              <th *ngFor="let date of dates">{{ date }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let time of timeSlots">
+              <td>{{ time }}</td>
+              <td *ngFor="let date of dates">
+                <div [ngClass]="{'slot': true, 'pause': isPause(time), 'free': !isPause(time)}">
+                  {{ isPause(time) ? 'Pauza' : 'Slobodno' }}
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
+
 
       </div>
     </div>

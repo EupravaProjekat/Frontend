@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -8,13 +8,14 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { AuthService } from '../services/auth.service';
 import { ConfigService } from '../services/config.service';
 import { PersonalDocumentService } from '../services/personal-document.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-personal-document-request',
   templateUrl: './personal-document-request.component.html',
   styleUrl: './personal-document-request.component.css'
 })
-export class PersonalDocumentRequestComponent {
+export class PersonalDocumentRequestComponent implements OnInit{
 
   viewDate: Date = new Date();  // Define and initialize viewDate
   documentForm: FormGroup;
@@ -29,7 +30,8 @@ export class PersonalDocumentRequestComponent {
     { name: '', jmbg: '' }
   ];
 
-  events: CalendarEvent[] = [];
+  dates: string[] = [];
+  timeSlots: string[] = [];
   constructor(
     private fb: FormBuilder,
 
@@ -53,30 +55,28 @@ export class PersonalDocumentRequestComponent {
     });
   }
 
-  ngOnInit() {
-    this.fetchAppointments();
+  ngOnInit(): void {
+    this.generateDates();
+    this.generateTimeSlots();;
   }
 
-  fetchAppointments() {
-    this.http.get<any[]>(this.config._appointments_url).subscribe(data => {
-      this.events = data.map(appt => ({
-        start: new Date(appt.start_time),
-        end: new Date(appt.end_time),
-        title: appt.title,
-        id: appt.id
-      }));
-    });
+  generateDates(): void {
+    const today = moment().startOf('isoWeek');  // Počnite od ponedeljka
+    for (let i = 0; i < 7; i++) {  // Prikazivanje 7 dana (nedeljni pregled)
+      this.dates.push(today.clone().add(i, 'days').format('DD.MM. (ddd)'));
+    }
   }
 
-  addEvent(): void {
-    const newEvent = {
-      title: 'Заузет термин',
-      start_time: new Date().toISOString(),
-      end_time: new Date(new Date().getTime() + 30 * 60000).toISOString()
-    };
-    this.http.post(this.config._appointments_url, newEvent).subscribe(() => {
-      this.fetchAppointments();
-    });
+  generateTimeSlots(): void {
+    const startTime = moment().startOf('day').hour(7);  // Početak u 7:00
+    const endTime = moment().startOf('day').hour(22);  // Kraj u 22:00
+    while (startTime.isBefore(endTime)) {
+      this.timeSlots.push(startTime.format('HH:mm') + '-' + startTime.clone().add(15, 'minutes').format('HH:mm'));
+      startTime.add(15, 'minutes');
+    }
+  }
+  isPause(time: string): boolean {
+    return time === '09:00-09:15' || time === '09:15-09:30';
   }
   createFamilyMember(): FormGroup {
     return this.fb.group({

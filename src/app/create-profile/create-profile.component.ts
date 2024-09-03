@@ -13,7 +13,10 @@ import { UserService } from '../services/user.service';
 })
 export class CreateProfileComponent {
   profileSetupForm: FormGroup;
-  // @ts-ignore
+  birthday: any;
+  minDate: Date = new Date(1900, 0, 1); // Minimalni datum
+  maxDate: Date = new Date();
+
   constructor(private router: Router, private fb: FormBuilder, private dialog: MatDialog, private auth: AuthService, private userService: UserService) {
     this.profileSetupForm = this.fb.group({
       firstname: ['', Validators.required],
@@ -132,7 +135,7 @@ export class CreateProfileComponent {
 
   submitForm() {
     if (this.checkForm(this.profileSetupForm) == true) {
-      this.userService.saveUser(this.profileSetupForm.value)
+      // this.userService.saveUser(this.profileSetupForm.value)
       this.router.navigate(['/login'])
     }
   }

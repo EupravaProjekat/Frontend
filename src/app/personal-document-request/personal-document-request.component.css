@@ -188,6 +188,52 @@ button img:hover {
   cursor: not-allowed;
 }
 
+.timetable {
+  max-height: 600px; /* Postavite maksimalnu visinu za tabelu */
+  overflow-y: auto; /* Omogućite vertikalno skrolovanje */
+}
+
+.timetable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.timetable th, .timetable td {
+  border: 1px solid #ddd;
+  padding: 5px;
+  text-align: center;
+  width: 100px;
+}
+
+.timetable th {
+  background-color: #f2f2f2;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-weight: bold;
+}
+
+.slot {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.slot.free {
+  background-color: #e0f7fa;
+  color: #006064;
+}
+
+.slot.pause {
+  background-color: rgba(255, 235, 59, 0.6);
+  color: #f57f17;
+}
+
+
+.slot.occupied {
+  background-color: #ffcdd2;
+  color: #c62828;
+}
+
 
 
 
