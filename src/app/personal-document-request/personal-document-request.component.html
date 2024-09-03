@@ -161,51 +161,31 @@
             коректни, док опција Назад враћа на претходну страницу.</p>
         </div>
         <div class="custom-form-container">
-          <form (ngSubmit)="onSubmit()" #appointmentForm="ngForm" id="appointment-form">
+          <form (ngSubmit)="submitForm()" [formGroup]="appointmentForm" id="appointment-form">
             <!-- Main Info Section -->
             <div class="form-section">
+
+              <hr class="line">
+
               <label for="jmbg">ЈМБГ:</label>
-              <input type="text" id="jmbg" name="jmbg" ngModel required />
+              <input type="text" id="jmbg" formControlName="jmbg" ngModel required />
+
+              <hr class="line">
 
               <label for="name">Име и презиме:</label>
-              <input type="text" id="name" name="name" ngModel required />
+              <input type="text" id="name" formControlName="name" ngModel required />
+
+              <hr class="line">
 
               <label for="email">Адреса електронске поште подносиоца захтева:</label>
-              <input type="email" id="email" name="email" ngModel required />
-            </div>
-            <hr class="line">
-            <p class="info-p" style="text-align: center"><b>Уколико подносите захтев и за чланове уже породице,
-              обавезно унесите и њихове
-              јединствене матичне
-              бројеве (ЈМБГ) и имена и презимена.</b></p>
-            <hr class="line">
-            <div class="form-section">
-              <p class="info-p" ><b>Термин ми је потребан и за следеће чланове породице:</b></p>
-              <div class="family-member" *ngFor="let member of familyMembers; let i = index">
-                <label for="familyName{{i + 1}}">{{i + 1}}. Име и презиме члана породице:</label>
-                <input
-                  type="text"
-                  id="familyName{{i + 1}}"
-                  name="familyName{{i + 1}}"
-                  [(ngModel)]="member.name"
-                />
+              <input type="email" id="email" formControlName="email" ngModel required />
 
-                <label for="familyJmbg{{i + 1}}">ЈМБГ члана породице:</label>
-                <input
-                  type="text"
-                  id="familyJmbg{{i + 1}}"
-                  name="familyJmbg{{i + 1}}"
-                  [(ngModel)]="member.jmbg"
-                />
-                <hr class="line">
-              </div>
+              <hr class="line">
 
             </div>
-
-            <!-- Buttons -->
             <div class="form-buttons">
               <button type="button" (click)="goBack()" class="btn-back">Назад</button>
-              <button type="submit" [disabled]="!appointmentForm.valid" class="btn-next">Напред</button>
+              <button type="submit" class="btn-next" (click)="onSubmit()">Напред</button>
             </div>
           </form>
 
@@ -227,8 +207,8 @@
 
 
           <div class="buttons-container">
-            <button class="action-button schedule">Закажи</button>
-            <button class="action-button cancel">Откажи</button>
+            <button class="action-button schedule" (click)="onSubmit()">Закажи</button>
+            <button class="action-button cancel" (click)="goBack()">Откажи</button>
             <button class="action-button help">Помоћ</button>
           </div>
 

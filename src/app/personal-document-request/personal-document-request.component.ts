@@ -16,18 +16,14 @@ import moment from 'moment';
 })
 export class PersonalDocumentRequestComponent implements OnInit {
 
+  formData: any = null;
+
   dates: string[] = [];// Define and initialize viewDate
-  documentForm: FormGroup;
+  appointmentForm: FormGroup;
   isAgreed = false;
   showError = false;
   showInfoBox = false;
   currentTab = 'tab-1';
-  familyMembers = [
-    {name: '', jmbg: ''},
-    {name: '', jmbg: ''},
-    {name: '', jmbg: ''},
-    {name: '', jmbg: ''}
-  ];
   timeSlots: string[] = [];
 
   constructor(
@@ -39,16 +35,10 @@ export class PersonalDocumentRequestComponent implements OnInit {
     private authService: AuthService,
     private documentService: PersonalDocumentService
   ) {
-    this.documentForm = this.fb.group({
+    this.appointmentForm = this.fb.group({
       jmbg: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      familyMembers: this.fb.array([
-        this.createFamilyMember(),
-        this.createFamilyMember(),
-        this.createFamilyMember(),
-        this.createFamilyMember()
-      ])
     });
   }
 
@@ -113,49 +103,42 @@ export class PersonalDocumentRequestComponent implements OnInit {
       overlapsWithPause(startMinutes, endMinutes, pauseStart2, pauseEnd2);
   }
 
-  createFamilyMember(): FormGroup {
-    return this.fb.group({
-      name: [''],
-      jmbg: ['', Validators.pattern(/^\d{13}$/)]
-    });
-  }
 
-  checkForm(documentForm: FormGroup): boolean {
+  checkForm(appointmentForm: FormGroup): boolean {
 
-    if (this.areFieldsEmpty()) {
-      this.openDialog('Молимо вас да попуните сва поља!');
-      return false;
-    }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(documentForm.value.email)) {
+    if (!emailRegex.test(appointmentForm.get('email')?.value)) {
       this.openDialog('Неисправна имејл адреса!');
       return false;
     }
-    // if (documentForm.value.email !== currentUserEmail)
-    // {
-    //   this.openDialog('Молимо Вас да користите адресу електронске поште која одговара Вашем е-Управа налогу!');
-    //   return false;
-    // }
 
 
-    let msgElement = document.getElementById("msg");
-    let msgText = msgElement?.textContent;
-
-    return true;
+    return true; // Ako su sve validacije uspešne, vraća true
   }
+
+
 
   areFieldsEmpty(): boolean {
     let isEmpty = false;
-    Object.keys(this.documentForm.controls).forEach((field) => {
-      const control = this.documentForm.get(field);
-      if (control && control.value === '') {
-        isEmpty = true;
-        this.setInvalidClass(field, true);
+
+    Object.keys(this.appointmentForm.controls).forEach((field) => {
+      const control = this.appointmentForm.get(field);
+
+      if (control) {
+        const value = control.value;
+
+        // Proverava da li je vrednost prazna, null, undefined, ili prazan niz
+        if (value === '' || value === null || value === undefined || (Array.isArray(value) && value.length === 0)) {
+          isEmpty = true;
+          this.setInvalidClass(field, true);
+        }
       }
     });
+
     return isEmpty;
   }
+
 
   isSelected(date: string, timeRange: string): boolean {
     return this.selectedDate === date && this.selectedTime === timeRange;
@@ -183,7 +166,7 @@ export class PersonalDocumentRequestComponent implements OnInit {
   }
 
   setInvalidClass(controlName: string, condition?: boolean): boolean {
-    const control = this.documentForm.get(controlName);
+    const control = this.appointmentForm.get(controlName);
 
     if (condition !== undefined) {
       if (control && condition && (control.dirty || control.touched)) {
@@ -200,9 +183,6 @@ export class PersonalDocumentRequestComponent implements OnInit {
     return false;
   }
 
-  get FamilyMembers(): FormArray {
-    return this.documentForm.get('familyMembers') as FormArray;
-  }
 
   toggleInfoBox() {
     this.showInfoBox = !this.showInfoBox;
@@ -230,40 +210,55 @@ export class PersonalDocumentRequestComponent implements OnInit {
         this.setTab('tab-2');
       } else if (this.currentTab === 'tab-2') {
         this.setTab('tab-3');
+        this.openDialog("Изаберите слободан термин!")
       } else if (this.currentTab === 'tab-3') {
-        this.submitForm();
+        this.submitRequest();
       }
     }
   }
+
+  generateRequestNumber(): string {
+    // Implement logic to generate a unique request number
+    return 'EH17181459'; // Example placeholder
+  }
+
 
 
   submitForm() {
-    if (this.checkForm(this.documentForm) == true) {
-      this.documentService.submitAppointmentRequest(this.documentForm.value)
+    if (this.checkForm(this.appointmentForm) == true) {
+
+      const formData = {
+        jmbg: this.appointmentForm.get('jmbg')?.value,
+        name: this.appointmentForm.get('name')?.value,
+        email: this.appointmentForm.get('email')?.value,
+      };
+
+    }
+    else {
+      this.openDialog('Молимо Вас унесите валидне податке.')
+      return
     }
 
 
-    const currentUser = this.authService.getCurrentUser();
-    if (!currentUser) {
-      this.openDialog('Грешка приликом добављања података о кориснику!');
-      return;
-    }
-
-    const requestData = this.documentForm.value;
-    requestData.email = currentUser.email;
-
-    this.documentService.submitAppointmentRequest(requestData).subscribe(
-      (response) => {
-        console.log('Захтев за резервисање термина успешно послат', response);
-        this.openDialog('Захтев је успешно послат.');
-        this.router.navigate(['/personalDocument']); // Pretpostavljam da postoji ruta za uspeh
-      },
-      (error) => {
-        console.error('Грешка приликом слања захтева за резервацију', error);
-        this.openDialog('Дошло је до грешке приликом слања захтева.');
-      }
-    );
   }
+  submitRequest() {
+
+    const requestData = {
+      jmbg: this.appointmentForm.get('jmbg')?.value,
+      name: this.appointmentForm.get('name')?.value,
+      email: this.appointmentForm.get('email')?.value,
+      requestNumber: this.generateRequestNumber(),
+      date: this.selectedDate,
+      time: this.selectedTime,
+    };
+
+    if(requestData != null) {
+      this.documentService.submitAppointmentRequest(requestData);
+    }
+    console.log(requestData);
+
+  }
+
 
   goBack() {
     if (this.currentTab === 'tab-2') {
