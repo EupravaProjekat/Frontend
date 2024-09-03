@@ -219,11 +219,12 @@
           <p><strong>Назив услуге:</strong><br>еЗаказивање - лична карта и/или пасош - Град Нови Сад (Булевар краља Петра I)</p>
           <p><strong>Подносилац захтева:</strong> Ivanka Šovljanski</p>
 
-          <div class="appointment-box">
+          <div class="appointment-box" *ngIf="selectedDate && selectedTime">
             <p><strong>Изабрани термин</strong></p>
-            <p>05.09.2024</p>
-            <p><strong>Од:</strong> 08:30 <strong>До:</strong> 09:00</p>
+            <p>{{ selectedDate }}</p>
+            <p><strong>Од:</strong> {{ selectedTime.split('-')[0] }} <strong>До:</strong> {{ selectedTime.split('-')[1] }}</p>
           </div>
+
 
           <div class="buttons-container">
             <button class="action-button schedule">Закажи</button>
@@ -235,8 +236,6 @@
             <a href="#" class="details-link">Детаљи захтева</a>
           </div>
         </div>
-
-
         <div class="timetable">
           <table>
             <thead>
@@ -250,17 +249,20 @@
               <td>{{ time }}</td>
               <td *ngFor="let date of dates" (click)="selectTimeSlot(date, time)"
                   [ngClass]="{
-              'slot': true,
-              'pause': isPause(time),
-              'free': !isPause(time),
-              'selected': isSelected(date, time)
-            }">
-                {{ isPause(time) ? 'Pauza' : 'Slobodno' }}
+          'slot': true,
+          'pause': isPause(time),
+          'free': !isPause(time) && !date.includes('(Sat)') && !date.includes('(Sun)'),
+          'selected': isSelected(date, time),
+          'not-working': date.includes('(Sat)') || date.includes('(Sun)')
+        }">
+                {{ date.includes('(Sat)') || date.includes('(Sun)') ? 'Нерадан дан' : (isPause(time) ? 'Пауза' : 'Слободан термин') }}
               </td>
             </tr>
             </tbody>
+
           </table>
         </div>
+
 
       </div>
 

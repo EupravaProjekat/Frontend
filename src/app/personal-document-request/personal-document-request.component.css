@@ -214,24 +214,33 @@ button img:hover {
 }
 
 .slot {
-  padding: 5px;
-  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, font-size 0.3s;
+}
+
+.selected {
+  background-color: #c3e6cb;
+  font-weight: bold;
+}
+
+.pause {
+  background-color: #fdedc3;
+  cursor: not-allowed;
 }
 
 .slot.free {
-  background-color: #e0f7fa;
-  color: #006064;
+  background-color: #d4edda; /* Pozadina za slobodan termin */
 }
 
-.slot.pause {
-  background-color: rgba(255, 235, 59, 0.6);
-  color: #f57f17;
+.slot.free:hover {
+  background-color: #c3e6cb; /* Promenjena pozadina na hover */
 }
 
-
-.slot.occupied {
-  background-color: #ffcdd2;
-  color: #c62828;
+.not-working {
+  background-color: #919191;
+  cursor: not-allowed;
 }
 
 

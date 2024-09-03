@@ -58,38 +58,24 @@ export class PersonalDocumentRequestComponent implements OnInit {
   ngOnInit(): void {
     this.generateDates();
     this.generateTimeSlots();
-    ;
-    this.generateWorkWeekDates();
   }
 
   generateDates(): void {
-    const today = moment().startOf('isoWeek');  // Počnite od ponedeljka
-    for (let i = 0; i < 7; i++) {  // Prikazivanje 7 dana (nedeljni pregled)
-      this.dates.push(today.clone().add(i, 'days').format('DD.MM. (ddd)'));
-    }
-  }
-
-  generateWorkWeekDates() {
-    const today = new Date();
-    const dayOfWeek = today.getDay(); // Get the current day of the week (0 = Sunday, 6 = Saturday)
-
-    const startOfWeek = new Date(today);
-    startOfWeek.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1)); // Calculate the start of the workweek (Monday)
-
+    const today = moment().startOf('isoWeek');
     for (let i = 0; i < 7; i++) {
-      const currentDay = new Date(startOfWeek);
-      currentDay.setDate(startOfWeek.getDate() + i);
-      if (currentDay.getDay() === 0 || currentDay.getDay() === 6) {
-        continue; // Skip Saturday and Sunday
-      }
-      const formattedDate = currentDay.toLocaleDateString('sr-RS', {day: '2-digit', month: '2-digit', year: 'numeric'});
+      const date = today.clone().add(i, 'days');
+      const dayOfWeek = date.day();
+      let formattedDate = date.format('DD.MM. (ddd)');
+
+
+
       this.dates.push(formattedDate);
     }
   }
 
   generateTimeSlots(): void {
-    const startTime = moment().startOf('day').hour(7);  // Početak u 7:00
-    const endTime = moment().startOf('day').hour(22);  // Kraj u 22:00
+    const startTime = moment().startOf('day').hour(7);
+    const endTime = moment().startOf('day').hour(22);
     while (startTime.isBefore(endTime)) {
       this.timeSlots.push(startTime.format('HH:mm') + '-' + startTime.clone().add(15, 'minutes').format('HH:mm'));
       startTime.add(15, 'minutes');
@@ -177,11 +163,13 @@ export class PersonalDocumentRequestComponent implements OnInit {
 
 
   selectTimeSlot(date: string, timeRange: string) {
-    if (!this.isPause(timeRange)) {
+    // Izbegni selektovanje za "NE RADI" dane
+    if (!this.isPause(timeRange) && !date.includes('(Sat)') && !date.includes('(Sun)')) {
       this.selectedDate = date;
       this.selectedTime = timeRange;
     }
   }
+
 
 
   schedule() {
@@ -247,6 +235,7 @@ export class PersonalDocumentRequestComponent implements OnInit {
       }
     }
   }
+
 
   submitForm() {
     if (this.checkForm(this.documentForm) == true) {
