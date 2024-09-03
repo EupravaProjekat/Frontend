@@ -213,7 +213,30 @@
         </div>
       </div>
 
-      <div *ngIf="currentTab === 'tab-3'">
+      <div *ngIf="currentTab === 'tab-3'" class="tab-3">
+        <div class="request-container">
+          <p><strong>Број захтева:</strong> ЕГН17181456</p>
+          <p><strong>Назив услуге:</strong><br>еЗаказивање - лична карта и/или пасош - Град Нови Сад (Булевар краља Петра I)</p>
+          <p><strong>Подносилац захтева:</strong> Ivanka Šovljanski</p>
+
+          <div class="appointment-box">
+            <p><strong>Изабрани термин</strong></p>
+            <p>05.09.2024</p>
+            <p><strong>Од:</strong> 08:30 <strong>До:</strong> 09:00</p>
+          </div>
+
+          <div class="buttons-container">
+            <button class="action-button schedule">Закажи</button>
+            <button class="action-button cancel">Откажи</button>
+            <button class="action-button help">Помоћ</button>
+          </div>
+
+          <div>
+            <a href="#" class="details-link">Детаљи захтева</a>
+          </div>
+        </div>
+
+
         <div class="timetable">
           <table>
             <thead>
@@ -225,18 +248,22 @@
             <tbody>
             <tr *ngFor="let time of timeSlots">
               <td>{{ time }}</td>
-              <td *ngFor="let date of dates">
-                <div [ngClass]="{'slot': true, 'pause': isPause(time), 'free': !isPause(time)}">
-                  {{ isPause(time) ? 'Pauza' : 'Slobodno' }}
-                </div>
+              <td *ngFor="let date of dates" (click)="selectTimeSlot(date, time)"
+                  [ngClass]="{
+              'slot': true,
+              'pause': isPause(time),
+              'free': !isPause(time),
+              'selected': isSelected(date, time)
+            }">
+                {{ isPause(time) ? 'Pauza' : 'Slobodno' }}
               </td>
             </tr>
             </tbody>
           </table>
         </div>
 
-
       </div>
+
     </div>
 
 

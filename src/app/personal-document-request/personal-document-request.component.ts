@@ -14,26 +14,24 @@ import moment from 'moment';
   templateUrl: './personal-document-request.component.html',
   styleUrl: './personal-document-request.component.css'
 })
-export class PersonalDocumentRequestComponent implements OnInit{
+export class PersonalDocumentRequestComponent implements OnInit {
 
-  viewDate: Date = new Date();  // Define and initialize viewDate
+  dates: string[] = [];// Define and initialize viewDate
   documentForm: FormGroup;
   isAgreed = false;
   showError = false;
   showInfoBox = false;
   currentTab = 'tab-1';
   familyMembers = [
-    { name: '', jmbg: '' },
-    { name: '', jmbg: '' },
-    { name: '', jmbg: '' },
-    { name: '', jmbg: '' }
+    {name: '', jmbg: ''},
+    {name: '', jmbg: ''},
+    {name: '', jmbg: ''},
+    {name: '', jmbg: ''}
   ];
-
-  dates: string[] = [];
   timeSlots: string[] = [];
+
   constructor(
     private fb: FormBuilder,
-
     private http: HttpClient,
     private router: Router,
     private config: ConfigService,
@@ -54,15 +52,38 @@ export class PersonalDocumentRequestComponent implements OnInit{
     });
   }
 
+  selectedDate: string | null = null;
+  selectedTime: string | null = null;
+
   ngOnInit(): void {
     this.generateDates();
-    this.generateTimeSlots();;
+    this.generateTimeSlots();
+    ;
+    this.generateWorkWeekDates();
   }
 
   generateDates(): void {
     const today = moment().startOf('isoWeek');  // Počnite od ponedeljka
     for (let i = 0; i < 7; i++) {  // Prikazivanje 7 dana (nedeljni pregled)
       this.dates.push(today.clone().add(i, 'days').format('DD.MM. (ddd)'));
+    }
+  }
+
+  generateWorkWeekDates() {
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // Get the current day of the week (0 = Sunday, 6 = Saturday)
+
+    const startOfWeek = new Date(today);
+    startOfWeek.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1)); // Calculate the start of the workweek (Monday)
+
+    for (let i = 0; i < 7; i++) {
+      const currentDay = new Date(startOfWeek);
+      currentDay.setDate(startOfWeek.getDate() + i);
+      if (currentDay.getDay() === 0 || currentDay.getDay() === 6) {
+        continue; // Skip Saturday and Sunday
+      }
+      const formattedDate = currentDay.toLocaleDateString('sr-RS', {day: '2-digit', month: '2-digit', year: 'numeric'});
+      this.dates.push(formattedDate);
     }
   }
 
@@ -74,9 +95,38 @@ export class PersonalDocumentRequestComponent implements OnInit{
       startTime.add(15, 'minutes');
     }
   }
-  isPause(time: string): boolean {
-    return time === '09:00-09:15' || time === '09:15-09:30';
+
+
+
+  isPause(timeRange: string): boolean {
+    // Helper function to convert time string to minutes since start of the day
+    const timeToMinutes = (timeStr: string): number => {
+      const [hours, minutes] = timeStr.split(':').map(Number);
+      return hours * 60 + minutes;
+    };
+
+    // Define pause intervals in minutes since start of the day
+    const pauseStart1 = timeToMinutes('09:00');
+    const pauseEnd1 = timeToMinutes('09:30');
+    const pauseStart2 = timeToMinutes('16:30');
+    const pauseEnd2 = timeToMinutes('17:00');
+
+    // Split the input time range into start and end times
+    const [start, end] = timeRange.split('-').map(time => time.trim());
+
+    // Convert input times to minutes since start of the day
+    const startMinutes = timeToMinutes(start);
+    const endMinutes = timeToMinutes(end);
+
+    // Check if the interval overlaps with any pause interval
+    const overlapsWithPause = (start: number, end: number, pauseStart: number, pauseEnd: number): boolean => {
+      return start < pauseEnd && end > pauseStart;
+    };
+
+    return overlapsWithPause(startMinutes, endMinutes, pauseStart1, pauseEnd1) ||
+      overlapsWithPause(startMinutes, endMinutes, pauseStart2, pauseEnd2);
   }
+
   createFamilyMember(): FormGroup {
     return this.fb.group({
       name: [''],
@@ -121,6 +171,29 @@ export class PersonalDocumentRequestComponent implements OnInit{
     return isEmpty;
   }
 
+  isSelected(date: string, timeRange: string): boolean {
+    return this.selectedDate === date && this.selectedTime === timeRange;
+  }
+
+
+  selectTimeSlot(date: string, timeRange: string) {
+    if (!this.isPause(timeRange)) {
+      this.selectedDate = date;
+      this.selectedTime = timeRange;
+    }
+  }
+
+
+  schedule() {
+    // Implement scheduling logic
+    console.log('Appointment scheduled for', this.selectedDate, this.selectedTime);
+  }
+
+  cancel() {
+    this.selectedDate = null;
+    this.selectedTime = null;
+  }
+
   setInvalidClass(controlName: string, condition?: boolean): boolean {
     const control = this.documentForm.get(controlName);
 
@@ -138,6 +211,7 @@ export class PersonalDocumentRequestComponent implements OnInit{
 
     return false;
   }
+
   get FamilyMembers(): FormArray {
     return this.documentForm.get('familyMembers') as FormArray;
   }
@@ -148,7 +222,7 @@ export class PersonalDocumentRequestComponent implements OnInit{
 
   openDialog(message: string) {
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: { title: 'Обавештење', message: message },
+      data: {title: 'Обавештење', message: message},
     });
 
     dialogRef.afterClosed().subscribe(() => {
@@ -173,6 +247,7 @@ export class PersonalDocumentRequestComponent implements OnInit{
       }
     }
   }
+
   submitForm() {
     if (this.checkForm(this.documentForm) == true) {
       this.documentService.submitAppointmentRequest(this.documentForm.value)
