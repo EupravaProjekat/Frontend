@@ -26,6 +26,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { WeaponDocumentComponent } from './weapon-document/weapon-document.component';
 import { PersonalDocumentComponent } from './personal-document/personal-document.component';
 import { PersonalDocumentRequestComponent } from './personal-document-request/personal-document-request.component';
+import { WeaponComponent } from './weapon/weapon.component';
 
 
 
@@ -37,7 +38,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'profileSetup', component: CreateProfileComponent},
-  { path: 'weaponDocument', component: WeaponDocumentComponent},
+  { path: 'weaponDocument', component: WeaponComponent},
+  { path: 'weaponDocument/request', component: WeaponDocumentComponent},
   { path: 'personalDocument', component: PersonalDocumentComponent},
   { path: 'personalDocument/request', component: PersonalDocumentRequestComponent},
 ];

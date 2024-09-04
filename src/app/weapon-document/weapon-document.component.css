@@ -470,6 +470,10 @@ form label{
   position: relative;
 }
 
+.service-box {
+  width: 100%
+}
+
 .strength {
   width: 0%;
   display: flex;
