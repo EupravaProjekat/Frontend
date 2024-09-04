@@ -27,6 +27,7 @@ import { WeaponDocumentComponent } from './weapon-document/weapon-document.compo
 import { PersonalDocumentComponent } from './personal-document/personal-document.component';
 import { PersonalDocumentRequestComponent } from './personal-document-request/personal-document-request.component';
 import { WeaponComponent } from './weapon/weapon.component';
+import { ParkingDisabledComponent } from './parking-disabled/parking-disabled.component';
 
 
 
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'weaponDocument/request', component: WeaponDocumentComponent},
   { path: 'personalDocument', component: PersonalDocumentComponent},
   { path: 'personalDocument/request', component: PersonalDocumentRequestComponent},
+  { path: 'parkingDisabled', component: ParkingDisabledComponent},
 ];
 
 

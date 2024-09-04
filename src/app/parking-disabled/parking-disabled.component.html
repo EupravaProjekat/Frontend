@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel = "stylesheet" type="text/css" href="personal-document.component.css">
+  <link rel = "stylesheet" type="text/css" href="parking-disabled.component.css">
   <link rel="icon" href="../../assets/governmentLogo.png">
-  <title>Заказивање рока за издавање личних докумената - eUprava</title>
+  <title>Захтев за издавање паркинг карте и паркинг места за особе са инвалидитетом</title>
 </head>
 <body>
 <div class="topLayout">
@@ -34,9 +34,9 @@
           <div class="first-column">
             <a href="#">МУП и грађани<span id = "arrow">▼</span></a>
             <div class="mup-content">
-              <a [routerLink]="['/personalDocument']">Издавање идентификационих докумената</a>
-              <a [routerLink]="['/weaponDocument']">Куповина оружја</a>
-              <a [routerLink]="['/parkingDisabled']">Паркинг за инвалиде</a>
+              <a href="http://localhost:4200/personalDocument">Издавање идентификационих докумената</a>
+              <a href="http://localhost:4200/weaponDocument">Куповина оружја</a>
+              <a href="http://localhost:4200/parkingDisabled">Паркинг за инвалиде</a>
               <a href="#">Добровољно служење војног рока</a>
               <a href="#">Потернице и возила</a>
             </div>
@@ -97,54 +97,50 @@
         </div>
 
         <div class="ministry-box">
-          <img src="../../assets/MUP.png" alt="Ministarstvo unutrašnjih poslova Republike Srbije">
-          <h4>Министарство унутрашњих послова Републике Србије</h4>
-          <p>Булевар Михајла Пупина 2,</p>
-          <a href="https://www.mup.gov.rs" target="_blank">www.mup.gov.rs</a>
+          <img src="../../assets/logo%20OSI.gif" alt="Ministarstvo unutrašnjih poslova Republike Srbije">
+          <h4>Јединице локалне самоуправе</h4>
           <button>Списак услуга</button>
         </div>
       </div>
       <div class="main-content-container">
         <main class="main-content">
-          <h1>еЗаказивање - лична карта и/или пасош - Град Нови Сад (Булевар краља Петра I)</h1>
+          <h1>Захтев за издавање паркинг карте и паркинг места за особе са инвалидитетом</h1>
           <div class="info">
-            <p>Заказивање термина за личну карту, путну исправу (пасош) или заједно за личну карту и путну исправу.</p>
-            <address>
-              <span class ="beograd">Булевар краља Петра I бр. 11</span><br>
-              <span id="novisad">Нови Сад</span><br>
-              <span class="beograd">канцеларија бр. 12</span>
-            </address>
+            <p>Електронска услуга је доступна само у одређеним градовима/општинама.</p>
+            <p>Списак градова/општина које пружају ову услугу налази се на <a href="https://euprava.gov.rs/media/dokumenta/Spisak_jls_grad.pdf">ЛИНКУ</a>.</p>
           </div>
           <hr class="line">
           <section class="description">
-            <h2 class="sticky-heading">Опис</h2>
-            <p>Подносилац захтева мора бити пунолетно физичко лице и држављанин Републике Србије.</p>
-            <p>Термин можете заказати за себе и уз тај термин додати термине за још 4 члана породице уколико је потребно.</p>
-            <p>Када заказујете термин само за малолетно дете, потребно је да заказани термин гласи на име родитеља, односно старатеља детета.</p>
-            <p>Најранији датум за заказивање термина је 1 дан пре дана подношења захтева. Најкаснији датум за заказивање термина је 30 дана унапред.</p>
-            <p><strong>Неопходно је доћи тачно у заказано време.</strong></p>
-            <p>Приликом доласка у заказано време потребно је са собом понети сва неопходна документа. Списак докумената можете видети на званичној веб презентацији МУП-а: <a href="http://www.mup.gov.rs/wps/portal/sr/gradjani/dokumenta/!ut/p/z1/jZBLT8MwEIR_C4cciZ2XcZEQitTIKRVCEJW0vlROs7iR0iTa2OHx6yklF0SJ2NuOvp1ZDZFkTWSjhkorU7WNqo_7RrLtw-yeeYL6Sx5Sj8YsFpxG3KeZR_ITQP-YmBL5n_sJQE7bPxNJ5M4iQmPIxqCFo6X8mSrS5Ms0ZOJpHvih8H4BLPFp_Hg1my8THvCUjsBE7h2Rum6L74ripgi4JhLhBRDQtXiU98Z01w51KNi-thpcsB2qQbm6HVzsHZoBDtUOBDSAyrSYQ5FXHwpLV_Xd2-2oQzlyi_LGY1F0Lm_f9oasz-eQ9PTsdMndYbU6bLPFpSzeg1d98QkyrcvC/dz/d5/L2dBISEvZ0FBIS9nQSEh/?current=true" target="_blank">www.mup.gov.rs.</a></p>
-            <p>Путем система Паипал искључиво једнократну уплатницу и платите накнаде везане за поступак издавања личне карте и/или пасоша.</p>
+            <h2 class="sticky-heading">Опис услуге</h2>
+            <p>Услуга омогућава особама са инвалидитетом да поднесу захтев за издавање паркинг карте и резервисање паркинг места у одређеним градовима/општинама у складу са прописима.</p>
+            <p>Решена надлежних органа града/општине, као и паркинг карте, достављају се подносиоцу захтева на адресу пребивалишта.</p>
+            <p>Услуга је бесплатна.</p>
+            <p>За више информација можете се обратити надлежној општинској/градској управи. Контакт подаци градова/општина који омогућавају подношење захтева путем ове услуге се налазе на <a href="https://euprava.gov.rs/media/dokumenta/Kontakt_jls_gradova.pdf">ЛИНКУ</a>.</p>
           </section>
           <hr class="line">
           <section class="description">
-            <h2 class="sticky-heading">Како заказати термин</h2>
-            <p>Покренути услугу кликом на дугме „Покрени услугу” са леве стране екрана. Попунити податке и проверити термин.</p>
-            <p>Уколико се заказује термин за малолетно дете потребно је да се наведе и његови подаци.</p>
-            <p>Након тога прегледати све календаре у којима можете одабрати слободан термин и потврдити заказивање.</p>
+            <h2 class="sticky-heading">Коме је услуга намењена</h2>
+            <p>Захтев подносе особе са инвалидитетом или њихови родитељи/старатељи, уколико је особа са инвалидитетом малолетна или лишена пословне способности.</p>
           </section>
           <hr class="line">
           <section class="description">
-            <h2 class="sticky-heading">Важно:</h2>
-            <ul class="important-list-ul">
-              <li class="important-list">Не може се заказати термин који је удаљен више од 30 дана унапред.</li>
-              <li class="important-list">Потребно је да будете тачни у заказаном термину.</li>
-              <li class="important-list">Свако кашњење од 10 до 15 минута за једну особу ће узроковати померање вашег термина.</li>
-              <li class="important-list">Заказани термин за заказивање може исти час истог дана након поступка заказивања или само сат времена после његовог заказивања, без обзира да ли је омогућено електронско заказивање.</li>
-            </ul>
+            <h2 class="sticky-heading">Како подносити захтев</h2>
+            <p>Да бисте поднели захтев, потребно је да будете регистровани и пријављени корисник Портала еУправа. Услугу можете покренути кликом на дугме „Покрени услугу”. Потребно је да приложите потребне доказе у електронском облику (формати PDF, JPG, PNG и GIF су прихватљиви).</p>
+            <p>Захтев се односи на возила која су регистрована на име особе са инвалидитетом или на име родитеља/старатеља. Препоручује се да се одабере надлежни орган према месту пребивалишта.</p>
+          </section>
+          <hr class="line">
+          <section class="description">
+            <h2 class="sticky-heading">Рок за обраду</h2>
+            <p>Рок за обраду захтева је 30 дана од дана подношења.</p>
+          </section>
+          <hr class="line">
+          <section class="description">
+            <h2 class="sticky-heading">Упутство</h2>
+            <p><a href="https://www.youtube.com/watch?v=PUF9aPgblCc" target="_blank">Видео упутство</a></p>
           </section>
         </main>
       </div>
+
 
     </div>
   </div>

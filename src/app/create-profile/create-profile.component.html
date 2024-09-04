@@ -37,10 +37,12 @@
               </svg></span><span class="profileText">Моја еУправа ▼</span>
         </button>
         <div class="dropdown-content">
-          <a href = "http://localhost:4200/login">Пријава</a>
-          <a href ="http://localhost:4200/register">Регистрација</a>
+          <ng-container *ngIf="!isAuthenticated()">
+            <a href = "http://localhost:4200/login">Пријава</a>
+            <a href ="http://localhost:4200/register">Регистрација</a>
+          </ng-container>
           <ng-container *ngIf="isAuthenticated()">
-            <button id="logoutbttn" (click)="logout()">Logout</button>
+            <button id="logoutbttn" (click)="logout()">Одјава</button>
           </ng-container>
         </div>
       </div>
