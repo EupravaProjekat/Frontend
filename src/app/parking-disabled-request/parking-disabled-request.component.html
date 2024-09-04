@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel = "stylesheet" type="text/css" href="parking-disabled-request.component.css">
+  <link rel="icon" href="../../assets/governmentLogo.png">
+  <title>Заказивање рока за издавање личних докумената - eUprava</title>
+</head>
+<body>
+<div class="topLayout">
+  <div class="topLayoutWrapper">
+    <div class="topLayout-list-container-right">
+      <ul id="topLayout-list-right">
+        <li class="list-parameter" id="letters-parameter">Ћирилица <span id="falling-menu-arrow">▼</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="headerLayout">
+  <div class="headerLayoutWrapper">
+    <a href="/" id="logo-government-href"><img src="../../assets/governmentLogo.png" alt="logo-government" id="logo-government"></a>
+    <div class="logo-text-container">
+      <a href="/" id="logo-text">euprava.gov.rs</a>
+    </div>
+  </div>
+</div>
+<div class="menuLayout">
+  <div class="menuLayoutWrapper">
+    <div class="menuLeftLayout">
+      <div class="dropdownServices">
+        <button class="dropServicesButton">Услуге ▼</button>
+        <div class="dropdown-content">
+          <div class="first-column">
+            <a href="#">МУП и грађани<span id = "arrow">▼</span></a>
+            <div class="mup-content">
+              <a href="http://localhost:4200/personalDocument">Издавање идентификационих докумената</a>
+              <a href="http://localhost:4200/weaponDocument">Куповина оружја</a>
+              <a href="http://localhost:4200/parkingDisabled">Паркинг за инвалиде</a>
+              <a href="#">Добровољно служење војног рока</a>
+              <a href="#">Потернице и возила</a>
+            </div>
+          </div>
+          <div class="second-column">
+            <a href="#">Гранична полиција</a>
+            <a href="#">Суд</a>
+            <a href="#">Тужилаштво</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-container">
+        <a class="newsButton" href="/news">Вести</a>
+      </div>
+      <div class="nav-container">
+        <a class="helpButton" href="/help">Помоћ</a>
+      </div>
+      <div class="nav-container">
+        <a class="contactButton" href="/contact">Контакт</a>
+      </div>
+      <div class="nav-container">
+        <a class="contactButton" href="/">Назад</a>
+      </div>
+    </div>
+    <div class="menuRightLayout">
+      <div class="profileLayout">
+        <button class="dropProfileButton">
+            <span class="icon-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
+              </svg></span><span class="profileText">Моја еУправа ▼</span>
+        </button>
+        <div class="dropdown-content">
+          <ng-container *ngIf="isAuthenticated() == false">
+            <a href = "http://localhost:4200/login">Пријава</a>
+            <a href ="http://localhost:4200/register">Регистрација</a>
+          </ng-container>
+          <ng-container *ngIf="isAuthenticated()">
+            <a href="http://localhost:4200/profile"><button id="profilebutn">Мој профил</button></a>
+            <a href="http://localhost:4200/logout"><button id="logoutbttn" (click)="logout()">Одјава</button></a>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="homepage-info-container">
+  <div class="homepage-info-container-wrapper">
+    <div id="form-container">
+      <div class="info-box">
+        <h2>Захтев за издавање паркинг карте и резервисаног паркинг места за особе са инвалидитетом</h2>
+        <p>Захтев подноси особа са инвалидитетом или њен родитељ/старатељ, уколико је особа са инвалидитетом малолетна или лишена пословне способности.</p>
+        <p>Уколико је власник возила које се користи за превоз особе са инвалидитетом члан породице, неопходно је да је власник возила на истој адреси пребивалишта као и особа са инвалидитетом.</p>
+        <p>Ова услуга је доступна само у одређеним градовима/општинама.</p>
+      </div>
+
+      <form id="parking-permit-form">
+        <div class="form-section">
+          <label for="city" class="form-label">Град/општина којој се подноси захтев (приказивање услуге):</label>
+          <select id="city" name="city" class="form-input">
+            <option value="" selected id="invisibleOption"></option>
+            <option value="Град Београд">Град Београд</option>
+            <option value="Град Бор">Град Бор</option>
+            <option value="Град Вршац">Град Вршац</option>
+            <option value="Град Зрењанин">Град Зрењанин</option>
+            <option value="Град Кикинда">Град Кикинда</option>
+            <option value="Град Крагујевац">Град Крагујевац</option>
+            <option value="Град Крушевац">Град Крушевац</option>
+            <option value="Град Лозница">Град Лозница</option>
+            <option value="Град Ниш">Град Ниш</option>
+            <option value="Град Нови Сад">Град Нови Сад</option>
+            <option value="Град Панчево">Град Панчево</option>
+            <option value="Град Смедерево">Град Смедерево</option>
+            <option value="Град Суботица">Град Суботица</option>
+            <option value="Град Ужице">Град Ужице</option>
+            <option value="Град Шабац">Град Шабац</option>
+
+            <!-- Општине -->
+            <option value="Општина Алексинац">Општина Алексинац</option>
+            <option value="Општина Алибунар">Општина Алибунар</option>
+            <option value="Општина Апатин">Општина Апатин</option>
+            <option value="Општина Бајина Башта">Општина Бајина Башта</option>
+            <option value="Општина Баточина">Општина Баточина</option>
+            <option value="Општина Бачка Топола">Општина Бачка Топола</option>
+            <option value="Општина Бела Паланка">Општина Бела Паланка</option>
+            <option value="Општина Велика Плана">Општина Велика Плана</option>
+            <option value="Општина Врбас">Општина Врбас</option>
+            <option value="Општина Врњачка Бања">Општина Врњачка Бања</option>
+            <option value="Општина Голубац">Општина Голубац</option>
+            <option value="Општина Горњи Милановац">Општина Горњи Милановац</option>
+            <option value="Општина Деспотовац">Општина Деспотовац</option>
+            <option value="Општина Кањижа">Општина Кањижа</option>
+            <option value="Општина Ковачица">Општина Ковачица</option>
+            <option value="Општина Ковин">Општина Ковин</option>
+            <option value="Општина Крупањ">Општина Крупањ</option>
+            <option value="Општина Кучево">Општина Кучево</option>
+            <option value="Општина Лапово">Општина Лапово</option>
+            <option value="Општина Мерошина">Општина Мерошина</option>
+            <option value="Општина Неготин">Општина Неготин</option>
+            <option value="Општина Нови Бечеј">Општина Нови Бечеј</option>
+            <option value="Општина Опово">Општина Опово</option>
+            <option value="Општина Параћин">Општина Параћин</option>
+            <option value="Општина Ражањ">Општина Ражањ</option>
+            <option value="Општина Свилајнац">Општина Свилајнац</option>
+            <option value="Општина Сента">Општина Сента</option>
+            <option value="Општина Сурдулица">Општина Сурдулица</option>
+            <option value="Општина Тител">Општина Тител</option>
+            <option value="Општина Трстеник">Општина Трстеник</option>
+            <option value="Општина Ћићевац">Општина Ћићевац</option>
+            <option value="Општина Ћуприја">Општина Ћуприја</option>
+            <option value="Општина Уб">Општина Уб</option>
+            <option value="Општина Чајетина">Општина Чајетина</option>
+            <option value="Општина Чока">Општина Чока</option>
+            <option value="Општинска управа Осечина">Општинска управа Осечина</option>
+          </select>
+        </div>
+
+        <div class="form-section">
+          <label class="form-label">Захтев подносим за:</label>
+          <div class="form-checkbox-group">
+            <input type="checkbox" id="parkingCard" name="request" value="parkingCard" class="form-checkbox">
+            <label for="parkingCard" class="form-checkbox-label">Издавање паркинг карте</label>
+          </div>
+          <div class="form-checkbox-group">
+            <input type="checkbox" id="reservedParking" name="request" value="reservedParking" class="form-checkbox">
+            <label for="reservedParking" class="form-checkbox-label">Резервацију паркинг места (уколико је могуће у Вашем граду/општини)</label>
+          </div>
+        </div>
+
+        <div class="form-segment">
+          <h3>Подаци особе са инвалидитетом:</h3>
+          <div class="both-sides-form">
+            <div class="left-side-form">
+              <label for="first-name">Име:</label>
+              <input type="text" id="first-name" name="first-name">
+
+              <label for="id-number">ЈМБГ:</label>
+              <input type="text" id="id-number" name="id-number">
+
+              <label for="phone">Контакт телефон:</label>
+              <input type="text" id="phone" name="phone">
+            </div>
+
+            <div class="right-side-form">
+              <label for="last-name">Презиме:</label>
+              <input type="text" id="last-name" name="last-name">
+
+              <label for="email">Адреса електронске поште:</label>
+              <input type="email" id="email" name="email">
+
+            </div>
+          </div>
+
+          <h3>Подаци о пребивалишту особе са инвалидитетом:</h3>
+
+          <div class="both-sides-form">
+            <div class="left-side-form">
+
+              <label for="municipality">Општина:</label>
+              <select id="municipality" name="municipality">
+                <option value="" disabled selected>Изаберите општину</option>
+                <!-- Opštine u Beogradu -->
+                <option value="Врачар">Врачар (Београд)</option>
+                <option value="Звездара">Звездара (Београд)</option>
+                <option value="Вождовац">Вождовац (Београд)</option>
+                <option value="Нови Београд">Нови Београд (Београд)</option>
+                <option value="Савски Венац">Савски Венац (Београд)</option>
+                <option value="Земун">Земун (Београд)</option>
+                <option value="Палилула">Палилула (Београд)</option>
+                <option value="Чукарица">Чукарица (Београд)</option>
+                <option value="Раковица">Раковица (Београд)</option>
+                <option value="Гроцка">Гроцка (Београд)</option>
+                <option value="Лазаревац">Лазаревац (Београд)</option>
+                <option value="Обреновац">Обреновац (Београд)</option>
+                <option value="Младеновац">Младеновац (Београд)</option>
+                <option value="Сурчин">Сурчин (Београд)</option>
+                <option value="Барајево">Барајево (Београд)</option>
+                <option value="Сопот">Сопот (Београд)</option>
+
+                <!-- Opštine u Novom Sadu -->
+                <option value="Нови Сад">Нови Сад</option>
+                <option value="Петроварадин">Петроварадин (Нови Сад)</option>
+
+                <!-- Opštine u Nišu -->
+                <option value="Медијана">Медијана (Ниш)</option>
+                <option value="Палилула">Палилула (Ниш)</option>
+                <option value="Пантелеј">Пантелеј (Ниш)</option>
+                <option value="Црвени Крст">Црвени Крст (Ниш)</option>
+                <option value="Нишка Бања">Нишка Бања (Ниш)</option>
+
+                <!-- Opštine u Kragujevcu -->
+                <option value="Аеродром">Аеродром (Крагујевац)</option>
+                <option value="Пивара">Пивара (Крагујевац)</option>
+                <option value="Станово">Станово (Крагујевац)</option>
+                <option value="Стари Град">Стари Град (Крагујевац)</option>
+
+                <!-- Ostale opštine -->
+                <option value="Суботица">Суботица (Суботица)</option>
+                <option value="Лесковац">Лесковац (Лесковац)</option>
+                <option value="Нови Пазар">Нови Пазар (Нови Пазар)</option>
+                <option value="Зрењанин">Зрењанин (Зрењанин)</option>
+                <option value="Панчево">Панчево (Панчево)</option>
+                <option value="Чачак">Чачак (Чачак)</option>
+                <option value="Краљево">Краљево (Краљево)</option>
+                <option value="Ужице">Ужице (Ужице)</option>
+                <option value="Сомбор">Сомбор (Сомбор)</option>
+                <option value="Ваљево">Ваљево (Ваљево)</option>
+                <option value="Смедерево">Смедерево (Смедерево)</option>
+                <option value="Пожаревац">Пожаревац (Пожаревац)</option>
+                <option value="Јагодина">Јагодина (Јагодина)</option>
+                <option value="Врање">Врање (Врање)</option>
+                <option value="Шабац">Шабац (Шабац)</option>
+                <option value="Зајечар">Зајечар (Зајечар)</option>
+                <option value="Кикинда">Кикинда (Кикинда)</option>
+                <option value="Пирот">Пирот (Пирот)</option>
+                <option value="Сремска Митровица">Сремска Митровица (Сремска Митровица)</option>
+                <option value="Вршац">Вршац (Вршац)</option>
+                <option value="Бор">Бор (Бор)</option>
+                <option value="Лозница">Лозница (Лозница)</option>
+                <option value="Аранђеловац">Аранђеловац (Аранђеловац)</option>
+                <option value="Прокупље">Прокупље (Прокупље)</option>
+                <option value="Неготин">Неготин (Неготин)</option>
+                <option value="Крушевац">Крушевац (Крушевац)</option>
+                <option value="Апатин">Апатин (Апатин)</option>
+                <option value="Врбас">Врбас (Врбас)</option>
+                <option value="Трстеник">Трстеник (Трстеник)</option>
+                <option value="Рума">Рума (Рума)</option>
+                <option value="Бајина Башта">Бајина Башта (Бајина Башта)</option>
+                <option value="Ћуприја">Ћуприја (Ћуприја)</option>
+              </select>
+
+              <label for="postal-code">ПТТ број:</label>
+              <input type="text" id="postal-code" name="postal-code">
+
+              <div class = "moreFieldsInRow">
+
+                <div>
+                  <label for="entrance">Улаз:</label>
+                  <input type="text" id="entrance" name="entrance">
+                </div>
+
+                <div>
+                  <label for="floor">Спрат:</label>
+                  <input type="text" id="floor" name="floor">
+                </div>
+
+              </div>
+            </div>
+            <div class="right-side-form">
+              <div class="moreFieldsInRow">
+
+              </div>
+              <label for="place">Место:</label>
+              <select id="place" name="place">
+                <option value="" disabled selected>Изаберите место</option>
+                <option value="Београд">Београд</option>
+                <option value="Нови Сад">Нови Сад</option>
+                <option value="Ниш">Ниш</option>
+                <option value="Крагујевац">Крагујевац</option>
+                <option value="Суботица">Суботица</option>
+                <option value="Лесковац">Лесковац</option>
+                <option value="Нови Пазар">Нови Пазар</option>
+                <option value="Зрењанин">Зрењанин</option>
+                <option value="Панчево">Панчево</option>
+                <option value="Чачак">Чачак</option>
+                <option value="Краљево">Краљево</option>
+                <option value="Ужице">Ужице</option>
+                <option value="Сомбор">Сомбор</option>
+                <option value="Ваљево">Ваљево</option>
+                <option value="Смедерево">Смедерево</option>
+                <option value="Пожаревац">Пожаревац</option>
+                <option value="Јагодина">Јагодина</option>
+                <option value="Врање">Врање</option>
+                <option value="Шабац">Шабац</option>
+                <option value="Зајечар">Зајечар</option>
+                <option value="Кикинда">Кикинда</option>
+                <option value="Пирот">Пирот</option>
+                <option value="Сремска Митровица">Сремска Митровица</option>
+                <option value="Вршац">Вршац</option>
+                <option value="Бор">Бор</option>
+                <option value="Лозница">Лозница</option>
+                <option value="Аранђеловац">Аранђеловац</option>
+                <option value="Прокупље">Прокупље</option>
+                <option value="Неготин">Неготин</option>
+                <option value="Крушевац">Крушевац</option>
+                <option value="Апатин">Апатин</option>
+                <option value="Врбас">Врбас</option>
+                <option value="Трстеник">Трстеник</option>
+                <option value="Рума">Рума</option>
+                <option value="Бајина Башта">Бајина Башта</option>
+                <option value="Ћуприја">Ћуприја</option>
+              </select>
+
+
+              <div class="moreFieldsInRow">
+                <div>
+                  <label for="street">Улица:</label>
+                  <input type="text" id="street" name="street">
+                </div>
+
+                <div>
+                  <label for="streetNumber">Број:</label>
+                  <input type="text" id="streetNumber" name="streetNumber">
+                </div>
+
+
+              </div>
+
+              <div class="moreFieldsInRow">
+                <div>
+                  <label for="apartment">Стан:</label>
+                  <input type="text" id="apartment" name="apartment">
+                </div>
+
+                <div>
+                  <label for="addition">Додатак:</label>
+                  <input type="text" id="addition" name="addition">
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <label for="photo-upload">Приложите фотографију:</label>
+          <!-- Mesto gde će se prikazati naziv izabranog fajla -->
+          <div id="file-name" class="file-name"></div>
+          <!-- Dugme za izbor fajla -->
+          <label for="photo-upload" class="custom-file-upload">
+            Изаберите датотеку
+          </label>
+          <input type="file" id="photo-upload" name="photo-upload">
+
+          <script>
+            // Prikazivanje naziva izabrane datoteke između labele i dugmeta
+            const fileInput = document.getElementById('photo-upload');
+            const fileNameDisplay = document.getElementById('file-name');
+
+            fileInput.addEventListener('change', function() {
+              if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = "Изабрана датотека: " + fileInput.files[0].name;
+              } else {
+                fileNameDisplay.textContent = ""; // Prazno polje ako nije izabran fajl
+              }
+            });
+          </script>
+          <p class="note">Морате приложити фотографију (као за пасош - анфас, на белој позадини. Дозвољени формати фотографије су JPG, PNG и GIF, димензија 3 х 3.5 cm.)</p>
+        </div>
+        <div class="form-section">
+          <label class="form-label">Да ли је у претходној години издато Решење о признатом праву у истом граду/општини:</label>
+          <div class="form-radio-group">
+            <input type="radio" id="yes" name="previousDecision" value="Да" class="form-radio">
+            <label for="yes" class="form-radio-label">Да</label>
+          </div>
+          <div class="form-radio-group">
+            <input type="radio" id="no" name="previousDecision" value="Не" class="form-radio">
+            <label for="no" class="form-radio-label">Не</label>
+          </div>
+        </div>
+        <div class="form-section">
+          <label for="propertyVehicle" class="form-label">Власник возила односно корисник возила, коме је то својство уписано у саобраћајној дозволи:
+          </label>
+          <select id="propertyVehicle" name="propertyVehicle" class="form-input">
+            <option value="" selected class="invisibleOption"></option>
+            <option value="Особа са инвалидитетом">Особа са инвалидитетом</option>
+            <option value="Члан породице особе са инвалидитетом">Члан породице особе са инвалидитетом</option>
+
+          </select>
+        </div>
+        <div class="form-segment">
+          <h3>Подаци о возилу:</h3>
+          <div class="both-sides-form">
+            <div class="left-side-form">
+              <label for="registrationPlate">Регистарска ознака возила:</label>
+              <input type="text" id="registrationPlate" name="registrationPlate">
+
+              <label for="makeVehicle">Марка возила:</label>
+              <input type="text" id="makeVehicle" name="makeVehicle">
+
+              <label for="modelVehicle">Модел возила:</label>
+              <input type="text" id="modelVehicle" name="modelVehicle">
+
+              <label class="form-label">Да ли је возило под лизингом?</label>
+              <div class="form-radio-group">
+                <input type="radio" id="yess" name="previousDecision" value="Да" class="form-radio">
+                <label for="yes" class="form-radio-label">Да</label>
+              </div>
+              <div class="form-radio-group">
+                <input type="radio" id="noo" name="previousDecision" value="Не" class="form-radio">
+                <label for="no" class="form-radio-label">Не</label>
+              </div>
+            </div>
+
+            <div class="right-side-form">
+              <div class="imageFormatter">
+                <img src="../../assets/brm%20brm.png" id="imgCertificate">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="consent-wrapper">
+          <div class="consent-checkbox-container">
+            <input type="checkbox" id="consent-agreement">
+            <label for="consent-agreement" class="consent-text">
+              Сагласан сам да орган за потребе поступка може да изврши увид, прибави и обради податке о чињеницама о којима се води службена евиденција, који су неопходни у поступку одлучивања права на бесплатно коришћење обележених паркинг места на јавним општим паркиралиштима и права на резервисано паркинг место, сагласно одредби члана 12. у вези са чланом 17. Закона о заштити података о личности ("Сл. гласник РС", бр. 87/18) и члана 103. Закона о општем управном поступку ("Сл. гласник РС", бр. 18/16).
+            </label>
+          </div>
+          <div class="submission-date" id="saglasnost-date"></div>
+        </div>
+
+
+        <div class="form-section">
+          <button type="submit" id="submit-btn" class="form-button">Поднесите захтев</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-content">
+    <div class="footer-crest">
+      <img src="../../assets/serbia-srbija-logo-E2B57872B8-seeklogo.com.png" alt="serbian-crest" class="crest">
+    </div>
+    <div class = "footer-content-info">
+      <h3>Факултет техничких наука у Новом Саду</h3>
+      <p>Пројекат из предмета - Технологије и системи еУправе</p>
+      <ul class="socials">
+        <li><a href="#" class="instagram"></a></li>
+        <li><a href="#" class="ftn"></a></li>
+        <li><a href="#" class="linkedin"></a></li>
+        <li><a href="#" class="tiktok"></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 еУправа. Сва права задржана.</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -28,6 +28,7 @@ import { PersonalDocumentComponent } from './personal-document/personal-document
 import { PersonalDocumentRequestComponent } from './personal-document-request/personal-document-request.component';
 import { WeaponComponent } from './weapon/weapon.component';
 import { ParkingDisabledComponent } from './parking-disabled/parking-disabled.component';
+import { ParkingDisabledRequestComponent } from './parking-disabled-request/parking-disabled-request.component';
 
 
 
@@ -44,6 +45,7 @@ const routes: Routes = [
   { path: 'personalDocument', component: PersonalDocumentComponent},
   { path: 'personalDocument/request', component: PersonalDocumentRequestComponent},
   { path: 'parkingDisabled', component: ParkingDisabledComponent},
+  { path: 'parkingDisabled/request', component: ParkingDisabledRequestComponent},
 ];
 
 
