@@ -107,6 +107,17 @@ export class PersonalDocumentRequestComponent implements OnInit {
   checkForm(appointmentForm: FormGroup): boolean {
 
 
+    if (this.areFieldsEmpty()) {
+      this.openDialog('Молимо вас да попуните форму!');
+      return false;
+    }
+
+    const jmbgRegex = /^(0[1-9]|[12][0-9]|3[01])(0[1-9]|1[0-2])(\d{3})(\d{6})$/;
+    if(!jmbgRegex.test(appointmentForm.get('jmbg')?.value)){
+      this.openDialog('Неисправан матичан број');
+      return false;
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(appointmentForm.get('email')?.value)) {
       this.openDialog('Неисправна имејл адреса!');
@@ -121,21 +132,13 @@ export class PersonalDocumentRequestComponent implements OnInit {
 
   areFieldsEmpty(): boolean {
     let isEmpty = false;
-
     Object.keys(this.appointmentForm.controls).forEach((field) => {
       const control = this.appointmentForm.get(field);
-
-      if (control) {
-        const value = control.value;
-
-        // Proverava da li je vrednost prazna, null, undefined, ili prazan niz
-        if (value === '' || value === null || value === undefined || (Array.isArray(value) && value.length === 0)) {
-          isEmpty = true;
-          this.setInvalidClass(field, true);
-        }
+      if (control && control.value === '') {
+        isEmpty = true;
+        this.setInvalidClass(field, true);
       }
     });
-
     return isEmpty;
   }
 
@@ -208,7 +211,7 @@ export class PersonalDocumentRequestComponent implements OnInit {
       this.showError = false;
       if (this.currentTab === 'tab-1') {
         this.setTab('tab-2');
-      } else if (this.currentTab === 'tab-2') {
+      } else if (this.currentTab === 'tab-2' && this.submitForm()) {
         this.setTab('tab-3');
         this.openDialog("Изаберите слободан термин!")
       } else if (this.currentTab === 'tab-3') {
@@ -224,19 +227,18 @@ export class PersonalDocumentRequestComponent implements OnInit {
 
 
 
-  submitForm() {
-    if (this.checkForm(this.appointmentForm) == true) {
+  submitForm() : boolean{
+    if (this.checkForm(this.appointmentForm)) {
 
       const formData = {
         jmbg: this.appointmentForm.get('jmbg')?.value,
         name: this.appointmentForm.get('name')?.value,
         email: this.appointmentForm.get('email')?.value,
       };
-
+      return true;
     }
     else {
-      this.openDialog('Молимо Вас унесите валидне податке.')
-      return
+      return false
     }
 
 
