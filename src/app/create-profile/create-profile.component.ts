@@ -109,7 +109,7 @@ export class CreateProfileComponent {
       return false;
     }
 
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/; // Format datuma YYYY-MM-DD
+    const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/;
     if (!dateRegex.test(profileSetupForm.value.birthday)) {
       this.openDialog('Неисправан формат датума рођења!');
       return false;

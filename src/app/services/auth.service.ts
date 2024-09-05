@@ -101,11 +101,11 @@ export class AuthService {
         console.log(res.status);
           if(res.status != 200)
           {
-            this.router.navigate(['/profileSetupborder']);
+            this.router.navigate(['/profileSetup']);
           }
         },
-(error) => {
-  this.router.navigate(['/profileSetupborder']);
+        (error) => {
+  this.router.navigate(['/profileSetup']);
 }
       );
   }

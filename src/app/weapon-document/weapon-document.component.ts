@@ -29,7 +29,7 @@ export class WeaponDocumentComponent implements OnInit{
     });
   }
   ngOnInit()  {
-    this.authService.checkdataborder();
+    this.authService.checkdata();
   }
 
 
