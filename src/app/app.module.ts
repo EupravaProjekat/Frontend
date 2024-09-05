@@ -59,7 +59,9 @@ const routes: Routes = [
     CreateProfileComponent,
     WeaponDocumentComponent,
     PersonalDocumentComponent,
-    PersonalDocumentRequestComponent
+    ParkingDisabledComponent,
+    ParkingDisabledRequestComponent,
+    PersonalDocumentRequestComponent,
   ],
 
   imports: [

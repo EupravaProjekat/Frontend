@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -44,13 +44,40 @@ export class ParkingDisabledRequestComponent implements OnInit{
   suzuki: ["Swift", "Baleno", "Vitara", "S-Cross", "Ignis", "Jimny"],
   skoda: ["Fabia", "Octavia", "Superb", "Karoq", "Kodiaq", "Kamiq"]
   };
+  parkingPermitForm: FormGroup;
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
     private authService: AuthService,
     private documentService: PersonalDocumentService
-  ) {}
+  ) {
+    this.parkingPermitForm = this.fb.group({
+      city: ['', Validators.required],
+      requestParkingCard: [false],
+      requestReservedParking: [false],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      idNumber: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      municipality: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      entrance: [''],
+      floor: [''],
+      place: ['', Validators.required],
+      street: [''],
+      streetNumber: [''],
+      apartment: [''],
+      addition: [''],
+      previousDecision: [''],
+      propertyVehicle: ['', Validators.required],
+      registrationPlate: ['', Validators.required],
+      marka: ['', Validators.required],
+      model: [''],
+      isLeased: [false],
+    });
+  }
 
   openDialog(message: string) {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -86,7 +113,7 @@ export class ParkingDisabledRequestComponent implements OnInit{
     const modelSelect = document.getElementById('model') as HTMLSelectElement;
 
     // Očisti trenutne opcije modela
-    modelSelect.innerHTML = '<option value="">--Izaberite model--</option>';
+    modelSelect.innerHTML = '<option value="">--Изаберите модел--</option>';
 
     if (this.modeli[marka]) {
       this.modeli[marka].forEach(model => {
