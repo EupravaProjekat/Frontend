@@ -6,6 +6,7 @@
   <link rel = "stylesheet" type="text/css" href="parking-disabled-request.component.css">
   <link rel="icon" href="../../assets/governmentLogo.png">
   <title>Заказивање рока за издавање личних докумената - eUprava</title>
+  <script type="text/javascript" src="../js/carsModels.js" defer></script>
 </head>
 <body>
 <div class="topLayout">
@@ -96,7 +97,7 @@
       <form id="parking-permit-form">
         <div class="form-section">
           <label for="city" class="form-label">Град/општина којој се подноси захтев (приказивање услуге):</label>
-          <select id="city" name="city" class="form-input">
+          <select id="city" formControlName="city" class="form-input">
             <option value="" selected id="invisibleOption"></option>
             <option value="Град Београд">Град Београд</option>
             <option value="Град Бор">Град Бор</option>
@@ -157,11 +158,13 @@
         <div class="form-section">
           <label class="form-label">Захтев подносим за:</label>
           <div class="form-checkbox-group">
-            <input type="checkbox" id="parkingCard" name="request" value="parkingCard" class="form-checkbox">
+            <input type="checkbox" id="parkingCard" formControlName="requestParkingCard" value="parkingCard"
+                   class="form-checkbox">
             <label for="parkingCard" class="form-checkbox-label">Издавање паркинг карте</label>
           </div>
           <div class="form-checkbox-group">
-            <input type="checkbox" id="reservedParking" name="request" value="reservedParking" class="form-checkbox">
+            <input type="checkbox" id="reservedParking" formControlName="requestReservedParking"
+                   value="reservedParking" class="form-checkbox">
             <label for="reservedParking" class="form-checkbox-label">Резервацију паркинг места (уколико је могуће у Вашем граду/општини)</label>
           </div>
         </div>
@@ -171,21 +174,21 @@
           <div class="both-sides-form">
             <div class="left-side-form">
               <label for="first-name">Име:</label>
-              <input type="text" id="first-name" name="first-name">
+              <input type="text" id="first-name" formControlName="first-name">
 
               <label for="id-number">ЈМБГ:</label>
-              <input type="text" id="id-number" name="id-number">
+              <input type="text" id="id-number" formControlName="id-number">
 
               <label for="phone">Контакт телефон:</label>
-              <input type="text" id="phone" name="phone">
+              <input type="text" id="phone" formControlName="phone">
             </div>
 
             <div class="right-side-form">
               <label for="last-name">Презиме:</label>
-              <input type="text" id="last-name" name="last-name">
+              <input type="text" id="last-name" formControlName="last-name">
 
               <label for="email">Адреса електронске поште:</label>
-              <input type="email" id="email" name="email">
+              <input type="email" id="email" formControlName="email">
 
             </div>
           </div>
@@ -196,7 +199,7 @@
             <div class="left-side-form">
 
               <label for="municipality">Општина:</label>
-              <select id="municipality" name="municipality">
+              <select id="municipality" formControlName="municipality">
                 <option value="" disabled selected>Изаберите општину</option>
                 <!-- Opštine u Beogradu -->
                 <option value="Врачар">Врачар (Београд)</option>
@@ -269,18 +272,18 @@
               </select>
 
               <label for="postal-code">ПТТ број:</label>
-              <input type="text" id="postal-code" name="postal-code">
+              <input type="text" id="postal-code" formControlName="postal-code">
 
               <div class = "moreFieldsInRow">
 
                 <div>
                   <label for="entrance">Улаз:</label>
-                  <input type="text" id="entrance" name="entrance">
+                  <input type="text" id="entrance" formControlName="entrance">
                 </div>
 
                 <div>
                   <label for="floor">Спрат:</label>
-                  <input type="text" id="floor" name="floor">
+                  <input type="text" id="floor" formControlName="floor">
                 </div>
 
               </div>
@@ -290,7 +293,7 @@
 
               </div>
               <label for="place">Место:</label>
-              <select id="place" name="place">
+              <select id="place" formControlName="place">
                 <option value="" disabled selected>Изаберите место</option>
                 <option value="Београд">Београд</option>
                 <option value="Нови Сад">Нови Сад</option>
@@ -334,12 +337,12 @@
               <div class="moreFieldsInRow">
                 <div>
                   <label for="street">Улица:</label>
-                  <input type="text" id="street" name="street">
+                  <input type="text" id="street" formControlName="street">
                 </div>
 
                 <div>
                   <label for="streetNumber">Број:</label>
-                  <input type="text" id="streetNumber" name="streetNumber">
+                  <input type="text" id="streetNumber" formControlName="streetNumber">
                 </div>
 
 
@@ -348,12 +351,12 @@
               <div class="moreFieldsInRow">
                 <div>
                   <label for="apartment">Стан:</label>
-                  <input type="text" id="apartment" name="apartment">
+                  <input type="text" id="apartment" formControlName="apartment">
                 </div>
 
                 <div>
                   <label for="addition">Додатак:</label>
-                  <input type="text" id="addition" name="addition">
+                  <input type="text" id="addition" formControlName="addition">
                 </div>
 
               </div>
@@ -413,11 +416,46 @@
               <label for="registrationPlate">Регистарска ознака возила:</label>
               <input type="text" id="registrationPlate" name="registrationPlate">
 
-              <label for="makeVehicle">Марка возила:</label>
-              <input type="text" id="makeVehicle" name="makeVehicle">
+              <label for="marka">Марка возила:</label>
+              <select id="marka" name="marka" (change)="updateModel()">
+                <option value="">--Изаберите марку--</option>
+                <option value="audi">Audi</option>
+                <option value="bmw">BMW</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="toyota">Toyota</option>
+                <option value="honda">Honda</option>
+                <option value="ford">Ford</option>
+                <option value="chevrolet">Chevrolet</option>
+                <option value="volkswagen">Volkswagen</option>
+                <option value="hyundai">Hyundai</option>
+                <option value="nissan">Nissan</option>
+                <option value="kia">Kia</option>
+                <option value="peugeot">Peugeot</option>
+                <option value="renault">Renault</option>
+                <option value="fiat">Fiat</option>
+                <option value="mazda">Mazda</option>
+                <option value="subaru">Subaru</option>
+                <option value="jeep">Jeep</option>
+                <option value="volvo">Volvo</option>
+                <option value="mitsubishi">Mitsubishi</option>
+                <option value="landrover">Land Rover</option>
+                <option value="jaguar">Jaguar</option>
+                <option value="porsche">Porsche</option>
+                <option value="tesla">Tesla</option>
+                <option value="alfa-romeo">AlfaRomeo</option>
+                <option value="citroen">Citroen</option>
+                <option value="dacia">Dacia</option>
+                <option value="mini">Mini</option>
+                <option value="suzuki">Suzuki</option>
+                <option value="skoda">Škoda</option>
+              </select>
 
-              <label for="modelVehicle">Модел возила:</label>
-              <input type="text" id="modelVehicle" name="modelVehicle">
+              <br><br>
+
+              <label for="model">Модел возила:</label>
+              <select id="model" name="model">
+                <option value="">--Изаберите модел--</option>
+              </select>
 
               <label class="form-label">Да ли је возило под лизингом?</label>
               <div class="form-radio-group">
@@ -475,5 +513,6 @@
     <p>&copy; 2024 еУправа. Сва права задржана.</p>
   </div>
 </footer>
+
 </body>
 </html>
