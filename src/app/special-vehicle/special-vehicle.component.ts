@@ -15,7 +15,7 @@ export class SpecialVehicleComponent{
 
 
   specialVehicleForm: FormGroup;
-  requestTypes: string[] = ['Превоз опасног терета', 'Превоз прекомерно тешког терета'];
+  requestTypes: string[] = ['Прелазак возила са ванредним димензијама', 'Прелазак возила са посебном наменом'];
 
   constructor(
     private fb: FormBuilder,
@@ -40,6 +40,7 @@ export class SpecialVehicleComponent{
   }
   ngOnInit()  {
     this.authService.checkdata();
+    this.authService.checkdataborder();
   }
 
 
