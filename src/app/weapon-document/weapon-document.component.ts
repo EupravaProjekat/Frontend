@@ -1,4 +1,4 @@
-import { Component, Type } from '@angular/core';
+import {Component, OnInit, Type} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { WeaponDocumentService } from '../services/weapon-document.service';
   templateUrl: './weapon-document.component.html',
   styleUrl: './weapon-document.component.css'
 })
-export class WeaponDocumentComponent {
+export class WeaponDocumentComponent implements OnInit{
   weaponForm: FormGroup;
   weaponTypes: string[] = ['Пиштољ', 'Пушка', 'Карабин', 'Секира', 'Пиштољ са дугом цеви', 'Пушка са пумпом', 'Лук и стрела', 'Оружје за самоодбрану'];
 
@@ -28,6 +28,9 @@ export class WeaponDocumentComponent {
       caliber: ['', Validators.required]
     });
   }
+  ngOnInit()  {
+   this.checkdatapolice();
+  }
   checkdatapolice() {
     if (this.authService.checkdata() == false) {
       // this.userService.saveUser(this.profileSetupForm.value)
@@ -40,6 +43,7 @@ export class WeaponDocumentComponent {
       this.router.navigate(['/profileSetupBorder'])
     }
   }
+
   openDialog(message: string) {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: { title: 'Обавештење', message: message },
@@ -83,4 +87,5 @@ export class WeaponDocumentComponent {
     localStorage.removeItem('jwt');
     this.router.navigate(['/login']);
   }
+
 }
