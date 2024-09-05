@@ -157,17 +157,18 @@
 
         <div class="form-section">
           <label class="form-label">Захтев подносим за:</label>
-          <div class="form-checkbox-group">
-            <input type="checkbox" id="parkingCard" formControlName="requestParkingCard" value="parkingCard"
-                   class="form-checkbox" ngModel required>
-            <label for="parkingCard" class="form-checkbox-label">Издавање паркинг карте</label>
+          <div class="form-radio-group">
+            <input type="radio" id="parkingCard" formControlName="requestType" value="parkingCard"
+                   class="form-radio" ngModel required>
+            <label for="parkingCard" class="form-radio-label">Издавање паркинг карте</label>
           </div>
-          <div class="form-checkbox-group">
-            <input type="checkbox" id="reservedParking" formControlName="requestReservedParking"
-                   value="reservedParking" class="form-checkbox" ngModel required>
-            <label for="reservedParking" class="form-checkbox-label">Резервацију паркинг места (уколико је могуће у Вашем граду/општини)</label>
+          <div class="form-radio-group">
+            <input type="radio" id="reservedParking" formControlName="requestType" value="reservedParking"
+                   class="form-radio" ngModel required>
+            <label for="reservedParking" class="form-radio-label">Резервацију паркинг места (уколико је могуће у Вашем граду/општини)</label>
           </div>
         </div>
+       
 
         <div class="form-segment">
           <h3>Подаци особе са инвалидитетом:</h3>
