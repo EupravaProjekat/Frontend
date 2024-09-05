@@ -167,11 +167,30 @@ html, body{
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 180px;
+  min-width: 250px;
   left: 170px;
   top: 0;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+}
+
+.bp-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 250px;
+  left: 170px;
+  top: 66px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdownServices:hover .second-column:hover .bp-content {
+  display: block;
+}
+
+.dropdownServices:hover .first-column:hover .mup-content {
+  display: block;
 }
 
 .dropdownServices:hover .first-column:hover .mup-content {

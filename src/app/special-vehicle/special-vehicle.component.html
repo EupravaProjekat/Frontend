@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel = "stylesheet" type="text/css" href="voluntary-military-request.component.css">
+  <link rel = "stylesheet" type="text/css" href="special-vehicle.component.css">
   <link rel="icon" href="../../assets/governmentLogo.png">
-  <title>Пријава кандидата за добровољно служење војног рока - eUprava</title>
+  <title>Прелазак специјалног возила - eUprava</title>
 </head>
 <body>
 <div class="topLayout">
@@ -33,7 +32,7 @@
         <button class="dropServicesButton">Услуге ▼</button>
         <div class="dropdown-content">
           <div class="first-column">
-            <a href="#">МУП и грађани<span id = "arrow">▼</span></a>
+            <a href="#">МУП и грађани<span class = "arrow">▼</span></a>
             <div class="mup-content">
               <a href="http://localhost:4200/personalDocument">Издавање идентификационих докумената</a>
               <a href="http://localhost:4200/weaponDocument">Куповина оружја</a>
@@ -90,14 +89,31 @@
   </div>
 </div>
 <div class="homepage-info-container">
-  <div class="auth-warning-message">
-    <h2>Упозорење</h2>
-    <p class="p-warn">Немате права за покретање дате електронске услуге.<br>
-      Неопходно је да будете пријављени највишим нивоом аутентикације.</p>
-  </div>
-  <div class="cta-section">
-    <a href="http://localhost:4200/voluntaryMilitary/" class="cta-button"><button id="submitButton">Назад на
-      Услуге</button></a>
+  <div class="homepage-info-container-wrapper">
+    <div class="homepage-info-heading-layout">
+      <h1 class="homepage-info-heading-main">Захтев за прелазак специјалног возила преко границе</h1>
+    </div>
+    <div class="homepage-info-layout">
+      <form [formGroup]="specialVehicleForm" (submit)="submitForm()" method="post">
+        <div class="form-group">
+          <label class="input-label">Тип захтева:</label>
+          <select formControlName="requestType" id="weaponType" class="form-control" required>
+            <option *ngFor="let type of requestTypes" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="input-label"> број:</label>
+          <input type="text" formControlName="carPlateNumber" id="serialNumber" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class="input-label">Регистарски број возила:</label>
+          <textarea formControlName="description" id="caliber" class="form-control" required></textarea>
+        </div>
+        <button type="submit" id="submitButton" class="btn btn-primary">Поднеси захтев<span id="arrowRight">→</span></button>
+      </form>
+
+      <img src="../../assets/euprava.png" alt="euprava" id="euprava">
+    </div>
   </div>
 </div>
 <footer>
@@ -122,4 +138,3 @@
 </footer>
 </body>
 </html>
-

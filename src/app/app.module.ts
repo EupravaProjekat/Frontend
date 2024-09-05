@@ -31,6 +31,9 @@ import { ParkingDisabledComponent } from './parking-disabled/parking-disabled.co
 import { ParkingDisabledRequestComponent } from './parking-disabled-request/parking-disabled-request.component';
 import { VoluntaryMilitaryComponent } from './voluntary-military/voluntary-military.component';
 import { VoluntaryMilitaryRequestComponent } from './voluntary-military-request/voluntary-military-request.component';
+import { SpecialVehicleComponent } from './special-vehicle/special-vehicle.component';
+import { SpecialCargoRequestComponent } from './special-cargo-request/special-cargo-request.component';
+import { ExtraditionRequestComponent } from './extradition-request/extradition-request.component';
 
 
 
@@ -50,6 +53,9 @@ const routes: Routes = [
   { path: 'parkingDisabled/request', component: ParkingDisabledRequestComponent},
   { path: 'voluntaryMilitary', component: VoluntaryMilitaryComponent},
   { path: 'voluntaryMilitary/request', component: VoluntaryMilitaryRequestComponent},
+  { path: 'extraditionRequest', component: ExtraditionRequestComponent},
+  { path: 'specialCargoRequest', component: SpecialCargoRequestComponent},
+  { path: 'specialVehicle', component: SpecialVehicleComponent},
 ];
 
 
@@ -66,6 +72,9 @@ const routes: Routes = [
     ParkingDisabledComponent,
     ParkingDisabledRequestComponent,
     PersonalDocumentRequestComponent,
+    SpecialVehicleComponent,
+    SpecialCargoRequestComponent,
+    ExtraditionRequestComponent
   ],
 
   imports: [
