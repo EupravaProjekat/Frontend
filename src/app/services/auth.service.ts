@@ -105,7 +105,7 @@ export class AuthService {
           }
         },
         (error) => {
-  this.router.navigate(['/profileSetup']);
+  this.router.navigate(['/profileSetupBorder']);
 }
       );
   }
