@@ -75,7 +75,7 @@ export class AuthService {
     });
 
 
-     this.apiService.get(this.config._login_url, loginHeaders)
+     this.apiService.get(this.config._check_url, loginHeaders)
       .subscribe((res) => {
           console.log('data check success');
         if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
@@ -85,6 +85,26 @@ export class AuthService {
         else {
           return true
         }
+        }
+      );
+  }
+  checkdataborder(): any {
+    const loginHeaders = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    });
+
+
+    this.apiService.get(this.config._check_border_url, loginHeaders)
+      .subscribe((res) => {
+          console.log('data check success');
+          if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
+          {
+            return false
+          }
+          else {
+            return true
+          }
         }
       );
   }

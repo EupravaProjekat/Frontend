@@ -28,10 +28,16 @@ export class WeaponDocumentComponent {
       caliber: ['', Validators.required]
     });
   }
-  checkdatauser() {
+  checkdatapolice() {
     if (this.authService.checkdata() == false) {
       // this.userService.saveUser(this.profileSetupForm.value)
       this.router.navigate(['/profileSetup'])
+    }
+  }
+  checkdataborder() {
+    if (this.authService.checkdataborder() == false) {
+      // this.userService.saveUser(this.profileSetupForm.value)
+      this.router.navigate(['/profileSetupBorder'])
     }
   }
   openDialog(message: string) {
@@ -45,6 +51,8 @@ export class WeaponDocumentComponent {
       }
     });
   }
+
+
   submitForm() {
 
     const currentUser = this.authService.getCurrentUser();

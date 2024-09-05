@@ -19,7 +19,7 @@ export class ConfigService {
   _weapon_request_url: string;
   _document_request_url: string;
   _appointments_url: string;
-
+  _check_border_url: string;
 
   constructor() {
     this._api_url = 'http://localhost:9094'; // Adjust the port as needed
@@ -36,5 +36,6 @@ export class ConfigService {
     this._appointments_url = this._api_url + '/appointments';
     this._document_request_url = this._api_url + '/document-request';
     this._check_url ="http://localhost:9094/checkifuserexists";
+    this._check_border_url ="http://localhost:9099/profile";
   }
 }
