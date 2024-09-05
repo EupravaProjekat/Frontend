@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -11,15 +11,27 @@ import { VoluntaryMilitaryService } from '../services/voluntary-military.service
   templateUrl: './voluntary-military-request.component.html',
   styleUrl: './voluntary-military-request.component.css'
 })
-export class VoluntaryMilitaryRequestComponent {
+export class VoluntaryMilitaryRequestComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
     private authService: AuthService,
     private voluntaryMilitaryService: VoluntaryMilitaryService
-  ) {}
+  ) {
+    if(this.authService.isAuthenticated())
+    {
 
+    }
+    else {
+
+      this.router.navigate(['/']);
+    }
+
+  }
+  ngOnInit(): void {
+    this.authService.checkdata();
+  }
   openDialog(message: string) {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: { title: 'Обавештење', message: message },
