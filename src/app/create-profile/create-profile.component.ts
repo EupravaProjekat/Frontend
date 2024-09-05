@@ -31,6 +31,14 @@ export class CreateProfileComponent {
       jmbg: ['', Validators.required],
       username: ['', Validators.required]
     });
+    if(this.auth.isAuthenticated())
+    {
+
+    }
+    else {
+
+      this.router.navigate(['/']);
+    }
   }
   isAuthenticated(): boolean {
     return this.auth.isAuthenticated();

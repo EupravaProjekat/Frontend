@@ -22,6 +22,14 @@ export class WeaponDocumentComponent implements OnInit{
     private authService: AuthService,
     private weaponService: WeaponDocumentService
   ) {
+    if(this.authService.isAuthenticated())
+    {
+
+    }
+    else {
+
+      this.router.navigate(['/']);
+    }
     this.weaponForm = this.fb.group({
       weaponType: ['', Validators.required],
       serialNumber: ['', Validators.required],

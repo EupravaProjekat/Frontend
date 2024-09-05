@@ -52,6 +52,14 @@ export class ParkingDisabledRequestComponent implements OnInit{
     private authService: AuthService,
     private parkingDisabledService: ParkingDisabledService
   ) {
+    if(this.authService.isAuthenticated())
+    {
+
+    }
+    else {
+
+      this.router.navigate(['/']);
+    }
     this.parkingPermitForm = this.fb.group({
       city: ['', Validators.required],
       requestParkingCard: [false],
@@ -167,6 +175,7 @@ export class ParkingDisabledRequestComponent implements OnInit{
     // Dodaj event listener za promenu selektovane marke
     const markaSelect = document.getElementById('marka') as HTMLSelectElement;
     markaSelect.addEventListener('change', () => this.updateModel());
+    this.authService.checkdata();
   }
 
   updateModel(): void {

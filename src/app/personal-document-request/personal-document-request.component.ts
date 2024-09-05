@@ -35,6 +35,14 @@ export class PersonalDocumentRequestComponent implements OnInit {
     private authService: AuthService,
     private documentService: PersonalDocumentService
   ) {
+    if(this.authService.isAuthenticated())
+    {
+
+    }
+    else {
+
+      this.router.navigate(['/']);
+    }
     this.appointmentForm = this.fb.group({
       jmbg: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
       name: ['', Validators.required],
@@ -48,6 +56,7 @@ export class PersonalDocumentRequestComponent implements OnInit {
   ngOnInit(): void {
     this.generateDates();
     this.generateTimeSlots();
+    this.authService.checkdata();
   }
 
   generateDates(): void {
