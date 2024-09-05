@@ -29,6 +29,8 @@ import { PersonalDocumentRequestComponent } from './personal-document-request/pe
 import { WeaponComponent } from './weapon/weapon.component';
 import { ParkingDisabledComponent } from './parking-disabled/parking-disabled.component';
 import { ParkingDisabledRequestComponent } from './parking-disabled-request/parking-disabled-request.component';
+import { VoluntaryMilitaryComponent } from './voluntary-military/voluntary-military.component';
+import { VoluntaryMilitaryRequestComponent } from './voluntary-military-request/voluntary-military-request.component';
 
 
 
@@ -46,6 +48,8 @@ const routes: Routes = [
   { path: 'personalDocument/request', component: PersonalDocumentRequestComponent},
   { path: 'parkingDisabled', component: ParkingDisabledComponent},
   { path: 'parkingDisabled/request', component: ParkingDisabledRequestComponent},
+  { path: 'voluntaryMilitary', component: VoluntaryMilitaryComponent},
+  { path: 'voluntaryMilitary/request', component: VoluntaryMilitaryRequestComponent},
 ];
 
 

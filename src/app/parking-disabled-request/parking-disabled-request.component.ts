@@ -85,12 +85,18 @@ export class ParkingDisabledRequestComponent implements OnInit{
       marka: ['', Validators.required],
       model: [''],
       isLeased: [false],
+      termsOfUse: [false],
     });
   }
 
   checkForm(parkingPermitForm: FormGroup): boolean {
     if (this.areFieldsEmpty()) {
       this.openDialog('Молимо вас да попуните форму!');
+      return false;
+    }
+
+    if((parkingPermitForm.get('termsOfUse')?.value) != true){
+      this.openDialog('Молимо вас да прочитате и прихватите све услове пре него што наставите са коришћењем ове услуге.');
       return false;
     }
 
