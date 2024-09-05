@@ -29,6 +29,7 @@ export class BorderPoliceService {
       'Authorization': 'Bearer ' + this.authService.getToken()
     });
 
+    console.log(specialVehicleData)
     return this.http.post<any>(this.config._border_police_request_url, specialVehicleData, { headers: headers });
   }
 
