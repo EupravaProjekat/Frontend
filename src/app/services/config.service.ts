@@ -7,6 +7,7 @@ export class ConfigService {
 
   _api_url: string;
   _login_url: string;
+  _check_url: string;
   _register_url: string;
   _profile_url: string;
   _profile_setup_url: string;
@@ -34,5 +35,6 @@ export class ConfigService {
     this._weapon_request_url = this._api_url + '/weapon-request';
     this._appointments_url = this._api_url + '/appointments';
     this._document_request_url = this._api_url + '/document-request';
+    this._check_url ="http://localhost:9099/checkifuserexists";
   }
 }

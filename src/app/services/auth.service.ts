@@ -68,7 +68,26 @@ export class AuthService {
   }
 
   private _access_token : any;
+  checkdata(): any {
+    const loginHeaders = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    });
 
+
+     this.apiService.get(this.config._login_url, loginHeaders)
+      .subscribe((res) => {
+          console.log('data check success');
+        if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
+        {
+         return false
+        }
+        else {
+          return true
+        }
+        }
+      );
+  }
   login(user: any): Subscription {
     const loginHeaders = new HttpHeaders({
       'Accept': 'application/json',

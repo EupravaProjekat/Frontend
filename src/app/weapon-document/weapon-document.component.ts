@@ -28,7 +28,12 @@ export class WeaponDocumentComponent {
       caliber: ['', Validators.required]
     });
   }
-
+  checkdatauser() {
+    if (this.authService.checkdata() == false) {
+      // this.userService.saveUser(this.profileSetupForm.value)
+      this.router.navigate(['/profileSetup'])
+    }
+  }
   openDialog(message: string) {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: { title: 'Обавештење', message: message },
