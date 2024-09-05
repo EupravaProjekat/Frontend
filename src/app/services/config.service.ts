@@ -21,6 +21,7 @@ export class ConfigService {
   _appointments_url: string;
   _check_border_url: string;
   _parking_request_url: string;
+  _save_border_user_url: string;
 
   constructor() {
     this._api_url = 'http://localhost:9094'; // Adjust the port as needed
@@ -37,6 +38,7 @@ export class ConfigService {
     this._appointments_url = this._api_url + '/appointments';
     this._document_request_url = this._api_url + '/document-request';
     this._parking_request_url = this._api_url + '/parking-request';
+    this._save_border_user_url = "http://localhost:9099/adddata"
     this._check_url ="http://localhost:9099/checkifuserexists";
     this._check_border_url ="http://localhost:9098/profile";
   }

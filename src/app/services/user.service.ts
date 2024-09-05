@@ -51,6 +51,28 @@ export class UserService {
         }
       });
   }
+  bordersaveuser(role:any) {
+    const loginHeaders = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+
+    const body = {
+      'role': role
+    };
+
+    return this.apiService.post(this.config._save_border_user_url, JSON.stringify(body), loginHeaders)
+      .subscribe((res) => {
+        if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
+        {
+          this.openDialog("Грешка у чувању измена на профилу!")
+        }else {
+          this.openDialog("Кориснички профил успешно ажуриран!");
+          console.log(res)
+          let returnUrl : String;
+        }
+      });
+  }
   saveUser(userToSave:any) {
     const loginHeaders = new HttpHeaders({
       'Accept': 'application/json',
