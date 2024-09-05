@@ -168,7 +168,7 @@
             <label for="reservedParking" class="form-radio-label">Резервацију паркинг места (уколико је могуће у Вашем граду/општини)</label>
           </div>
         </div>
-       
+
 
         <div class="form-segment">
           <h3>Подаци особе са инвалидитетом:</h3>
@@ -461,11 +461,11 @@
 
               <label class="form-label">Да ли је возило под лизингом?</label>
               <div class="form-radio-group">
-                <input type="radio" id="yess" formControlName="isLeased" value="Да" class="form-radio">
+                <input type="radio" id="yess" formControlName="isLeased" value="Да" class="form-radio" ngModel required>
                 <label for="yes" class="form-radio-label">Да</label>
               </div>
               <div class="form-radio-group">
-                <input type="radio" id="noo" formControlName="isLeased" value="Не" class="form-radio">
+                <input type="radio" id="noo" formControlName="isLeased" value="Не" class="form-radio" ngModel required>
                 <label for="no" class="form-radio-label">Не</label>
               </div>
             </div>
@@ -479,7 +479,7 @@
         </div>
         <div class="consent-wrapper">
           <div class="consent-checkbox-container">
-            <input type="checkbox" id="consent-agreement">
+            <input type="checkbox" id="consent-agreement" formControlName="termsOfUse">
             <label for="consent-agreement" class="consent-text">
               Сагласан сам да орган за потребе поступка може да изврши увид, прибави и обради податке о чињеницама о којима се води службена евиденција, који су неопходни у поступку одлучивања права на бесплатно коришћење обележених паркинг места на јавним општим паркиралиштима и права на резервисано паркинг место, сагласно одредби члана 12. у вези са чланом 17. Закона о заштити података о личности ("Сл. гласник РС", бр. 87/18) и члана 103. Закона о општем управном поступку ("Сл. гласник РС", бр. 18/16).
             </label>
