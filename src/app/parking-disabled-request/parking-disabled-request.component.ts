@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogComponent } from '../dialog/dialog.component';
 import { AuthService } from '../services/auth.service';
-import { PersonalDocumentService } from '../services/personal-document.service';
+import { ParkingDisabledService } from '../services/parking-disabled.service';
 
 @Component({
   selector: 'app-parking-disabled-request',
@@ -50,7 +50,7 @@ export class ParkingDisabledRequestComponent implements OnInit{
     private router: Router,
     private dialog: MatDialog,
     private authService: AuthService,
-    private documentService: PersonalDocumentService
+    private parkingDisabledService: ParkingDisabledService
   ) {
     this.parkingPermitForm = this.fb.group({
       city: ['', Validators.required],
@@ -78,6 +78,61 @@ export class ParkingDisabledRequestComponent implements OnInit{
       isLeased: [false],
     });
   }
+
+  checkForm(appointmentForm: FormGroup): boolean {
+
+
+    if (this.areFieldsEmpty()) {
+      this.openDialog('Молимо вас да попуните форму!');
+      return false;
+    }
+
+    const jmbgRegex = /^(0[1-9]|[12][0-9]|3[01])(0[1-9]|1[0-2])(\d{3})(\d{6})$/;
+    if(!jmbgRegex.test(appointmentForm.get('jmbg')?.value)){
+      this.openDialog('Неисправан матичан број');
+      return false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(appointmentForm.get('email')?.value)) {
+      this.openDialog('Неисправна имејл адреса!');
+      return false;
+    }
+
+
+    return true; // Ako su sve validacije uspešne, vraća true
+  }
+
+  areFieldsEmpty(): boolean {
+    let isEmpty = false;
+    Object.keys(this.parkingPermitForm.controls).forEach((field) => {
+      const control = this.parkingPermitForm.get(field);
+      if (control && control.value === '') {
+        isEmpty = true;
+        this.setInvalidClass(field, true);
+      }
+    });
+    return isEmpty;
+  }
+
+  setInvalidClass(controlName: string, condition?: boolean): boolean {
+    const control = this.parkingPermitForm.get(controlName);
+
+    if (condition !== undefined) {
+      if (control && condition && (control.dirty || control.touched)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    if (control && control.invalid && (control.dirty || control.touched)) {
+      return true;
+    }
+
+    return false;
+  }
+
 
   openDialog(message: string) {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -129,19 +184,48 @@ export class ParkingDisabledRequestComponent implements OnInit{
 
   submitRequest() {
 
-    const requestData = {
-      // jmbg: this.appointmentForm.get('jmbg')?.value,
-      // name: this.appointmentForm.get('name')?.value,
-      // email: this.appointmentForm.get('email')?.value,
-      // requestNumber: this.generateRequestNumber(),
-      // date: this.selectedDate,
-      // time: this.selectedTime,
-    };
+    
 
-    if(requestData != null) {
-      this.documentService.submitAppointmentRequest(requestData);
-    }
-    console.log(requestData);
+      const requestData = {
+
+        city: this.parkingPermitForm.get('city')?.value,
+        requestParkingCard: this.parkingPermitForm.get('requestParkingCard')?.value,
+        requestReservedParking: this.parkingPermitForm.get('requestReservedParking')?.value,
+        firstName: this.parkingPermitForm.get('firstName')?.value,
+        lastName: this.parkingPermitForm.get('lastName')?.value,
+        idNumber: this.parkingPermitForm.get('idNumber')?.value,
+        phone: this.parkingPermitForm.get('phone')?.value,
+        email: this.parkingPermitForm.get('email')?.value,
+        municipality: this.parkingPermitForm.get('municipality')?.value,
+        postalCode: this.parkingPermitForm.get('postalCode')?.value,
+        entrance: this.parkingPermitForm.get('entrance')?.value,
+        floor: this.parkingPermitForm.get('floor')?.value,
+        place: this.parkingPermitForm.get('place')?.value,
+        street: this.parkingPermitForm.get('street')?.value,
+        streetNumber: this.parkingPermitForm.get('streetNumber')?.value,
+        apartment: this.parkingPermitForm.get('apartment')?.value,
+        addition: this.parkingPermitForm.get('addition')?.value,
+        previousDecision: this.parkingPermitForm.get('previousDecision')?.value,
+        propertyVehicle: this.parkingPermitForm.get('propertyVehicle')?.value,
+        registrationPlate: this.parkingPermitForm.get('registrationPlate')?.value,
+        marka: this.parkingPermitForm.get('marka')?.value,
+        model: this.parkingPermitForm.get('model')?.value,
+        isLeased: this.parkingPermitForm.get('isLeased')?.value
+
+      };
+      
+      if(requestData != null) {
+        this.parkingDisabledService.submitParkingRequest(requestData);
+      }
+      console.log(requestData);
+      
+      return true;
+    
+    
+
+    
+
+    
 
   }
 }

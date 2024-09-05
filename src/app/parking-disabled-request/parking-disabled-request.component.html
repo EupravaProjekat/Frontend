@@ -94,7 +94,7 @@
         <p>Ова услуга је доступна само у одређеним градовима/општинама.</p>
       </div>
 
-      <form [formGroup]="parkingPermitForm" id="parking-permit-form" >
+      <form [formGroup]="parkingPermitForm" id="parking-permit-form" (submit)="submitRequest()">
         <div class="form-section">
           <label for="city" class="form-label">Град/општина којој се подноси захтев (приказивање услуге):</label>
           <select id="city" formControlName="city" class="form-input" ngModel required>
