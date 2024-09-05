@@ -65,14 +65,14 @@ export class UserService {
       'gender': userToSave.gender,
       'phone' : userToSave.phone,
       'street' : userToSave.street,
-      'streetNumber' : userToSave.streetNumber,
+      'streetnumber' : userToSave.streetNumber,
       'city' : userToSave.city,
       'country' : userToSave.country,
       'jmbg' : userToSave.jmbg,
       'username' : userToSave.username
     };
 
-    return this.apiService.post(this.config._profile_edit_url, JSON.stringify(body), loginHeaders)
+    return this.apiService.post(this.config._profile_setup_url, JSON.stringify(body), loginHeaders)
       .subscribe((res) => {
         if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
         {

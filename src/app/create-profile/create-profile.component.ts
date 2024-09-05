@@ -109,11 +109,11 @@ export class CreateProfileComponent {
       return false;
     }
 
-    const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/;
-    if (!dateRegex.test(profileSetupForm.value.birthday)) {
-      this.openDialog('Неисправан формат датума рођења!');
-      return false;
-    }
+    const dateRegex: RegExp = /^(0?[1-9]|1[0-2])\/(0?[1-9]|[12][0-9]|3[01])\/(\d{4})$/;
+    // if (!dateRegex.test(profileSetupForm.value.birthday)) {
+    //   this.openDialog('Неисправан формат датума рођења!');
+    //   return false;
+    // }
 
     const genderValues = ['male', 'female', 'other']; // Dozvoljene vrednosti za polje 'gender'
     if (!genderValues.includes(profileSetupForm.value.gender)) {
@@ -135,7 +135,7 @@ export class CreateProfileComponent {
 
   submitForm() {
     if (this.checkForm(this.profileSetupForm) == true) {
-      // this.userService.saveUser(this.profileSetupForm.value)
+       this.userService.saveUser(this.profileSetupForm.value)
       this.router.navigate(['/login'])
     }
   }
