@@ -35,7 +35,7 @@ export class ConfigService {
     this._weapon_request_url = this._api_url + '/weapon-request';
     this._appointments_url = this._api_url + '/appointments';
     this._document_request_url = this._api_url + '/document-request';
-    this._check_url ="http://localhost:9094/checkifuserexists";
-    this._check_border_url ="http://localhost:9099/profile";
+    this._check_url ="http://localhost:9099/checkifuserexists";
+    this._check_border_url ="http://localhost:9098/profile";
   }
 }

@@ -68,44 +68,45 @@ export class AuthService {
   }
 
   private _access_token : any;
-  checkdata(): any {
+  checkdata(): Subscription {
     const loginHeaders = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     });
 
 
-     this.apiService.get(this.config._check_url, loginHeaders)
+     return this.apiService.get(this.config._check_url, loginHeaders)
       .subscribe((res) => {
           console.log('data check success');
-        if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
+        if(res.status != 200)
         {
-         return false
+          this.router.navigate(['/profileSetup']);
         }
-        else {
-          return true
-        }
+        },
+        (error) => {
+          this.router.navigate(['/profileSetup']);
         }
       );
   }
-  checkdataborder(): any {
+  checkdataborder() : Subscription {
     const loginHeaders = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     });
 
 
-    this.apiService.get(this.config._check_border_url, loginHeaders)
+    return this.apiService.get(this.config._check_border_url, loginHeaders)
       .subscribe((res) => {
           console.log('data check success');
-          if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
+        console.log(res.status);
+          if(res.status != 200)
           {
-            return false
+            this.router.navigate(['/profileSetupborder']);
           }
-          else {
-            return true
-          }
-        }
+        },
+(error) => {
+  this.router.navigate(['/profileSetupborder']);
+}
       );
   }
   login(user: any): Subscription {
@@ -182,7 +183,7 @@ export class AuthService {
           this.openDialog('Reset request success');
           console.log(res.body)
           console.log(res)
-        },(errot) => {
+        },(error) => {
           this.openDialog('Грешка!');
         }
       )

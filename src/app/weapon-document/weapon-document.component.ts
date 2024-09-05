@@ -29,20 +29,10 @@ export class WeaponDocumentComponent implements OnInit{
     });
   }
   ngOnInit()  {
-   this.checkdatapolice();
+    this.authService.checkdataborder();
   }
-  checkdatapolice() {
-    if (this.authService.checkdata() == false) {
-      // this.userService.saveUser(this.profileSetupForm.value)
-      this.router.navigate(['/profileSetup'])
-    }
-  }
-  checkdataborder() {
-    if (this.authService.checkdataborder() == false) {
-      // this.userService.saveUser(this.profileSetupForm.value)
-      this.router.navigate(['/profileSetupBorder'])
-    }
-  }
+
+
 
   openDialog(message: string) {
     const dialogRef = this.dialog.open(DialogComponent, {
