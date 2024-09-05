@@ -522,6 +522,8 @@ form label{
 footer {
   background: #00205b;
   display: flex;
+
+  position: sticky;
   flex-direction: column;
   justify-content: space-between;
   color: #fff;
