@@ -24,7 +24,8 @@ export class ConfigService {
   _save_border_user_url: string;
 
   _get_all_causings_url: string;
-  _border_police_request_url: string;
+  _prosecution_check_url: string;
+  _prosecute_url: string;
   //ODKOMENTARISI AKO ZATREBA//
   // _border_police_request1_url: string;
 
@@ -48,7 +49,8 @@ export class ConfigService {
     this._check_border_url ="http://localhost:9098/profile";
     this._get_all_causings_url="http://localhost:9098/getallcausings";
     this._border_police_request_url = "http://localhost:9098/newrequest";
-    //AKO TREBA DVA ENDPOINTA ZA DVE FORME//
+    this._prosecution_check_url = "http://localhost:9199/check-if-person-is-prosecuted";
+    this._prosecute_url = "http://localhost:9199/prosecute";
     // this._border_police_request1_url = "http://localhost:9098/newrequest1";
   }
 }
