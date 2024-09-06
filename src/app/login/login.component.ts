@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
+import { TwoButtonsDialogComponent } from '../two-buttons-dialog/two-buttons-dialog.component';
 @Component({
   selector: 'app-login.component',
   templateUrl: './login.component.html',
@@ -18,6 +20,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
+    private userService: UserService,
     private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
@@ -35,6 +38,24 @@ export class LoginComponent {
     dialogRef.afterClosed().subscribe(() => {
       if (message === 'Login successful') {
         this.router.navigate(['/profile']);
+      }
+    });
+  }
+
+  openTwoButtonsDialog(message: string): void{
+    const dialogRef = this.dialog.open(TwoButtonsDialogComponent, {
+      data: { title: 'Обавештење', message: message }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'operator') {
+        this.userService.bordersaveuser('operator').subscribe(() => {
+          this.router.navigate(['/home-guest']);
+        });
+      } else if (result === 'guest') {
+        this.userService.bordersaveuser('guest').subscribe(() => {
+          this.router.navigate(['/home-guest']);
+        });
       }
     });
   }

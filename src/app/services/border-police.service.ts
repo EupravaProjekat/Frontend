@@ -29,7 +29,18 @@ export class BorderPoliceService {
       'Authorization': 'Bearer ' + this.authService.getToken()
     });
 
+    console.log(specialVehicleData)
     return this.http.post<any>(this.config._border_police_request_url, specialVehicleData, { headers: headers });
+  }
+
+  submitSpecialCargoRequestDataRequest(specialCargoRequestData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.authService.getToken()
+    });
+
+    console.log(specialCargoRequestData)
+    return this.http.post<any>(this.config._border_police_request_url, specialCargoRequestData, { headers: headers });
   }
 
 

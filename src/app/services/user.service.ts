@@ -3,6 +3,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { DialogComponent } from '../dialog/dialog.component';
 import { ApiService } from './api.service';
 import { ConfigService } from './config.service';
@@ -51,7 +52,7 @@ export class UserService {
         }
       });
   }
-  bordersaveuser(role:any) {
+  bordersaveuser(role: any): Observable<any> {
     const loginHeaders = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -61,17 +62,7 @@ export class UserService {
       'role': role
     };
 
-    return this.apiService.post(this.config._save_border_user_url, JSON.stringify(body), loginHeaders)
-      .subscribe((res) => {
-        if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
-        {
-          this.openDialog("Грешка у чувању измена на профилу!")
-        }else {
-          this.openDialog("Кориснички профил успешно ажуриран!");
-          console.log(res)
-          let returnUrl : String;
-        }
-      });
+    return this.apiService.post(this.config._save_border_user_url, JSON.stringify(body), loginHeaders );
   }
   saveUser(userToSave:any) {
     const loginHeaders = new HttpHeaders({
@@ -93,6 +84,7 @@ export class UserService {
       'jmbg' : userToSave.jmbg,
       'username' : userToSave.username
     };
+    console.log(body)
 
     return this.apiService.post(this.config._profile_setup_url, JSON.stringify(body), loginHeaders)
       .subscribe((res) => {

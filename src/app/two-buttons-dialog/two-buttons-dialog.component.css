@@ -1,0 +1,105 @@
+.dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0);
+}
+
+.dialog-box{
+  max-width: 400px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-header{
+  display: flex;
+  height: 40px;
+  background-color: #253965;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.dialog-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.dialog-title {
+  font-size: 24px;
+  color: white;
+  font-family: 'MontSerrat-Bold';
+}
+.dialog-body{
+  border: 1px solid gray;
+}
+
+.dialog-message {
+  font-size: 18px;
+  padding: 0 20px;
+  text-align: justify;
+  font-family: 'MontSerrat-Regular';
+}
+
+
+.dialog-button {
+  background-color: #253965;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: 'MontSerrat-Regular';
+  font-size: 18px;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.dialog-button:hover {
+  background: #0056b3;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.dialog-button-operator {
+
+  border: none;
+}
+
+.dialog-button-guest{
+
+  border: none;
+}
+
+
+.dialog-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+close-button-container{
+  height: 100%;
+  width: max-content;
+  display: flex;
+}
+
+.close-button{
+  background-color: #fd6161;
+  color: white;
+  border: none;
+  text-align: center;
+  width: 25px;
+  transition: background 0.3s;
+  border-radius: 5px;
+}
+
+.close-button:hover {
+  background: #ff2c2c;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

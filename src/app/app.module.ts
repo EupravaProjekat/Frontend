@@ -35,6 +35,7 @@ import { SpecialVehicleComponent } from './special-vehicle/special-vehicle.compo
 import { SpecialCargoRequestComponent } from './special-cargo-request/special-cargo-request.component';
 import { ExtraditionRequestComponent } from './extradition-request/extradition-request.component';
 import { ProsecutionComponent } from './prosecution/prosecution.component';
+import { TwoButtonsDialogComponent } from './two-buttons-dialog/two-buttons-dialog.component';
 
 
 
@@ -68,6 +69,7 @@ const routes: Routes = [
     LoginComponent,
     HomeGuestComponent,
     DialogComponent,
+    TwoButtonsDialogComponent,
     CreateProfileComponent,
     WeaponDocumentComponent,
     PersonalDocumentComponent,
@@ -98,7 +100,6 @@ const routes: Routes = [
     BrowserAnimationsModule,
   ],
   exports: [RouterModule],
-
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
