@@ -14,6 +14,8 @@ import { TwoButtonsDialogComponent } from '../two-buttons-dialog/two-buttons-dia
   styleUrl: './extradition-request.component.css'
 })
 export class ExtraditionRequestComponent {
+
+  requests: any[] = [];
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -35,6 +37,11 @@ export class ExtraditionRequestComponent {
     });
   }
 
+  ngOnInit() {
+    this.borderPoliceService.getOne().subscribe((data: any[]) => {
+      this.requests = data;
+    });
+  }
   openTwoButtonsDialog(message: string): void{
     const dialogRef = this.dialog.open(TwoButtonsDialogComponent, {
       data: { title: 'Обавештење', message: message }

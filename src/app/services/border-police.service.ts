@@ -33,6 +33,10 @@ export class BorderPoliceService {
     return this.http.post<any>(this.config._border_police_request_url, specialVehicleData, { headers: headers });
   }
 
+  getOne() {
+    return this.apiService.get(this.config._get_all_causings_url);
+  }
+
   submitSpecialCargoRequestDataRequest(specialCargoRequestData: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

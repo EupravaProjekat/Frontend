@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel = "stylesheet" type="text/css" href="extradition-request.component.css">
   <link rel="icon" href="../../assets/governmentLogo.png">
-  <title>Пријава кандидата за добровољно служење војног рока - eUprava</title>
+  <title>Захтеви за изручење возила тужиоцу - eUprava</title>
 </head>
 <body>
 <div class="topLayout">
@@ -90,7 +90,24 @@
   </div>
 </div>
 <div class="homepage-info-container">
-
+  <table>
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Status</th>
+      <th>Car Plate Number</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let request of requests; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ request.status }}</td>
+      <td>{{ request.carPlateNumber }}</td>
+      <td>{{ request.description }}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <footer>
   <div class="footer-content">
