@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { TwoButtonsDialogComponent } from '../two-buttons-dialog/two-buttons-dia
   templateUrl: './extradition-request.component.html',
   styleUrl: './extradition-request.component.css'
 })
-export class ExtraditionRequestComponent {
+export class ExtraditionRequestComponent implements OnInit{
 
   requests: any[] = [];
   constructor(
@@ -23,7 +23,14 @@ export class ExtraditionRequestComponent {
     private authService: AuthService,
     private userService: UserService,
     private borderPoliceService: BorderPoliceService
-  ) {}
+  ) {if(this.authService.isAuthenticated())
+  {
+
+  }
+  else {
+
+    this.router.navigate(['/']);
+  }}
 
   openDialog(message: string) {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -38,6 +45,7 @@ export class ExtraditionRequestComponent {
   }
 
   ngOnInit() {
+    this.authService.checkdataborder();
     this.borderPoliceService.getOne().subscribe((data: any[]) => {
       this.requests = data;
     });
