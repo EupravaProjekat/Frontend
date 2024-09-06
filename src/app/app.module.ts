@@ -36,6 +36,7 @@ import { SpecialCargoRequestComponent } from './special-cargo-request/special-ca
 import { ExtraditionRequestComponent } from './extradition-request/extradition-request.component';
 import { ProsecutionComponent } from './prosecution/prosecution.component';
 import { TwoButtonsDialogComponent } from './two-buttons-dialog/two-buttons-dialog.component';
+import { VehicleWarrantComponent } from './vehicle-warrant/vehicle-warrant.component';
 
 
 
@@ -58,7 +59,10 @@ const routes: Routes = [
   { path: 'extraditionRequest', component: ExtraditionRequestComponent},
   { path: 'specialCargoRequest', component: SpecialCargoRequestComponent},
   { path: 'specialVehicle', component: SpecialVehicleComponent},
-  { path: 'prosecution', component: ProsecutionComponent}
+
+  { path: 'prosecution', component: ProsecutionComponent},
+  { path: 'vehicleWarrant', component: VehicleWarrantComponent},
+
 ];
 
 
@@ -78,7 +82,8 @@ const routes: Routes = [
     PersonalDocumentRequestComponent,
     SpecialVehicleComponent,
     SpecialCargoRequestComponent,
-    ExtraditionRequestComponent
+    ExtraditionRequestComponent,
+    VehicleWarrantComponent
   ],
 
   imports: [

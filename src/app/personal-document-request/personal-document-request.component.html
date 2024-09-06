@@ -106,9 +106,6 @@
                 (click)="setTab('tab-2')"
                 [disabled]="currentTab !== 'tab-2' && currentTab !== 'tab-3'">Попуњавање обрасца
         </button>
-        <button [class.active]="currentTab === 'tab-3'" (click)="setTab('tab-3')" [disabled]="currentTab !== 'tab-3'">
-          еЗаказивање
-        </button>
       </div>
 
       <div *ngIf="currentTab === 'tab-1'">

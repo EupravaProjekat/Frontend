@@ -1,1 +1,268 @@
-<p>vehicle-warrant works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="vehicle-warrant.component.css">
+  <link rel="icon" href="../../assets/governmentLogo.png">
+  <title>Заказивање рока за издавање личних докумената - eUprava</title>
+</head>
+<body>
+<div class="topLayout">
+  <div class="topLayoutWrapper">
+    <div class="topLayout-list-container-right">
+      <ul id="topLayout-list-right">
+        <li class="list-parameter" id="letters-parameter">Ћирилица <span id="falling-menu-arrow">▼</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="headerLayout">
+  <div class="headerLayoutWrapper">
+    <a href="/" id="logo-government-href"><img src="../../assets/governmentLogo.png"
+                                               alt="logo-government"
+                                               id="logo-government"></a>
+    <div class="logo-text-container">
+      <a href="/" id="logo-text">euprava.gov.rs</a>
+    </div>
+  </div>
+</div>
+<div class="menuLayout">
+  <div class="menuLayoutWrapper">
+    <div class="menuLeftLayout">
+      <div class="dropdownServices">
+        <button class="dropServicesButton">Услуге ▼</button>
+        <div class="dropdown-content">
+          <div class="first-column">
+            <a href="#">МУП и грађани<span id="arrow">▼</span></a>
+            <div class="mup-content">
+              <a href="http://localhost:4200/personalDocument">Издавање идентификационих докумената</a>
+              <a href="http://localhost:4200/weaponDocument">Куповина оружја</a>
+              <a href="http://localhost:4200/parkingDisabled">Паркинг за инвалиде</a>
+              <a href="http://localhost:4200/voluntaryMilitary">Добровољно служење војног рока</a>
+              <a href="http://localhost:4200/vehicleWarrant">Потернице и возила</a>
+            </div>
+          </div>
+          <div class="second-column">
+            <a href="#">Гранична полиција<span class = "arrow">▼</span></a>
+            <div class="bp-content">
+              <a href="http://localhost:4200/extraditionRequest">Захтеви за изручење возила тужиоцу</a>
+              <a href="http://localhost:4200/specialCargoRequest">Захтев за прелазак возила са специјалним теретом</a>
+              <a href="http://localhost:4200/specialVehicle">Прелазак специјалног возила</a>
+            </div>
+          </div>
+          <a href="#">Суд</a>
+          <a href="#">Тужилаштво</a>
+        </div>
+      </div>
+      <div class="news">
+        <button class="newsButton">Вести</button>
+      </div>
+      <div class="help">
+        <button class="helpButton">Помоћ</button>
+      </div>
+      <div class="contact">
+        <button class="contactButton">Контакт</button>
+      </div>
+    </div>
+    <div class="menuRightLayout">
+      <div class="profileLayout">
+        <button class="dropProfileButton">
+            <span class="icon-circle">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="18"
+                   height="18"
+                   fill="white"
+                   class="bi bi-person-lines-fill"
+                   viewBox="0 0 16 16">
+                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
+              </svg></span><span class="profileText">Моја еУправа ▼</span>
+        </button>
+        <div class="dropdown-content">
+          <a href="http://localhost:4200/login">Пријава</a>
+          <a href="http://localhost:4200/register">Регистрација</a>
+          <ng-container *ngIf="isAuthenticated()">
+            <a style="margin-left: 10px;margin-right: 10px" href="http://localhost:4200/profile">
+              <button id="profilebutn">Profile</button>
+            </a>
+            <button id="logoutbttn" (click)="logout()">Logout</button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="homepage-info-container">
+  <div class="homepage-info-container-wrapper">
+    <div class="container">
+      <div *ngIf="showError" class="error-box">
+        Морате прихватити услове коришћења портала да би наставили са извршавањем услуге
+      </div>
+
+      <div class="header">
+        <button [class.active]="currentTab === 'tab-1'" (click)="setTab('tab-1')">Почетак</button>
+        <button [class.active]="currentTab === 'tab-2'"
+                (click)="setTab('tab-2')"
+                [disabled]="currentTab !== 'tab-2' && currentTab !== 'tab-3'">Попуњавање обрасца
+        </button>
+      </div>
+
+      <div *ngIf="currentTab === 'tab-1'">
+        <h2>Услови коришћења електронске услуге</h2>
+        <div class="info-header">
+          <span>ИНФО</span>
+          <button (click)="toggleInfoBox()">
+            <img *ngIf="showInfoBox" src="../../assets/arrow-up.svg" alt="Sakrij"> <!-- Strelica za gore -->
+            <img *ngIf="!showInfoBox" src="../../assets/arrow-down.svg" alt="Prikaži"> <!-- Strelica za dole -->
+          </button>
+        </div>
+        <div *ngIf="showInfoBox" class="yellow-box">
+          <p class="info-p">За успешно извршење електронске услуге неопходно је испунити одређене правно-техничке
+            предуслове.</p>
+          <p class="info-p">Неопходно је да се корисник по упознавању са условима коришћења Портала (линк "Услови
+            коришћења") сагласи са истим селектовањем опције "Слажем се са условима коришћења портала" у дну екрана. На
+            тај начин је омогућено започињање поступка кликом на Напред.</p>
+          <p class="info-p">Технички предуслов за успешно извршење услуге јесте инсталирање софтвера Java и Adobe Reader
+            на рачунару са којег се приступа Порталу. Линкови за преузимање инсталационих фајлова се налазе при дну
+            странице.</p>
+        </div>
+        <div class="actions">
+          <label>
+            <div><input type="checkbox" [(ngModel)]="isAgreed"/> <span id="redText">Слажем се са условима коришћења портала</span>
+              <a href="#" class="tab-p">Услови коришћења</a></div>
+          </label>
+        </div>
+        <div class="footer">
+          <p class="tab-p">Најранији датум за заказивање термина је 1 дан од дана подношења захтева. Најдаљи датум за
+            заказивање термина је 30 дана од дана подношења захтева.</p>
+          <button type="button" (click)="onSubmit()">Напред</button>
+        </div>
+
+      </div>
+
+      <div *ngIf="currentTab === 'tab-2'">
+        <h2>Попуњавање електронског обрасца</h2>
+        <div class="info-header">
+          <span>ИНФО</span>
+          <button (click)="toggleInfoBox()">
+            <img *ngIf="showInfoBox" src="../../assets/arrow-up.svg" alt="Sakrij"> <!-- Strelica za gore -->
+            <img *ngIf="!showInfoBox" src="../../assets/arrow-down.svg" alt="Prikaži"> <!-- Strelica za dole -->
+          </button>
+        </div>
+        <div *ngIf="showInfoBox" class="yellow-box">
+          <p class="info-p">Попуњавање електронског обрасца је саставни део процеса извршавања услуге на Порталу. Поља
+            која се на њему налазе на јасан начин говоре о траженом податку при чему, за разлику од папирне форме,
+            пружају могућност контроле унетог садржаја. На тај начин се кориснику доставља информација о томе да ли су
+            унети подаци коректни или не. У случају да је одређени податак неопходно унети, а корисник то није учинио,
+            систем ће приказати адекватну поруку и онемогућити наставак процеса док се грешка не исправи.</p>
+          <p class="info-p">Посебна погодност електронских образаца на Порталу јесте могућност аутоматског преузимања
+            података из дигиталног сертификата. То значи да су извесна поља на обрасцу у тренутку његовог отварања већ
+            попуњена подацима из сертификата, у случају да је образац креиран на одговарајући начин.</p>
+          <p class="info-p">Избором опције Напред се наставља процес извршавања услуге, под условом да су унети подаци
+            коректни, док опција Назад враћа на претходну страницу.</p>
+        </div>
+        <div class="custom-form-container">
+          <form [formGroup]="appointmentForm" id="appointment-form">
+            <!-- Main Info Section -->
+            <div class="form-section">
+
+              <hr class="line">
+
+              <label for="jmbg">Регистарска ознака возила:</label>
+              <input type="text" id="jmbg" formControlName="carPlateNumber" ngModel required />
+
+              <hr class="line">
+
+
+            </div>
+            <div class="form-buttons">
+              <button type="button" (click)="goBack()" class="btn-back">Назад</button>
+              <button type="submit" class="btn-next" (click)="onSubmit()">Напред</button>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+
+      <div *ngIf="currentTab === 'tab-3'" class="tab-3">
+        <div class="request-container">
+          <p><strong>Број захтева:</strong> ЕГН17181456</p>
+          <p><strong>Назив услуге:</strong><br>еЗаказивање - лична карта и/или пасош - Град Нови Сад (Булевар краља Петра I)</p>
+          <p><strong>Подносилац захтева:</strong> Ivanka Šovljanski</p>
+
+          <div class="appointment-box" *ngIf="selectedDate && selectedTime">
+            <p><strong>Изабрани термин</strong></p>
+            <p>{{ selectedDate }}</p>
+            <p><strong>Од:</strong> {{ selectedTime.split('-')[0] }} <strong>До:</strong> {{ selectedTime.split('-')[1] }}</p>
+          </div>
+
+
+          <div class="buttons-container">
+            <button class="action-button schedule" (click)="onSubmit()">Закажи</button>
+            <button class="action-button cancel" (click)="goBack()">Откажи</button>
+            <button class="action-button help">Помоћ</button>
+          </div>
+
+          <div>
+            <a href="#" class="details-link">Детаљи захтева</a>
+          </div>
+        </div>
+        <div class="timetable">
+          <table>
+            <thead>
+            <tr>
+              <th>Vreme</th>
+              <th *ngFor="let date of dates">{{ date }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let time of timeSlots">
+              <td>{{ time }}</td>
+              <td *ngFor="let date of dates" (click)="selectTimeSlot(date, time)"
+                  [ngClass]="{
+          'slot': true,
+          'pause': isPause(time),
+          'free': !isPause(time) && !date.includes('(Sat)') && !date.includes('(Sun)'),
+          'selected': isSelected(date, time),
+          'not-working': date.includes('(Sat)') || date.includes('(Sun)')
+        }">
+                {{ date.includes('(Sat)') || date.includes('(Sun)') ? 'Нерадан дан' : (isPause(time) ? 'Пауза' : 'Слободан термин') }}
+              </td>
+            </tr>
+            </tbody>
+
+          </table>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+<footer>
+  <div class="footer-content">
+    <div class="footer-crest">
+      <img src="../../assets/serbia-srbija-logo-E2B57872B8-seeklogo.com.png" alt="serbian-crest" class="crest">
+    </div>
+    <div class="footer-content-info">
+      <h3>Факултет техничких наука у Новом Саду</h3>
+      <p>Пројекат из предмета - Технологије и системи еУправе</p>
+      <ul class="socials">
+        <li><a href="#" class="instagram"></a></li>
+        <li><a href="#" class="ftn"></a></li>
+        <li><a href="#" class="linkedin"></a></li>
+        <li><a href="#" class="tiktok"></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 еУправа. Сва права задржана.</p>
+  </div>
+</footer>
+</body>
+</html>
