@@ -40,10 +40,10 @@ export class VehicleWarrantService {
       'plates': requestData.carPlateNumber,
     };
 
-   
+
 
     return this.apiService.post(this.config._warrant_Vehicle_url, JSON.stringify(body), headers).subscribe((res) => {
-        this.openDialog("Успешно креиран термин!");
+        this.openDialog("Успешно креирана потерница!");
         console.log(res)
         let returnUrl : String;
         returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -51,7 +51,7 @@ export class VehicleWarrantService {
       },
       (error) => {
         console.error(error);
-        this.openDialog("Серверска грешка!");
+        // this.openDialog("Серверска грешка!");
       }
     );
   }
