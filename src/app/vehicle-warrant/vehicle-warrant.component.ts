@@ -34,14 +34,14 @@ export class VehicleWarrantComponent {
     private authService: AuthService,
     private vehicleWarrantService: VehicleWarrantService,
   ) {
-    // if(this.authService.isAuthenticated())
-    // {
-    //
-    // }
-    // else {
-    //
-    //   this.router.navigate(['/']);
-    // }
+    if(this.authService.isAuthenticated())
+    {
+
+    }
+    else {
+
+      this.router.navigate(['/']);
+    }
     this.appointmentForm = this.fb.group({
       carPlateNumber: ['', [Validators.required]],
     });
@@ -53,7 +53,7 @@ export class VehicleWarrantComponent {
   ngOnInit(): void {
     this.generateDates();
     this.generateTimeSlots();
-    // this.authService.checkdata();
+     this.authService.checkdata();
   }
 
   generateDates(): void {
