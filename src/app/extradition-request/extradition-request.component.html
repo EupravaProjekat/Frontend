@@ -51,20 +51,17 @@
             </div>
           </div>
           <a href="#">Суд</a>
-          <a href="#">Тужилаштво</a>
+          <a href="http://localhost:4200/prosecution">Тужилаштво</a>
         </div>
       </div>
-      <div class="nav-container">
-        <a class="newsButton" href="/news">Вести</a>
+      <div class="news">
+        <button class="newsButton">Вести</button>
       </div>
-      <div class="nav-container">
-        <a class="helpButton" href="/help">Помоћ</a>
+      <div class="help">
+        <button class="helpButton">Помоћ</button>
       </div>
-      <div class="nav-container">
-        <a class="contactButton" href="/contact">Контакт</a>
-      </div>
-      <div class="nav-container">
-        <a class="contactButton" href="/">Назад</a>
+      <div class="contact">
+        <button class="contactButton">Контакт</button>
       </div>
     </div>
     <div class="menuRightLayout">
@@ -90,24 +87,26 @@
   </div>
 </div>
 <div class="homepage-info-container">
-  <table>
-    <thead>
-    <tr>
-      <th>#</th>
-      <th>Status</th>
-      <th>Car Plate Number</th>
-      <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let request of requests; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>{{ request.status }}</td>
-      <td>{{ request.carPlateNumber }}</td>
-      <td>{{ request.description }}</td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="timetable">
+    <table>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Status</th>
+        <th>Car Plate Number</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let request of requests; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ request.status }}</td>
+        <td>{{ request.carPlateNumber }}</td>
+        <td>{{ request.description }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 <footer>
   <div class="footer-content">

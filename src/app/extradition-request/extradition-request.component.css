@@ -1,3 +1,252 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  background-color: #e7e7e7;
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 20px;
+}
+
+.header button {
+  flex: 1;
+  padding: 15px;
+  background-color: #e7e7e7;
+  border: none;
+  border-right: 1px solid #dddddd;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.header button:last-child {
+  border-right: none;
+}
+
+.header button.active {
+  background-color: #ffffff;
+  border-bottom: 3px solid #007bff;
+}
+
+.header button:hover:not(.active) {
+  background-color: #d7d7d7;
+}
+
+.error-box {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.info {
+  background-color: #fff1bc;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  margin-bottom: 20px;
+}
+
+.footer {
+  text-align: center;
+}
+
+button[type="button"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+.tab-p, .info-p {
+  font-family: 'Montserrat-Regular';
+  font-size: 12px;
+  text-align: start;
+}
+
+#redText {
+  font-family: 'Montserrat-Regular';
+  font-size: 13px;
+  text-align: start;
+  color:red;
+  margin-right:5px;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+.yellow-box {
+  background-color: #fff8e1;
+  padding: 15px;
+  border: 1px solid #ffd700;
+  margin-top: 10px;
+}
+
+button {
+  background-color: transparent; /* Uklanja pozadinu dugmeta */
+  border: none; /* Uklanja border dugmeta */
+  padding: 0; /* Uklanja padding ako postoji */
+  cursor: pointer; /* Menja kursor na pointer kada se prelazi preko dugmeta */
+}
+
+button img {
+  width: 20px;
+  height: 20px;
+}
+
+button img:hover {
+  scale: 1.2;
+}
+
+.custom-form-container {
+  display: flex;
+  justify-content: center;
+}
+
+#appointment-form {
+  width: 600px;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+#appointment-form .form-section {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+
+}
+
+#appointment-form label {
+  display: block;
+  text-align: start;
+  margin: 10px 0 5px;
+  font-weight: normal;
+}
+
+.line{
+  background-color: #d9d9d9;
+  height: 1px;
+  border: 1px solid #d9d9d9;
+}
+
+#appointment-form input[type="text"],
+#appointment-form input[type="email"] {
+  width: calc(100% - 22px);
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#appointment-form .form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#appointment-form .btn-back {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: pointer;
+}
+
+#appointment-form .btn-next {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+#appointment-form .btn-next:disabled {
+  background-color: #d3d3d3;
+  border: 1px solid #d3d3d3;
+  cursor: not-allowed;
+}
+
+.timetable {
+  max-height: 600px; /* Postavite maksimalnu visinu za tabelu */
+  overflow-y: auto;
+  margin: 0 250px;/* Omogućite vertikalno skrolovanje */
+}
+
+.timetable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.timetable th, .timetable td {
+  border: 1px solid #ddd;
+  padding: 5px;
+  text-align: center;
+  width: 100px;
+}
+
+.timetable th {
+  background-color: #f2f2f2;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-weight: bold;
+}
+
+.slot {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, font-size 0.3s;
+}
+
+.selected {
+  background-color: #c3e6cb;
+  font-weight: bold;
+}
+
+.pause {
+  background-color: #fdedc3;
+  cursor: not-allowed;
+}
+
+.slot.free {
+  background-color: #d4edda; /* Pozadina za slobodan termin */
+}
+
+.slot.free:hover {
+  background-color: #c3e6cb; /* Promenjena pozadina na hover */
+}
+
+.not-working {
+  background-color: #919191;
+  cursor: not-allowed;
+}
+
+
+
+
 @font-face {
   font-family: 'Montserrat-Regular';
   src: url('../../assets/fonts/Montserrat-Regular.ttf') format('truetype');
@@ -18,7 +267,7 @@ html, body{
   overflow-x: hidden;
 }
 
-a {
+#termsOfUse {
   clickable: true;
 }
 
@@ -129,6 +378,68 @@ a {
   gap: 5px;
 }
 
+.request-container {
+  border: 1px solid #A9A9A9;
+  padding: 15px;
+  width: 280px;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f5;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.request-container p {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #000;
+}
+
+.appointment-box {
+  border: 1px solid #A9A9A9;
+  padding: 10px;
+  background-color: #D3D3D3;
+  margin: 10px 0 20px;
+  text-align: center;
+}
+
+.buttons-container {
+  margin-bottom: 10px;
+}
+
+.action-button {
+  width: 100%;
+  padding: 7px 0;
+  margin-bottom: 5px;
+  border: 1px solid #A9A9A9;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.schedule {
+  background-color: #cce0ff;
+}
+
+.cancel {
+  background-color: #ffc0c0;
+}
+
+.help {
+  background-color: #e6e6e6;
+}
+
+.details-link {
+  color: #0000ff;
+  text-decoration: none;
+  font-size: 14px;
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.tab-3 {
+  display: flex;
+  flex-direction: row;
+}
+
 .profileText{
   padding: 16px 0;
 }
@@ -180,6 +491,10 @@ a {
 }
 
 .dropdownServices:hover .second-column:hover .bp-content {
+  display: block;
+}
+
+.dropdownServices:hover .first-column:hover .mup-content {
   display: block;
 }
 
