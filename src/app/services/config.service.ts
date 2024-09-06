@@ -23,6 +23,8 @@ export class ConfigService {
   _parking_request_url: string;
   _save_border_user_url: string;
   _border_police_request_url: string;
+  _prosecution_check_url: string;
+  _prosecute_url: string;
 
   constructor() {
     this._api_url = 'http://localhost:9094'; // Adjust the port as needed
@@ -43,5 +45,7 @@ export class ConfigService {
     this._check_url ="http://localhost:9099/checkifuserexists";
     this._check_border_url ="http://localhost:9098/profile";
     this._border_police_request_url = "http://localhost:9098/newrequest";
+    this._prosecution_check_url = "http://localhost:9199/check-if-person-is-prosecuted";
+    this._prosecute_url = "http://localhost:9199/prosecute";
   }
 }

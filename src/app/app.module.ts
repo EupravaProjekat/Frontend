@@ -34,6 +34,7 @@ import { VoluntaryMilitaryRequestComponent } from './voluntary-military-request/
 import { SpecialVehicleComponent } from './special-vehicle/special-vehicle.component';
 import { SpecialCargoRequestComponent } from './special-cargo-request/special-cargo-request.component';
 import { ExtraditionRequestComponent } from './extradition-request/extradition-request.component';
+import { ProsecutionComponent } from './prosecution/prosecution.component';
 
 
 
@@ -56,6 +57,7 @@ const routes: Routes = [
   { path: 'extraditionRequest', component: ExtraditionRequestComponent},
   { path: 'specialCargoRequest', component: SpecialCargoRequestComponent},
   { path: 'specialVehicle', component: SpecialVehicleComponent},
+  { path: 'prosecution', component: ProsecutionComponent}
 ];
 
 
