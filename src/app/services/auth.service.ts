@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ApiService} from "../services/api.service";
 import {Observable, Subscription, throwError} from "rxjs";
 import { UserService } from './user.service';
+import {TwoButtonsDialogComponent} from "../two-buttons-dialog/two-buttons-dialog.component";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -88,6 +89,21 @@ export class AuthService {
         }
       );
   }
+  openTwoButtonsDialog(message: string): void{
+    const dialogRef = this.dialog.open(TwoButtonsDialogComponent, {
+      data: { title: 'Обавештење', message: message }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'operator') {
+        this.userService.bordersaveuser('operator').subscribe(() => {
+        });
+      } else if (result === 'guest') {
+        this.userService.bordersaveuser('guest').subscribe(() => {
+        });
+      }
+    });
+  }
   checkdataborder() : Subscription {
     const loginHeaders = new HttpHeaders({
       'Accept': 'application/json',
@@ -101,11 +117,12 @@ export class AuthService {
         console.log(res.status);
           if(res.status != 200)
           {
-            this.router.navigate(['/profileSetup']);
+            this.openTwoButtonsDialog("Izaberite rolu kojom pristupate sistemu")
+
           }
         },
         (error) => {
-  this.router.navigate(['/profileSetupBorder']);
+          this.openTwoButtonsDialog("Izaberite rolu kojom pristupate sistemu")
 }
       );
   }
@@ -126,14 +143,7 @@ export class AuthService {
           localStorage.setItem("jwt", res.body);
           console.log(res.body);
           console.log(res);
-
-          this.userService.getOne(user.email).subscribe((username) => {
-            if (!username) {
-              this.router.navigate(['/profileSetup']);
-            } else {
-              this.router.navigate(['/']);
-            }
-          });
+          this.router.navigate(['/']);
         },
         (error) => {
           this.openDialog('Погрешни креденцијали за пријаву!');

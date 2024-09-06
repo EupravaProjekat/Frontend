@@ -42,7 +42,6 @@ export class SpecialVehicleComponent{
     });
   }
   ngOnInit()  {
-    this.authService.checkdata();
     this.authService.checkdataborder();
   }
 

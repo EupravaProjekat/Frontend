@@ -13,7 +13,7 @@ import { ConfigService } from './config.service';
   providedIn: 'root'
 })
 export class PersonalDocumentService {
-  
+
   token: any;
   constructor(
     public jwtHelper: JwtHelperService,
@@ -25,33 +25,33 @@ export class PersonalDocumentService {
     private dialog: MatDialog,
     private authService: AuthService
   ) { }
-  
-  
+
+
   submitAppointmentRequest(requestData: any): Subscription {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     });
-    
+
     this.token = localStorage.getItem('jwt');
     let s = this.jwtHelper.decodeToken(this.token)
-    
+
     let timeFrom = requestData.time.split('-')[0]
     let timeTo = requestData.time.split('-')[1]
-    
+
     const body = {
       'email': requestData.email,
       'name' : requestData.name,
       'surname' : requestData.surname,
       'jmbg' : requestData.jmbg,
-      'requestNumber' : requestData.requestNumber,
+      'request_number' : requestData.requestNumber,
       'date' : requestData.date,
       'timeFrom' : timeFrom,
       'timeTo' : timeTo
     };
 
     console.log(requestData.email)
-    
+
     return this.apiService.post(this.config._document_request_url, JSON.stringify(body), headers).subscribe((res) => {
         this.openDialog("Успешно креиран термин!");
         console.log(res)

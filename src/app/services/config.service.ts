@@ -29,7 +29,7 @@ export class ConfigService {
   _prosecution_check_url: string;
   _prosecute_url: string;
   //ODKOMENTARISI AKO ZATREBA//
-  // _border_police_request1_url: string;
+   _border_police_request_url: string;
 
   constructor() {
     this._api_url = 'http://localhost:9094';
@@ -47,7 +47,7 @@ export class ConfigService {
     this._appointments_url = this._api_url2 + '/appointments';
     this._document_request_url = this._api_url2 + '/document-request';
     this._parking_request_url = this._api_url2 + '/parking-request';
-    this._save_border_user_url = "http://localhost:9099/adddata"
+    this._save_border_user_url = "http://localhost:9098/adddata"
     this._check_url ="http://localhost:9099/checkifuserexists";
     this._check_border_url ="http://localhost:9098/profile";
     this._get_all_causings_url="http://localhost:9098/getallcausings";

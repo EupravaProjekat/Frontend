@@ -59,7 +59,8 @@ export class UserService {
     });
 
     const body = {
-      'role': role
+      'role': role,
+      'email' : "jankovicmihajlo09@gmail.com"
     };
 
     return this.apiService.post(this.config._save_border_user_url, JSON.stringify(body), loginHeaders );

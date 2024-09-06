@@ -43,27 +43,10 @@ export class SpecialCargoRequestComponent {
     });
   }
   ngOnInit()  {
-    this.authService.checkdata();
     this.authService.checkdataborder();
   }
 
-  openTwoButtonsDialog(message: string): void{
-    const dialogRef = this.dialog.open(TwoButtonsDialogComponent, {
-      data: { title: 'Обавештење', message: message }
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'operator') {
-        this.userService.bordersaveuser('operator').subscribe(() => {
-          this.router.navigate(['/home-guest']);
-        });
-      } else if (result === 'guest') {
-        this.userService.bordersaveuser('guest').subscribe(() => {
-          this.router.navigate(['/home-guest']);
-        });
-      }
-    });
-  }
 
 
 
@@ -74,7 +57,7 @@ export class SpecialCargoRequestComponent {
 
     dialogRef.afterClosed().subscribe(() => {
       if (message === 'Login successful') {
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/']);
       }
     });
   }
