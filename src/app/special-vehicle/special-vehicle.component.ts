@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { DialogComponent } from '../dialog/dialog.component';
 import { AuthService } from '../services/auth.service';
 import { BorderPoliceService } from '../services/border-police.service';
+import { UserService } from '../services/user.service';
+import { TwoButtonsDialogComponent } from '../two-buttons-dialog/two-buttons-dialog.component';
 
 @Component({
   selector: 'app-special-vehicle',
@@ -22,6 +24,7 @@ export class SpecialVehicleComponent{
     private router: Router,
     private dialog: MatDialog,
     private authService: AuthService,
+    private userService: UserService,
     private borderPoliceService: BorderPoliceService
   ) {
     if(this.authService.isAuthenticated())
@@ -41,6 +44,24 @@ export class SpecialVehicleComponent{
   ngOnInit()  {
     this.authService.checkdata();
     this.authService.checkdataborder();
+  }
+
+  openTwoButtonsDialog(message: string): void{
+    const dialogRef = this.dialog.open(TwoButtonsDialogComponent, {
+      data: { title: 'Обавештење', message: message }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'operator') {
+        this.userService.bordersaveuser('operator').subscribe(() => {
+          this.router.navigate(['/home-guest']);
+        });
+      } else if (result === 'guest') {
+        this.userService.bordersaveuser('guest').subscribe(() => {
+          this.router.navigate(['/home-guest']);
+        });
+      }
+    });
   }
 
 

@@ -22,6 +22,8 @@ export class ConfigService {
   _check_border_url: string;
   _parking_request_url: string;
   _save_border_user_url: string;
+
+  _get_all_causings_url: string;
   _border_police_request_url: string;
   //ODKOMENTARISI AKO ZATREBA//
   // _border_police_request1_url: string;
@@ -44,6 +46,7 @@ export class ConfigService {
     this._save_border_user_url = "http://localhost:9099/adddata"
     this._check_url ="http://localhost:9099/checkifuserexists";
     this._check_border_url ="http://localhost:9098/profile";
+    this._get_all_causings_url="http://localhost:9098/getallcausings";
     this._border_police_request_url = "http://localhost:9098/newrequest";
     //AKO TREBA DVA ENDPOINTA ZA DVE FORME//
     // this._border_police_request1_url = "http://localhost:9098/newrequest1";
